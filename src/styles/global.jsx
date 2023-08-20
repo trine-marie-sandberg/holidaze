@@ -32,8 +32,12 @@ const GlobalStyle = createGlobalStyle`
   }
   h1 {
     font-family: "stevie-sans", sans-serif;
-    font-weight: 400;
+    font-weight: 500;
     font-style: normal;
+  }
+  button {
+    font-family: "finalsix", sans-serif;
+    font-weight: 400;
   }
   .active i {
     color: var(--color-secondary) !important;

@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="137.94" height="70.099" viewBox="0 0 137.94 70.099">
-  <g id="Group_62" data-name="Group 62" transform="translate(-54.926 -23.048)">
-    <g id="Group_63" data-name="Group 63" transform="translate(-4 1)">
-      <text id="Holidaze" transform="translate(85.584 86.147)" fill="#fff" font-size="20" font-family="FinalSix-Thin, FinalSix" font-weight="200"><tspan x="0" y="0">Holidaze</tspan></text>
+<svg xmlns="http://www.w3.org/2000/svg" width="137" height="70.099" viewBox="0 0 137 70.099">
+  <g id="Group_145" data-name="Group 145" transform="translate(-54.34 -23.048)">
+    <g id="Group_63" data-name="Group 63" transform="translate(-6 1)">
+      <text id="Holidaze" transform="translate(91.84 86.147)" fill="#fff" font-size="20" font-family="FinalSix-Thin, FinalSix" font-weight="200"><tspan x="0" y="0">Holidaze</tspan></text>
       <g id="Group_52" data-name="Group 52" transform="translate(63.497 15.067)">
+        <rect id="Rectangle_135" data-name="Rectangle 135" width="137" height="2" rx="1" transform="translate(-3.157 49.379)" fill="#fff"/>
         <path id="Subtraction_12" data-name="Subtraction 12" d="M46.711,38.6H3.423A25.839,25.839,0,0,1,.9,32.469,26.269,26.269,0,0,1,0,25.65a26,26,0,0,1,1.97-9.984A25.6,25.6,0,0,1,7.342,7.513a24.959,24.959,0,0,1,7.968-5.5,24.624,24.624,0,0,1,19.514,0,24.96,24.96,0,0,1,7.968,5.5,25.6,25.6,0,0,1,5.372,8.153,26,26,0,0,1,1.97,9.984,26.274,26.274,0,0,1-.9,6.819A25.838,25.838,0,0,1,46.711,38.6Z" transform="translate(52.935 6.98)" fill="#7ee3f2"/>
-        <path id="Path_20" data-name="Path 20" d="M3.033,0h137.94" transform="translate(-7.605 49.08)" fill="none" stroke="#fff" stroke-width="2"/>
         <path id="Polygon_21" data-name="Polygon 21" d="M31.1,0l31.1,22.465H0Z" transform="translate(0.46 26.615)" fill="#17475d"/>
         <path id="Path_21" data-name="Path 21" d="M30.241,0,60.482,31.969H0Z" transform="translate(37.614 17.111)" fill="#0a3349"/>
         <path id="Path_22" data-name="Path 22" d="M30.241,0,60.482,17.28H0Z" transform="translate(67.854 31.799)" fill="#15445a"/>

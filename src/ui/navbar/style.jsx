@@ -39,4 +39,5 @@ export const I = styled.i`
 export const HoverText = styled.p`
   display: none;
   position: absolute;
+  top: 55px;
 `;
