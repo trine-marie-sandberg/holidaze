@@ -26,6 +26,14 @@ const GlobalStyle = createGlobalStyle`
   body {
     all: unset;
     display: block;
+    font-family: "finalsix", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  h1 {
+    font-family: "stevie-sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
   }
   .active i {
     color: var(--color-secondary) !important;
