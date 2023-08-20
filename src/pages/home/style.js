@@ -4,6 +4,12 @@ export const BgImg = styled.div`
   height: 100%;
   background-image: url("boat.jpg");
   background-size: cover;
+  @media (max-width: 1200px) {
+   background-image: url("boat-pad.jpg");
+  }
+  @media (max-width: 800px) {
+   background-image: url("boat-mobile.jpg");
+  }
 `;
 export const BgFade = styled.div`
   padding: 0 10vw;
@@ -11,6 +17,9 @@ export const BgFade = styled.div`
 `;
 export const FrontPage = styled.div`
   padding: 150px 0;
+  @media (max-width: 400px) {
+   padding: 70px 0;
+  }
 `;
 export const I = styled.i`
   font-size: ${(props) => props.theme.sizes.med};
