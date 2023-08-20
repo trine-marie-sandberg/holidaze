@@ -1,22 +1,26 @@
 import { useState } from 'react'
-import logo from '/logo.svg'
-import './App.css'
+import Layout from './ui/layout'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import HomePage from './pages/home'
+import VenuesPage from './pages/venues'
+import AccountPage from './pages/account'
+import VenueDetailsPage from './pages/venue-details'
+import ContactPage from './pages/contact'
 
 function App() {
-  const [count, setCount] = useState(0)
-  //https://www.youtube.com/watch?v=fZPgBnL2x-Q <- sustand tut
 
   return (
-    <>
-      <div>
-      <img src={logo} alt="logo"/>
-      </div>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
-    </>
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={ <HomePage /> } />
+          <Route path="venues" element={ <VenuesPage /> } />
+          <Route path="venue-details" element={ <VenueDetailsPage /> } />
+          <Route path="contact" element={ <ContactPage /> } />
+          <Route path="account" element={ <AccountPage /> } />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
   )
 }
 
