@@ -29,8 +29,11 @@ export const Li = styled.li`
 `;
 export const I = styled.i`
   font-size: ${(props) => props.theme.sizes.med};
-  padding: 5px;
+  padding: ${(props) => props.theme.sizes.sm};
   color: ${(props) => props.theme.color.font};
+  @media (max-width: 800px) {
+   padding: ${(props) => props.theme.sizes.xs};
+  }
 `;
 
 export const HoverText = styled.p`

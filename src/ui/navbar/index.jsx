@@ -25,7 +25,7 @@ export function NavBar() {
                 <Li>
                     <NavLink to="contact" aria-label="Contact us">
                         <I className="fa-solid fa-phone"></I>
-                        <HoverText>Tasks</HoverText>
+                        <HoverText>Contact</HoverText>
                     </NavLink>
                 </Li>
                 <Li>
