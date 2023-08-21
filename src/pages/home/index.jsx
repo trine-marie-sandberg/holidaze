@@ -2,7 +2,6 @@ import { BgFade, BgImg, FrontPage, SearchField, I, HideLabel, FrontPageWrap, Sea
 import { Link } from "react-router-dom";
 import { BtnPrimary, LinkWrap } from "../../ui/btns/style";
 
-
 export default function HomePage() {
 
     return(
@@ -17,7 +16,7 @@ export default function HomePage() {
                             <SearchField type="text" id="search" aria-label="search input field" placeholder="search for destination, contry, venue .."/>
                         </SearchWrap>
                         <LinkWrap>
-                            <Link>
+                            <Link to="venues">
                               <BtnPrimary>Explore</BtnPrimary>
                             </Link>
                         </LinkWrap>

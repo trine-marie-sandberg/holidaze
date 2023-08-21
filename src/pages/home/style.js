@@ -41,6 +41,7 @@ padding: ${(props) => props.theme.sizes.med};
 `;
 export const SearchField = styled.input`
   width: 40vw;
+  max-width: 500px;
   padding: 10px;
   border: 1px solid ${(props) => props.theme.color.border};
   border-radius: ${(props) => props.theme.sizes.borderRadius};
