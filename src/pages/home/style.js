@@ -12,8 +12,12 @@ export const BgImg = styled.div`
   }
 `;
 export const BgFade = styled.div`
-  padding: 0 10vw;
   background-color: rgba(3, 17, 26, 0.6);
+  @media (max-width: 400px) {
+    & h1 {
+      font-size: 25px;
+    }
+  }
 `;
 export const FrontPage = styled.div`
   padding: 150px 0;
@@ -38,20 +42,13 @@ padding: ${(props) => props.theme.sizes.med};
 export const SearchField = styled.input`
   width: 40vw;
   padding: 10px;
-  border: 1px solid ${(props) => props.theme.color.light};
+  border: 1px solid ${(props) => props.theme.color.border};
   border-radius: ${(props) => props.theme.sizes.borderRadius};
-  @media (max-width: 800px) {
-   width: 50vw;
-  }
 `;
 export const HideLabel = styled.label`
   display: none;
 `;
-export const Btn = styled.button`
-  color: ${(props) => props.theme.color.black};
-  background-color: ${(props) => props.theme.color.secondary};
-  border: 1px solid ${(props) => props.theme.color.light};
-  border-radius: 25px;
-  font-size: 16px;
-  padding: 10px 45px;
+export const SearchWrap = styled.form`
+  display: flex;
+  align-items: center;
 `;

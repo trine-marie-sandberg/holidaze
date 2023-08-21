@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
     --color-contrast-dark: rgb(5, 42, 64);
     --color-contrast-darker: rgb(3, 26, 40);
     --color-black: rgb(3, 26, 40);
+    --color-border: rgb(49, 56, 59);
 
     --sizes-xs: 5px;
     --sizes-sm: 1rem;

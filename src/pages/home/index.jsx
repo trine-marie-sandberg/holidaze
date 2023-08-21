@@ -1,4 +1,6 @@
-import { BgFade, BgImg, FrontPage, SearchField, I, HideLabel, FrontPageWrap, Btn } from "./style";
+import { BgFade, BgImg, FrontPage, SearchField, I, HideLabel, FrontPageWrap, SearchWrap } from "./style";
+import { Link } from "react-router-dom";
+import { BtnPrimary, LinkWrap } from "../../ui/btns/style";
 
 
 export default function HomePage() {
@@ -9,12 +11,16 @@ export default function HomePage() {
                 <BgFade>
                     <FrontPageWrap>
                         <h1>Find your destination</h1>
-                        <form>
+                        <SearchWrap>
                             <HideLabel htmlFor="search">Search </HideLabel>
-                            <I className="fa-solid fa-search" aria-label="search input field"></I>
-                            <SearchField type="text" id="search" placeholder="search for destination, contry, venue .."/>
-                        </form>
-                        <Btn>Explore</Btn>
+                            <I className="fa-solid fa-search" aria-label="search icon"></I>
+                            <SearchField type="text" id="search" aria-label="search input field" placeholder="search for destination, contry, venue .."/>
+                        </SearchWrap>
+                        <LinkWrap>
+                            <Link>
+                              <BtnPrimary>Explore</BtnPrimary>
+                            </Link>
+                        </LinkWrap>
                     </FrontPageWrap>
                 </BgFade>
             </FrontPage>

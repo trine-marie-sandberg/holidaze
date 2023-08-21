@@ -12,6 +12,7 @@ const theme = {
         dark: 'var(--color-contrast-dark)',
         light: 'var(--color-contrast-light)',
         black: 'var(--color-black)',
+        border: 'var(--color-border)',
     },
     sizes: {
         xs: 'var(--sizes-xs)',
