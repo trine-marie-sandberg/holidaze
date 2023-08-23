@@ -1,7 +1,8 @@
 import React from "react";
-import { Nav, Ul, Li, I, HoverText, MobileMenu } from "./style";
+import { Nav, Ul, Li, I, HoverText, MobileMenu, MenuIconWrap } from "./style";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { MobileMenuIcon } from "../mobile-menu-icon";
 
 export function NavBar() {
 
@@ -23,7 +24,9 @@ export function NavBar() {
 
     return(
         <>
-        <MobileMenu src="hamburger.svg" alt="Click to open mobile menu" onClick={menuHideShow} />
+        <MenuIconWrap onClick={menuHideShow}>
+            <MobileMenuIcon />
+        </MenuIconWrap>
         <Nav>
             <Ul id={visible}>
                 <Li>

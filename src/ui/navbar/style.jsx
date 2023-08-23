@@ -58,8 +58,25 @@ export const HoverText = styled.p`
 `;
 export const MobileMenu = styled.img`
   display: none;
-  cursor: pointer;
+  pointer-events: none;
+  & svg > g {
+    background-color: black !important;
+  } 
+  @media (max-width: 600px) {
+   display: block;
+  }
+`;
+export const MenuIconWrap = styled.i`
   z-index: 2;
+  cursor: pointer;
+  display: none;
+  & svg {
+    background-color: black !important;
+    & #line-top {
+      background-color: aliceblue;
+      stroke: blue;
+    }
+  } 
   @media (max-width: 600px) {
    display: block;
   }
