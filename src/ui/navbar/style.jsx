@@ -70,7 +70,7 @@ export const MenuIconWrap = styled.i`
   z-index: 2;
   cursor: pointer;
   display: none;
-  & svg {
+  & .clicked {
     background-color: black !important;
     & #line-top {
       background-color: aliceblue;

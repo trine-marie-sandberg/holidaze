@@ -7,6 +7,7 @@ import { MobileMenuIcon } from "../mobile-menu-icon";
 export function NavBar() {
 
     const [ visible, setVisible ] = useState("");
+    const [ clicked, setClicked ] = useState("");
 
     function login() {
         console.log("click")
@@ -14,9 +15,11 @@ export function NavBar() {
     function menuHideShow() {
         if (visible === "") {
             setVisible("visible");
+            setClicked("clicked");
         }
         else {
-            setVisible("")
+            setVisible("");
+            setClicked("");
         }
         
         console.log("click")
@@ -25,7 +28,9 @@ export function NavBar() {
     return(
         <>
         <MenuIconWrap onClick={menuHideShow}>
-            <MobileMenuIcon />
+            <div className={clicked}>
+                <MobileMenuIcon />
+            </div>
         </MenuIconWrap>
         <Nav>
             <Ul id={visible}>
