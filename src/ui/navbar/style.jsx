@@ -5,6 +5,14 @@ export const Nav =  styled.nav`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  @media (max-width: 600px) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    background-color: ${(props) => props.theme.color.primary};
+  }
 `;
 export const Head = styled.header`
   padding: ${(props) => props.theme.sizes.sm};
@@ -28,6 +36,7 @@ export const Li = styled.li`
   }
   & a {
     color: white;
+    text-decoration: none;
   }
 `;
 export const I = styled.i`
@@ -38,14 +47,19 @@ export const I = styled.i`
    padding: ${(props) => props.theme.sizes.xs};
   }
 `;
-
 export const HoverText = styled.p`
   display: none;
   position: absolute;
   top: 55px;
+  @media (max-width: 600px) {
+    position: sticky;
+    display: inline !important;
+  }
 `;
 export const MobileMenu = styled.img`
   display: none;
+  cursor: pointer;
+  z-index: 2;
   @media (max-width: 600px) {
    display: block;
   }

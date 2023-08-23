@@ -22,8 +22,9 @@ export function NavBar() {
     }
 
     return(
+        <>
+        <MobileMenu src="hamburger.svg" alt="Click to open mobile menu" onClick={menuHideShow} />
         <Nav>
-            <MobileMenu src="hamburger.svg" alt="Click to open mobile menu" onClick={menuHideShow} />
             <Ul id={visible}>
                 <Li>
                     <NavLink to="/" aria-label="Homepage">
@@ -57,5 +58,6 @@ export function NavBar() {
                 </Li>
             </Ul>
         </Nav>
+        </>
     )
 }
