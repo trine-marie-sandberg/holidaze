@@ -1,15 +1,30 @@
 import React from "react";
-import { Nav, Ul, Li, I, HoverText } from "./style";
+import { Nav, Ul, Li, I, HoverText, MobileMenu } from "./style";
 import { NavLink } from "react-router-dom";
-
-function login() {
-    console.log("click")
-}
+import { useState } from "react";
 
 export function NavBar() {
+
+    const [ visible, setVisible ] = useState("");
+
+    function login() {
+        console.log("click")
+    }
+    function menuHideShow() {
+        if (visible === "") {
+            setVisible("visible");
+        }
+        else {
+            setVisible("")
+        }
+        
+        console.log("click")
+    }
+
     return(
         <Nav>
-            <Ul>
+            <MobileMenu src="hamburger.svg" alt="Click to open mobile menu" onClick={menuHideShow} />
+            <Ul id={visible}>
                 <Li>
                     <NavLink to="/" aria-label="Homepage">
                         <I className="fa-solid fa-house"></I>

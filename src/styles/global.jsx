@@ -43,6 +43,9 @@ const GlobalStyle = createGlobalStyle`
   .active i {
     color: var(--color-secondary) !important;
   }
+  #visible {
+    display: block;
+  }
 `;
 
 export default GlobalStyle;

@@ -17,6 +17,9 @@ export const Ul = styled.ul`
   flex-wrap: wrap;
   list-style-type: none;
   padding: 5px;
+  @media (max-width: 600px) {
+   display: none;
+  }
 `;
 export const Li = styled.li`
   padding: 5px;
@@ -40,4 +43,10 @@ export const HoverText = styled.p`
   display: none;
   position: absolute;
   top: 55px;
+`;
+export const MobileMenu = styled.img`
+  display: none;
+  @media (max-width: 600px) {
+   display: block;
+  }
 `;
