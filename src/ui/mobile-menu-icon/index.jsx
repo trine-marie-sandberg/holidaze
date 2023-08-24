@@ -3,12 +3,12 @@ import React from "react";
 export function MobileMenuIcon() {
 
     return(
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 32 24">
-            <g id="hamburger" data-name="Group 95" transform="translate(-363.5 -35.5)">
-                <line id="line-top" data-name="line-top" x1="32" transform="translate(363.5 47.5)" fill="none" stroke="#fff" strokeWidth="2"/>
-                <line id="line-middle" data-name="line-middle" x1="32" transform="translate(363.5 58.5)" fill="none" stroke="#fff" strokeWidth="2"/>
-                <line id="line-bottom" data-name="line-bottom" x1="32" transform="translate(363.5 36.5)" fill="none" stroke="#fff" strokeWidth="2"/>
-            </g>
-        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="117" height="30" viewBox="0 0 117 80">
+  <g id="hamburger" data-name="Group 186" transform="translate(-154 -1436)">
+    <rect id="line-top" data-name="Rectangle 180" width="80" height="8" transform="translate(154 1436)" fill="#fff"/>
+    <rect id="line-middle" data-name="Rectangle 181" width="80" height="8" transform="translate(154 1472)" fill="#fff"/>
+    <rect id="line-bottom" data-name="Rectangle 182" width="80" height="8" transform="translate(154 1508)" fill="#fff"/>
+  </g>
+</svg>
     )
 }

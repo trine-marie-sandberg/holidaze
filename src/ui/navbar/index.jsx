@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, Ul, Li, I, HoverText, MobileMenu, MenuIconWrap } from "./style";
+import { Nav, Ul, Li, I, HoverText, MenuIconWrap } from "./style";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { MobileMenuIcon } from "../mobile-menu-icon";

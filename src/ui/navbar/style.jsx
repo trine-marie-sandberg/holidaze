@@ -56,25 +56,27 @@ export const HoverText = styled.p`
     display: inline !important;
   }
 `;
-export const MobileMenu = styled.img`
-  display: none;
-  pointer-events: none;
-  & svg > g {
-    background-color: black !important;
-  } 
-  @media (max-width: 600px) {
-   display: block;
-  }
-`;
+//https://codepen.io/shephero/pen/LYVrdjX
+//https://css-tricks.com/transforms-on-svg-elements/
 export const MenuIconWrap = styled.i`
   z-index: 2;
   cursor: pointer;
   display: none;
   & .clicked {
-    background-color: black !important;
+    transition: all 5s ease;
+    & #line-middle {
+      transition: all 1s ease;
+      fill: ${(props) => props.theme.color.secondary};
+    }
     & #line-top {
-      background-color: aliceblue;
-      stroke: blue;
+      transition: all 1s ease;
+      fill: ${(props) => props.theme.color.secondary};
+      rotate: 1deg;
+    }
+    & #line-bottom {
+      transition: all 1s ease;
+      fill: ${(props) => props.theme.color.secondary};
+      rotate: 1deg;
     }
   } 
   @media (max-width: 600px) {
