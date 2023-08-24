@@ -11,7 +11,7 @@ export const Nav =  styled.nav`
     top: 0;
     width: 100%;
     z-index: 1;
-    background-color: ${(props) => props.theme.color.primary};
+    background-color: rgba(0, 0, 0, 0.77);
   }
 `;
 export const Head = styled.header`
