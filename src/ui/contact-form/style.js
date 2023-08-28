@@ -24,6 +24,7 @@ export const Label = styled.label`
 export const Input = styled.input`
   padding: 0.5rem;
   background-color: ${(props) => props.theme.color.primary};
+  color: ${(props) => props.theme.color.font};
   width: 100%;
   border: none;
 `;
@@ -46,6 +47,7 @@ export const TextArea = styled.textarea`
   width: 100%;
   border: none;
   background-color: ${(props) => props.theme.color.primary};
+  color: ${(props) => props.theme.color.font};
 `;
 export const Button = styled.button`
   background-color: ${(props) => props.theme.color.secondary};
