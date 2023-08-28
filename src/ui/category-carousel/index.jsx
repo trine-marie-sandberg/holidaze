@@ -1,3 +1,4 @@
+import { BtnPrimary, PrimaryButton } from "../btns/style";
 import { Arrow, CategoryWrap, Dot, DotsHeadingWrap, DotsWrap, Heading, Image, ImgArrowWrap, TextImgWrap } from "./style";
 
 export default function CategoryCarousel() {
@@ -34,6 +35,7 @@ export default function CategoryCarousel() {
                     apartment, or an economy resort close to the beach? 
                     Have a look at our tropical venue listings!
                 </p>
+                <PrimaryButton><div>Go <i className="fa-solid fa-arrow-pointer"></i></div></PrimaryButton>
                 </TextImgWrap>
             </CategoryWrap>
             <h1>Venues</h1>
