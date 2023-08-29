@@ -30,18 +30,16 @@ export const RatingStars = styled.div`
   }
 `;
 export const RatingCounter = styled.div`
-  font-size: ${(props) => props.theme.sizes.med};
-  width: ${(props) => props.theme.sizes.xl};
-  /* background-color: rgba(0, 0, 0, 0.4); */
-  height: 100%;
+  font-size: ${(props) => props.theme.sizes.sm};
+  padding: ${(props) => props.theme.sizes.xs};
   text-align: center;
 `;
 export const LabelStar = styled.label`
 `;
 export const InputStar = styled.input`
   cursor: pointer;
-  width: ${(props) => props.theme.sizes.med};
-  height: ${(props) => props.theme.sizes.med};
+  width: ${(props) => props.theme.sizes.sm};
+  height: ${(props) => props.theme.sizes.sm};
   clip-path: polygon(50% 0%, 66% 32%, 100% 38%, 78% 64%, 83% 100%, 50% 83%, 17% 100%, 22% 64%, 0 38%, 34% 32%);
   /* background-color: rgba(255, 165, 0, 0.3);
   background-size: 205% 100%;
