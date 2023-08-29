@@ -38,7 +38,6 @@ export default function CategoryCarousel() {
                 <PrimaryButton><div>Go <i className="fa-solid fa-arrow-pointer"></i></div></PrimaryButton>
                 </TextImgWrap>
             </CategoryWrap>
-            <h1>Venues</h1>
         </>
     )
 }
