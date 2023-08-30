@@ -33,6 +33,8 @@ export const Dot = styled.div`
 `;
 export const TextImgWrap = styled.div`
   background-color: rgba(0, 0, 0, 0.3);
+  background-color: ${(props) => props.theme.color.primary};
+  border: 1px solid ${(props) => props.theme.color.dark};
   border-radius: ${(props) => props.theme.sizes.borderRadius};
   padding: ${(props) => props.theme.sizes.sm};
 `;

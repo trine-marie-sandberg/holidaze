@@ -5,15 +5,11 @@ export const RatingWrap = styled.div`
   justify-content: space-between;
   align-items: center;
   width: fit-content;
-  border-radius: ${(props) => props.theme.sizes.borderRadius};
-  background-color: rgba(0, 0, 0, 0.3);
 `;
 export const RatingStars = styled.div`
   display: flex;
   width: fit-content;
   align-items: center;
-  border-radius: ${(props) => props.theme.sizes.borderRadius};
-  border: 1px solid ${(props) => props.theme.color.black};
   position: relative;
   & input:where([type="checkbox"], [type="radio"]) {
     -webkit-appearance: none;
@@ -31,7 +27,7 @@ export const RatingStars = styled.div`
 `;
 export const RatingCounter = styled.div`
   font-size: ${(props) => props.theme.sizes.sm};
-  padding: ${(props) => props.theme.sizes.xs};
+  width: ${(props) => props.theme.sizes.sm};
   text-align: center;
 `;
 export const LabelStar = styled.label`
