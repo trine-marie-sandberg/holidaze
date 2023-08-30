@@ -12,10 +12,17 @@ export const Head = styled.header`
   }
 `;
 export const Logo = styled.img`
+  width: 100%;
   max-width: 150px;
   height: auto;
   padding: ${(props) => props.theme.sizes.xs};
   @media (max-width: 600px) {
    max-width: 120px;
+  }
+`;
+export const MobileMenu = styled.img`
+  display: none;
+  @media (max-width: 600px) {
+   display: block;
   }
 `;

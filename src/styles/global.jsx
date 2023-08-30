@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
     --color-font-black: rgb(6, 44, 67);
     --color-warning: #301313;
     --color-contrast-light: rgb(87, 128, 152);
-    --color-contrast-dark: rgb(5, 42, 64);
+    --color-contrast-dark: rgb(5, 39, 59);
     --color-contrast-darker: rgb(3, 26, 40);
     --color-black: rgb(3, 26, 40);
     --color-border: rgb(49, 56, 59);
@@ -42,6 +42,9 @@ const GlobalStyle = createGlobalStyle`
   }
   .active i {
     color: var(--color-secondary) !important;
+  }
+  #visible {
+    display: block;
   }
 `;
 

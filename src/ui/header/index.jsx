@@ -1,5 +1,5 @@
 import { NavBar } from "../navbar"
-import { Head, Logo } from "./style"
+import { Head, Logo, MobileMenu } from "./style"
 
 export default function Header() {
 

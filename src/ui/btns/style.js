@@ -23,3 +23,16 @@ export const LinkWrap = styled.div`
     border: 1px solid ${(props) => props.theme.color.light};
   }
 `;
+export const PrimaryButton = styled.button`
+  color: ${(props) => props.theme.color.black};
+  background-color: ${(props) => props.theme.color.secondary};
+  border: 1px solid ${(props) => props.theme.color.black};
+  border-radius: 25px;
+  font-size: 16px;
+  padding: 10px 45px;
+  margin: 0;
+  &:hover {
+    border: 1px solid ${(props) => props.theme.color.light};
+  }
+  cursor: pointer;
+`;
