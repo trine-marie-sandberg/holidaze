@@ -1,3 +1,5 @@
+import { CardWrap, CardsGrid, Image } from "./styled"
+
 export default function VenueCards(props) {
 
     if(props.children.status === "Not Found") {
@@ -7,13 +9,20 @@ export default function VenueCards(props) {
     }
     if(props.children.length > 0) {
         return(
-            <div>
+            <CardsGrid>
                 {props.children.map((data) => {
                     try {
                         return(
-                            <div key={data.id}>
-                                <h2>{data.name}</h2>
-                            </div>
+                            <CardWrap key={data.id}>
+                                <div>
+                                    <h2>{data.name}</h2>
+                                    <p>{data.price}</p>
+                                </div>
+                                <Image style={{ 
+                                  backgroundImage: `url(${data.media[0]})` 
+                                }}>
+                                </Image>
+                            </CardWrap>
                         )
                     }
                     catch(error) {
@@ -23,7 +32,7 @@ export default function VenueCards(props) {
                         )
                     }
                 })}
-            </div>
+            </CardsGrid>
         )
     }
     else {}
