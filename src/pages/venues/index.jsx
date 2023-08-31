@@ -53,8 +53,8 @@ export default function VenuesPage() {
                     </PaddingOnFilters>
                 </SearchFilterWrap>
                 <div>
-                    {loading === true && <h2>Loading . . .</h2>}
-                    {error === true && <h2>Error: Could not load content</h2>}
+                    {loading && <h2>Loading . . .</h2>}
+                    {error  && <h2>Error: Could not load content</h2>}
                     {data && <VenueCards>{data}</VenueCards>}
                 </div>
             </PageWrapper>
