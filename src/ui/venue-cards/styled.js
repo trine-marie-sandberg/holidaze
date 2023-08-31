@@ -22,7 +22,10 @@ export const CardWrap = styled.div`
   max-width: 400px;
   cursor: pointer;
   &:hover {
+    transition: all 100ms ease-in-out;
     box-shadow: rgba(0, 0, 0, 0.562) 0px 5px 15px;
+    transform: scale(1.01);
+    transform: translateY(-5px);
   }
 `;
 export const Image = styled.div`
