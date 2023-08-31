@@ -31,8 +31,6 @@ export const FilterManager = styled.form`
 export const SearchFilterWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
-  background-color: ${(props) => props.theme.color.primary};
-  border-radius: ${(props) => props.theme.sizes.borderRadius};
 `;
 export const PaddingOnFilters = styled.div`
   padding: 0 ${(props) => props.theme.sizes.sm};

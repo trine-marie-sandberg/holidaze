@@ -11,7 +11,8 @@ export const Nav =  styled.nav`
     top: 0;
     width: 100%;
     z-index: 1;
-    background-color: rgba(0, 0, 0, 0.77);
+    background-color: ${(props) => props.theme.color.primary};
+    border-bottom: 2px solid ${(props) => props.theme.color.light};;
   }
 `;
 export const Head = styled.header`

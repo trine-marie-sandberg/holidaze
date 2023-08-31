@@ -2,8 +2,9 @@ import { styled } from "styled-components";
 
 export const CategoryWrap = styled.div`
   padding: ${(props) => props.theme.sizes.xs};
-  max-width: 800px;
+  max-width: 1000px;
   padding: ${(props) => props.theme.sizes.sm};
+  margin-bottom: ${(props) => props.theme.sizes.lg};
 `;
 export const Heading = styled.h2`
   margin: 0;
@@ -12,7 +13,7 @@ export const DotsHeadingWrap = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: ${(props) => props.theme.sizes.xs};
+  padding: ${(props) => props.theme.sizes.med} ${(props) => props.theme.sizes.xs};
 `;
 export const DotsWrap = styled.div`
   display: flex;
