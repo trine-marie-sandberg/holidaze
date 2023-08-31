@@ -2,12 +2,18 @@ import { styled } from "styled-components";
 
 export const CardsGrid = styled.div`
   display: grid;
-  grid-template-columns:  repeat( auto-fill, minmax(350px, 1fr));
+  grid-template-columns:  repeat( auto-fill, minmax(250px, 1fr));
   grid-column-gap: 6px;
   grid-row-gap: 6px;
   padding:  ${(props) => props.theme.sizes.sm};
   border-radius: ${(props) => props.theme.sizes.borderRadius};
   margin-top: ${(props) => props.theme.sizes.med};
+  @media (min-width: 700px) {
+    grid-template-columns:  repeat( auto-fill, minmax(280px, 1fr));
+  }
+  @media (min-width: 1500px) {
+    grid-template-columns:  repeat( auto-fill, minmax(350px, 1fr));
+  }
 `;
 export const CardWrap = styled.div`
   display: flex;
@@ -35,7 +41,26 @@ export const Image = styled.div`
   background-repeat: no-repeat;
   max-height: ${(props) => props.theme.sizes.card};
   border-radius: ${(props) => props.theme.sizes.borderRadius};
-  @media (max-width: 900px) {
-   height: 300px;
-  }
+`;
+export const Wrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0 ${(props) => props.theme.sizes.sm};
+`;
+export const Star = styled.div`
+  background-color: ${(props) => props.theme.color.font};
+  width: ${(props) => props.theme.sizes.sm};
+  height: ${(props) => props.theme.sizes.sm};
+  clip-path: polygon(50% 0%, 66% 32%, 100% 38%, 78% 64%, 83% 100%, 50% 83%, 17% 100%, 22% 64%, 0 38%, 34% 32%);
+`;
+export const Position = styled.p`
+  padding: 0 ${(props) => props.theme.sizes.sm};
+`;
+export const StarsPositionWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
 `;

@@ -1,4 +1,5 @@
-import { CardWrap, CardsGrid, Image } from "./styled"
+import { CardWrap, CardsGrid, Image, Position, StarsPositionWrap, Wrap } from "./styled";
+import UsecreateStars from "../../hooks/stars";
 
 export default function VenueCards(props) {
 
@@ -12,16 +13,21 @@ export default function VenueCards(props) {
             <CardsGrid>
                 {props.children.map((data) => {
                     try {
+                        const stars = UsecreateStars(data.rating, data.stars);
                         return(
                             <CardWrap key={data.id}>
-                                <div>
+                                <Wrap>
                                     <h2>{data.name}</h2>
-                                    <p>{data.price}</p>
-                                </div>
+                                    <p>${data.price}</p>
+                                </Wrap>
                                 <Image style={{ 
                                   backgroundImage: `url(${data.media[0]})` 
                                 }}>
                                 </Image>
+                                <StarsPositionWrap>
+                                  <Wrap>{...stars}</Wrap>
+                                  <Position><i className="fa-solid fa-location-dot"></i> {data.location.country}</Position>
+                                </StarsPositionWrap>
                             </CardWrap>
                         )
                     }
