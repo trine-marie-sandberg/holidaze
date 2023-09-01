@@ -1,5 +1,6 @@
 import { CardWrap, CardsGrid, Image, Position, StarsPositionWrap, Wrap } from "./styled";
 import CreateStars from "../stars";
+import { Link } from "react-router-dom";
 
 export default function VenueCards(props) {
 
@@ -16,18 +17,20 @@ export default function VenueCards(props) {
                         const stars = CreateStars(data.rating, data.stars);
                         return(
                             <CardWrap key={data.id}>
-                                <Wrap>
-                                    <h2>{data.name}</h2>
-                                    <p>${data.price}</p>
-                                </Wrap>
-                                <Image style={{ 
-                                  backgroundImage: `url(${data.media[0]})` 
-                                }}>
-                                </Image>
-                                <StarsPositionWrap>
-                                  <Wrap>{...stars}</Wrap>
-                                  <Position><i className="fa-solid fa-location-dot"></i> {data.location.country}</Position>
-                                </StarsPositionWrap>
+                                <Link to={`/venue/${data.id}`}>
+                                    <Wrap>
+                                        <h2>{data.name}</h2>
+                                        <p>${data.price}</p>
+                                    </Wrap>
+                                    <Image style={{ 
+                                    backgroundImage: `url(${data.media[0]})` 
+                                    }}>
+                                    </Image>
+                                    <StarsPositionWrap>
+                                    <Wrap>{...stars}</Wrap>
+                                    <Position><i className="fa-solid fa-location-dot"></i> {data.location.country}</Position>
+                                    </StarsPositionWrap>
+                                </Link>
                             </CardWrap>
                         )
                     }

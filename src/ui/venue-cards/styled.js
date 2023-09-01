@@ -33,6 +33,13 @@ export const CardWrap = styled.div`
     transform: scale(1.01);
     transform: translateY(-5px);
   }
+  & a {
+    text-decoration: none;
+    color: ${(props) => props.theme.color.font};
+  }
+  & a:visited {
+    color: rgb(204, 211, 216);
+  }
 `;
 export const Image = styled.div`
   width: 100%;
