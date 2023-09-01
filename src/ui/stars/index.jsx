@@ -1,6 +1,6 @@
 import { EmptyStar, Star, Wrap } from "./style";
 
-export default function UsecreateStars(rating) {
+export default function CreateStars(rating) {
     let stars = [];
     for(let i = 0; i < rating; i++) {
         stars.push(<i><Star /></i>);
