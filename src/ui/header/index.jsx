@@ -5,7 +5,7 @@ export default function Header() {
 
     return(
         <Head>
-            <Logo src="logo.svg" alt="Holidaze logo"/>
+            <Logo src="/logo.svg" alt="Holidaze logo"/>
             <NavBar />
         </Head>
     )
