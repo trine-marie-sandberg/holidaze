@@ -35,7 +35,8 @@ export const ImagesWrap = styled.div`
   }
 `;
 export const Image = styled.img`
-  height: 100%;
+  height: auto;
+  max-height: 100% !important;
   width: auto;
   max-width: 50vw;
   max-height: 600px;
