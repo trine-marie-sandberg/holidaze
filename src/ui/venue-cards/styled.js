@@ -44,7 +44,7 @@ export const CardWrap = styled.div`
 export const Image = styled.div`
   width: 100%;
   height: 200px;
-  background-size: 100% 100%;
+  background-size: 100% auto;
   background-repeat: no-repeat;
   max-height: ${(props) => props.theme.sizes.card};
   border-radius: ${(props) => props.theme.sizes.borderRadius};

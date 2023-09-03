@@ -24,7 +24,7 @@ export default function VenueCards(props) {
                                 <Link to={`/venue/${data.id}`}>
                                     <Wrap>
                                         <h2>{data.name}</h2>
-                                        <p>${data.price}</p>
+                                        <p>${data.price}/night</p>
                                     </Wrap>
                                     <Image style={{ 
                                     backgroundImage: `url(${imageSrc})` 

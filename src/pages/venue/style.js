@@ -12,6 +12,7 @@ export const ImagesWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 60vh;
   & {
     font-size: 50px;
     @media(max-width: 1400px) {
@@ -19,8 +20,10 @@ export const ImagesWrap = styled.div`
     }
     @media(max-width: 1000px) {
       font-size: 35px;
+      height: 50vw;
     }
     @media(max-width: 600px) {
+      height: 60vw;
       font-size: 30px;
     }
     @media(max-width: 500px) {
