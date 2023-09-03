@@ -1,7 +1,8 @@
 import PageWrapper from "../../ui/pagewrapper";
 import { useNavigate, useParams } from "react-router-dom";
 import useFetch from "../../hooks/api";
-import { ImageGrid, Image } from "./style";
+import { ImageGrid, Image, Flex, VenueWrap, BackBtn, BackArrow } from "./style";
+import CreateStars from "../../ui/stars";
 
 export default function VenueDetailsPage() {
     let params = useParams();
@@ -10,18 +11,23 @@ export default function VenueDetailsPage() {
     const url = `https://api.noroff.dev/api/v1/holidaze/venues/${id}`;
     const { data, loading, error } = useFetch(url);
 
+    const star = CreateStars(data.rating)
     console.log(data)
     let address;
     let city;
     let zip;
     let contry;
     let continent;
+    let description = "No description";
     if(data.location) {
         address = data.location.address;
         city = data.location.city;
         zip = data.location.zip;
         contry = data.location.contry;
         continent = data.location.continent;
+    }
+    if(data.description) {
+        description = data.description;
     }
 
     // {listing.media.length <= 0 ? (
@@ -40,13 +46,31 @@ export default function VenueDetailsPage() {
 
     return(
         <PageWrapper>
-            <h1>{data.name}</h1>
-            <ImageGrid>
-                <Image src={data.media}></Image>
-            </ImageGrid>
-            <div>
-                <p>Location: {address && address} {city} {zip} {contry} {continent}</p>
-            </div>
+            <VenueWrap>
+                <BackBtn onClick={() => navigate(-1)}>
+                    <BackArrow className="fa-solid fa-reply"></BackArrow>
+                    <p>Back</p>
+                </BackBtn>
+                <Flex>
+                    <h1>{data.name}</h1>
+                    <p>${data.price}/night</p>
+                </Flex>
+                <ImageGrid>
+                    <Image src={data.media}></Image>
+                </ImageGrid>
+                <div>
+                    <Flex>
+                        <p><i className="fa-solid fa-location-dot"></i> Location: {address} {city} {zip}, {contry} {continent}</p>
+                        <Flex>
+                            <p>Rating: </p>
+                            <Flex>{star}</Flex>
+                        </Flex>
+                    </Flex>
+                    
+                    <h2>Description</h2>
+                    <p>{description}</p>
+                </div>
+            </VenueWrap>
         </PageWrapper>
     )
 }
