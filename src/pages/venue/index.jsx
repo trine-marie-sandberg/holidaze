@@ -12,7 +12,7 @@ export default function VenueDetailsPage() {
     function nextImage(array) {
         if(imgIndex > array.length -2) {
             setImgIndex(0);
-            console.log("Array length: " + array.length)
+            console.log("Array length reached " + "0")
         } else {
             setImgIndex(imgIndex + 1)
             console.log(imgIndex + " imgIndex +1")
@@ -21,7 +21,7 @@ export default function VenueDetailsPage() {
     function previousImage(array) {
         if(imgIndex < 0) {
             setImgIndex(0);
-            console.log("Array length: " + array.length)
+            console.log("Array length reached " + "0")
             console.log(imgIndex + " imgIndex")
         } else if(imgIndex === 0) {
             setImgIndex(imgIndex + 1);
