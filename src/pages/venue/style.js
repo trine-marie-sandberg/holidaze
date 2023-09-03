@@ -2,24 +2,55 @@ import { styled } from "styled-components";
 
 export const VenueWrap = styled.div`
   padding: ${(props) => props.theme.sizes.sm};
-  max-width: 1400px;
+  max-width: 1200px;
 `;
-export const ImageGrid = styled.div`
+export const ImagesWrap = styled.div`
   background-color: ${(props) => props.theme.color.darker};
   border-top-right-radius: ${(props) => props.theme.sizes.borderRadius};
   border-top-left-radius: ${(props) => props.theme.sizes.borderRadius};
   border: 1px solid ${(props) => props.theme.color.darker};
-  /* display: grid;
-  grid-template-columns:  repeat( auto-fill, minmax(550px, 1fr) ); */
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  & {
+    font-size: 50px;
+    @media(max-width: 1400px) {
+      font-size: 40px;
+    }
+    @media(max-width: 1000px) {
+      font-size: 35px;
+    }
+    @media(max-width: 600px) {
+      font-size: 30px;
+    }
+    @media(max-width: 500px) {
+      font-size: 25px;
+    }
+  }
+  & #arrow-faded {
+    color: ${(props) => props.theme.color.primary};
+    cursor: auto;
+  }
 `;
 export const Image = styled.img`
-  margin: 0 auto;
   height: 100%;
   width: auto;
+  max-width: 50vw;
   max-height: 600px;
   border-radius: ${(props) => props.theme.sizes.borderRadius};
+  border: 1px solid ${(props) => props.theme.color.darker};
+`;
+export const ArrowLeft = styled.div`
+  cursor: pointer;
+  margin-right: ${(props) => props.theme.sizes.sm};
+  left: 25;
+  top: 50;
+`;
+export const ArrowRight = styled.div`
+  cursor: pointer;
+  margin-left: ${(props) => props.theme.sizes.sm};
+  right: 25;
+  top: 50;
 `;
 export const Flex = styled.div`
   display: flex;
@@ -27,20 +58,27 @@ export const Flex = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
-export const BackBtn = styled.div`
+export const BackHeadingWrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+`;
+export const Heading = styled.h1`
+  padding-left: ${(props) => props.theme.sizes.lg};
+`;
+export const BackBtn = styled.p`
   display: flex;
   align-items: center;
   cursor: pointer;
-  background-color: ${(props) => props.theme.color.primary};
   color: ${(props) => props.theme.color.font};
-  width: fit-content;
-  padding: 1px ${(props) => props.theme.sizes.med};
-  border: 2px solid ${(props) => props.theme.color.dark};
+  background-color: ${(props) => props.theme.color.primary};
+  border: 1px solid ${(props) => props.theme.color.dark};
+  padding: ${(props) => props.theme.sizes.sm} ${(props) => props.theme.sizes.lg};
   border-radius: ${(props) => props.theme.sizes.borderRadius};
+  width: fit-content;
+  height: fit-content;
   &:hover {
-    border: 2px solid ${(props) => props.theme.color.primary};
-    transition: all 200ms ease-in-out;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 15px;
+    border: 1px solid ${(props) => props.theme.color.darker};
   }
 `;
 export const BackArrow = styled.i`

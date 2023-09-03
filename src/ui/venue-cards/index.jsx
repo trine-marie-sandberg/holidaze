@@ -15,6 +15,10 @@ export default function VenueCards(props) {
                 {props.children.map((data) => {
                     try {
                         const stars = CreateStars(data.rating, data.stars);
+                        let imageSrc = data.media[0];
+                        if(data.media.length < 1) {
+                            imageSrc = "/placeholder-img.jpg";
+                        }
                         return(
                             <CardWrap key={data.id}>
                                 <Link to={`/venue/${data.id}`}>
@@ -23,7 +27,7 @@ export default function VenueCards(props) {
                                         <p>${data.price}</p>
                                     </Wrap>
                                     <Image style={{ 
-                                    backgroundImage: `url(${data.media[0]})` 
+                                    backgroundImage: `url(${imageSrc})` 
                                     }}>
                                     </Image>
                                     <StarsPositionWrap>
