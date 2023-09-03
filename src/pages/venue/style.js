@@ -28,8 +28,7 @@ export const ImagesWrap = styled.div`
     }
   }
   & #arrow-faded {
-    color: ${(props) => props.theme.color.primary};
-    cursor: auto;
+    display: none;
   }
 `;
 export const Image = styled.img`
