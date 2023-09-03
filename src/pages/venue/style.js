@@ -2,17 +2,22 @@ import { styled } from "styled-components";
 
 export const VenueWrap = styled.div`
   padding: ${(props) => props.theme.sizes.sm};
+  max-width: 1400px;
 `;
 export const ImageGrid = styled.div`
+  background-color: ${(props) => props.theme.color.darker};
+  border-top-right-radius: ${(props) => props.theme.sizes.borderRadius};
+  border-top-left-radius: ${(props) => props.theme.sizes.borderRadius};
+  border: 1px solid ${(props) => props.theme.color.darker};
   /* display: grid;
   grid-template-columns:  repeat( auto-fill, minmax(550px, 1fr) ); */
   display: flex;
   flex-wrap: wrap;
 `;
 export const Image = styled.img`
-  height: auto;
-  width: 100%;
-  max-width: 80vw;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
   max-height: 600px;
   border-radius: ${(props) => props.theme.sizes.borderRadius};
 `;
@@ -40,4 +45,16 @@ export const BackBtn = styled.div`
 `;
 export const BackArrow = styled.i`
   padding-right: ${(props) => props.theme.sizes.xs};
+`;
+export const MetaIcon = styled.i`
+  padding: ${(props) => props.theme.sizes.xs};
+`;
+export const DescriptionWrap = styled.div`
+  z-index: 1;
+  background-color: ${(props) => props.theme.color.primary};
+  padding: ${(props) => props.theme.sizes.sm};
+  margin-top: 0px;
+  border-end-end-radius: ${(props) => props.theme.sizes.borderRadius};
+  border-end-start-radius: ${(props) => props.theme.sizes.borderRadius};
+  border: 1px solid ${(props) => props.theme.color.darker};
 `;
