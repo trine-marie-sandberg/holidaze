@@ -38,6 +38,11 @@ export const Image = styled.img`
   max-width: 80vw;
   border-radius: ${(props) => props.theme.sizes.borderRadius};
   border: 1px solid ${(props) => props.theme.color.darker};
+  animation: fadeIn 5s;
+  @keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+  }
 `;
 export const ArrowLeft = styled.div`
   position: absolute;
