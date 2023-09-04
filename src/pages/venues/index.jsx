@@ -1,12 +1,14 @@
+import { useState } from "react";
 import useFetch from "../../hooks/api";
 import CategoryCarousel from "../../ui/category-carousel";
 import PageWrapper from "../../ui/pagewrapper";
 import StarRating from "../../ui/star-rating";
 import VenueCards from "../../ui/venue-cards";
-import { SearchWrap, SearchField, HideLabel, I, FilterManager, SearchFilterWrap, PaddingOnFilters, TotalGuestsInput, FilterLabels, FlexFilters } from "./style";
+import { SearchWrap, SearchField, HideLabel, I, FilterManager, SearchFilterWrap, PaddingOnFilters, TotalGuestsInput, FilterLabels, FlexFilters, ShowMoreBtn, BtnCardsWrap } from "./style";
 
 export default function VenuesPage() {
-
+    
+    const { page, setPage } = useState("");
     const url = "https://api.noroff.dev/api/v1/holidaze/venues";
     const { data, loading, error } = useFetch(url);
 
@@ -55,7 +57,14 @@ export default function VenuesPage() {
                 <div>
                     {loading && <h2>Loading . . .</h2>}
                     {error  && <h2>Error: Could not load content</h2>}
-                    {data && <VenueCards>{data}</VenueCards>}
+                    {data && 
+                    <BtnCardsWrap>
+                        <VenueCards>
+                            {data}
+                        </VenueCards>
+                        <ShowMoreBtn>Show more</ShowMoreBtn>
+                    </BtnCardsWrap>
+                    }
                 </div>
             </PageWrapper>
         )
