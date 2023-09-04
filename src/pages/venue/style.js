@@ -3,31 +3,28 @@ import { styled } from "styled-components";
 export const VenueWrap = styled.div`
   padding: ${(props) => props.theme.sizes.sm};
   max-width: 1200px;
+  @media(max-width: 600px) {
+    padding: 0;
+  }
 `;
 export const ImagesWrap = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  color: ${(props) => props.theme.color.font};
   background-color: ${(props) => props.theme.color.darker};
   border-top-right-radius: ${(props) => props.theme.sizes.borderRadius};
   border-top-left-radius: ${(props) => props.theme.sizes.borderRadius};
   border: 1px solid ${(props) => props.theme.color.darker};
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 60vh;
   & {
     font-size: 50px;
-    @media(max-width: 1400px) {
-      font-size: 40px;
-    }
     @media(max-width: 1000px) {
-      font-size: 35px;
-      height: 50vw;
+      font-size: 45px;
     }
     @media(max-width: 600px) {
       height: 60vw;
       font-size: 30px;
-    }
-    @media(max-width: 500px) {
-      font-size: 25px;
     }
   }
   & #arrow-faded {
@@ -38,19 +35,25 @@ export const Image = styled.img`
   height: auto;
   max-height: 100% !important;
   width: auto;
-  max-width: 50vw;
-  max-height: 600px;
+  max-width: 80vw;
   border-radius: ${(props) => props.theme.sizes.borderRadius};
   border: 1px solid ${(props) => props.theme.color.darker};
 `;
 export const ArrowLeft = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 10px;
   cursor: pointer;
   margin-right: ${(props) => props.theme.sizes.sm};
   left: 25;
   top: 50;
 `;
 export const ArrowRight = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 10px;
   cursor: pointer;
+  justify-self: end;
   margin-left: ${(props) => props.theme.sizes.sm};
   right: 25;
   top: 50;
