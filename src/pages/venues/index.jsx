@@ -23,13 +23,16 @@ export default function VenuesPage() {
     });
     const [ filteredData, setFilteredData ] = useState([]);
     const [ isSubmitted, setIsSubmitted ] = useState([""]);
-
-    useEffect(() => {
+    function handleFilter() {
         const newFilter = data.filter((value) => {
             return value.name.toLowerCase().includes(filterObject.search.toLowerCase());
           })
         setFilteredData(newFilter);
         console.log(newFilter)
+    }
+
+    useEffect(() => {
+        handleFilter();
     }, isSubmitted)
 
     try {
@@ -39,7 +42,7 @@ export default function VenuesPage() {
                 <h1>Find venues</h1>
                 <SearchFilters>
                     {setFilterObject}
-                    <button type="submit" onClick={() => setIsSubmitted(["true"])}>Go <i className="fa-solid fa-arrow-pointer"></i></button>
+                    {setIsSubmitted}
                 </SearchFilters>
                 <div>
                     {loading && <h2>Loading . . .</h2>}
