@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { RatingStars, LabelStar, InputStar, RatingWrap } from "./style";
 
 export default function StarRating(props) {
 
-    const [ isChecked, setChecked ] = useState(false);
     const initialRating = 0;
     const updateRating = props.children;
     useEffect(() => updateRating(initialRating), []);
