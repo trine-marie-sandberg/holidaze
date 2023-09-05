@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FilterManager, FilterLabels, TotalGuestsInput, FlexFilters, PaddingOnFilters, SearchFilterWrap, SearchWrap, HideLabel, I, SearchField, RatingCounter } from "./style";
 import StarRating from "../star-rating";
 
-export default function SearchFilters() {
+export default function SearchFilters(props) {
 
     const [ search, setSearch ] = useState("");
     const [ rating, setRating ] = useState(0);
@@ -10,24 +10,27 @@ export default function SearchFilters() {
     const [ pets, setPets] = useState(false);
     const [ parking, setParking ] = useState(false);
     const [ breakfast, setBreakfast ] = useState(false);
+    const [ guests, setGuests ] = useState(0);
 
-    const filterObject = {
+    const newFilterObject = {
         search: search,
         rating: rating,
         wifi: wifi,
         pets: pets,
         parking: parking,
         breakfast: breakfast,
+        guests: guests,
     }
+    const updateObject = props.children;
 
-    function useFilterSearch(e) {
+    function submitFilters(e) {
 
         e.preventDefault();
-        console.log(filterObject)
+        console.log(newFilterObject)
     }
 
     return(
-        <form onSubmit={useFilterSearch}>
+        <form onSubmit={() => updateObject(newFilterObject)}>
         <SearchFilterWrap>
             <SearchWrap>
                 <HideLabel htmlFor="search">Search </HideLabel>
@@ -57,22 +60,22 @@ export default function SearchFilters() {
                 </FilterLabels>
                 <FilterLabels>
                     <i className="fa-solid fa-square-parking" aria-label="parking"></i>
-                    <input type="checkbox"  onChange={(e) => setParking(e.target.value)}></input>
+                    <input type="checkbox" onChange={(e) => setParking(e.target.value)}></input>
                 </FilterLabels>
                 <FilterLabels>
                     <i className="fa-solid fa-mug-saucer" aria-label="breakfast"></i>
-                    <input type="checkbox"  onChange={(e) => setBreakfast(e.target.value)}></input>
+                    <input type="checkbox" onChange={(e) => setBreakfast(e.target.value)}></input>
                 </FilterLabels>
             </FlexFilters>
         </PaddingOnFilters>
         <PaddingOnFilters>
             <label>
-                Total guests: <TotalGuestsInput type="number"></TotalGuestsInput>
+                Total guests: <TotalGuestsInput type="number" onChange={(e) => setGuests(e.target.value)}></TotalGuestsInput>
             </label>
         </PaddingOnFilters>
         </FilterManager>
             </PaddingOnFilters>
-            <button type="submit">Go <i className="fa-solid fa-arrow-pointer"></i></button>
+            <button type="submit" onClick={submitFilters}>Go <i className="fa-solid fa-arrow-pointer"></i></button>
         </SearchFilterWrap>
     </form>
     )
