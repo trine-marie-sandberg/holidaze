@@ -22,13 +22,21 @@ export default function SearchFilters(props) {
         guests: guests,
     }
     const [ updateObject, submitted ] = props.children;
+    const [ submittMessage, setSubmittMessage ] = useState(false);
     //const updateObject = props.children;
 
     function submitFilters(e) {
         e.preventDefault();
         updateObject(newFilterObject);
-        submitted(["true"]);
-        console.log(newFilterObject);
+        if(submittMessage === false) {
+            setSubmittMessage(true)
+            submitted(["true"]);
+            console.log(newFilterObject);
+        } if(submittMessage === true) {
+            setSubmittMessage(false)
+            submitted(["false"]);
+            console.log(newFilterObject);
+        }
     }
 
     return(
