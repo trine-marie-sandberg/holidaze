@@ -25,11 +25,6 @@ export const RatingStars = styled.div`
     background-image: linear-gradient(white, yellow, orange);
   }
 `;
-export const RatingCounter = styled.div`
-  font-size: ${(props) => props.theme.sizes.sm};
-  width: ${(props) => props.theme.sizes.sm};
-  text-align: center;
-`;
 export const LabelStar = styled.label`
 `;
 export const InputStar = styled.input`

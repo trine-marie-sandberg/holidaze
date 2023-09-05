@@ -50,3 +50,8 @@ export const I = styled.i`
    padding: ${(props) => props.theme.sizes.xs};
   }
 `;
+export const RatingCounter = styled.div`
+  font-size: ${(props) => props.theme.sizes.sm};
+  width: ${(props) => props.theme.sizes.sm};
+  text-align: center;
+`;

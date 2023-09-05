@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { RatingStars, RatingCounter, LabelStar, InputStar, RatingWrap } from "./style";
+import { RatingStars, LabelStar, InputStar, RatingWrap } from "./style";
 
 export default function StarRating(props) {
 
@@ -29,9 +29,6 @@ export default function StarRating(props) {
                     <InputStar type="radio" name="rating" id="rs5" onChange={() => r(() => 0 +6)} />
                 </LabelStar>
             </RatingStars>
-            <RatingCounter id="reting-counter">
-              <p>{rating}</p>
-            </RatingCounter>
         </RatingWrap>
     )
 }

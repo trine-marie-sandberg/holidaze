@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FilterManager, FilterLabels, TotalGuestsInput, FlexFilters, PaddingOnFilters, SearchFilterWrap, SearchWrap, HideLabel, I, SearchField } from "./style";
+import { FilterManager, FilterLabels, TotalGuestsInput, FlexFilters, PaddingOnFilters, SearchFilterWrap, SearchWrap, HideLabel, I, SearchField, RatingCounter } from "./style";
 import StarRating from "../star-rating";
 
 export default function SearchFilters() {
@@ -42,24 +42,26 @@ export default function SearchFilters() {
             <PaddingOnFilters>
             <FilterManager>
         <StarRating>{setRating}</StarRating>
-        <p>{rating}</p>
+        <RatingCounter>
+            <p>{rating}</p>
+        </RatingCounter>
         <PaddingOnFilters>
             <FlexFilters>
                 <FilterLabels>
                     <i className="fa-solid fa-wifi" aria-label="wifi"></i>
-                    <input type="checkbox"></input>
+                    <input type="checkbox" onChange={(e) => setWifi(e.target.value)}></input>
                 </FilterLabels>
                 <FilterLabels>
                     <i className="fa-solid fa-paw" aria-label="pets"></i>
-                    <input type="checkbox"></input>
+                    <input type="checkbox" onChange={(e) => setPets(e.target.value)}></input>
                 </FilterLabels>
                 <FilterLabels>
                     <i className="fa-solid fa-square-parking" aria-label="parking"></i>
-                    <input type="checkbox"></input>
+                    <input type="checkbox"  onChange={(e) => setParking(e.target.value)}></input>
                 </FilterLabels>
                 <FilterLabels>
                     <i className="fa-solid fa-mug-saucer" aria-label="breakfast"></i>
-                    <input type="checkbox"></input>
+                    <input type="checkbox"  onChange={(e) => setBreakfast(e.target.value)}></input>
                 </FilterLabels>
             </FlexFilters>
         </PaddingOnFilters>
