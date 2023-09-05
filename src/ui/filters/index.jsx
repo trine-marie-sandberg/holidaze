@@ -21,16 +21,17 @@ export default function SearchFilters(props) {
         breakfast: breakfast,
         guests: guests,
     }
-    const updateObject = props.children;
+    const [ updateObject, submitBtn ] = props.children;
+    //const updateObject = props.children;
 
     function submitFilters(e) {
-
         e.preventDefault();
+        updateObject(newFilterObject)
         console.log(newFilterObject)
     }
 
     return(
-        <form onSubmit={() => updateObject(newFilterObject)}>
+        <form onSubmit={submitFilters}>
         <SearchFilterWrap>
             <SearchWrap>
                 <HideLabel htmlFor="search">Search </HideLabel>
@@ -73,10 +74,10 @@ export default function SearchFilters(props) {
                 Total guests: <TotalGuestsInput type="number" onChange={(e) => setGuests(e.target.value)}></TotalGuestsInput>
             </label>
         </PaddingOnFilters>
+        {submitBtn}
         </FilterManager>
             </PaddingOnFilters>
-            <button type="submit" onClick={submitFilters}>Go <i className="fa-solid fa-arrow-pointer"></i></button>
         </SearchFilterWrap>
-    </form>
+        </form>
     )
 }

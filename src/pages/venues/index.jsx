@@ -3,12 +3,15 @@ import useFetch from "../../hooks/api";
 import CategoryCarousel from "../../ui/category-carousel";
 import PageWrapper from "../../ui/pagewrapper";
 import VenueCards from "../../ui/venue-cards";
-import { SearchWrap, SearchField, HideLabel, I, SearchFilterWrap, PaddingOnFilters, ShowMoreBtn, BtnCardsWrap } from "./style";
+import { ShowMoreBtn, BtnCardsWrap } from "./style";
 import SearchFilters from "../../ui/filters";
 
 export default function VenuesPage() {
     
     const [ limit, setLimit ] = useState(10);
+    const page = `limit=${limit}`;
+    const url = `https://api.noroff.dev/api/v1/holidaze/venues?sort=created&${page}`;
+    const { data, loading, error } = useFetch(url);
     const [ filterObject, setFilterObject ] = useState({
         search: "",
         rating: "",
@@ -18,18 +21,25 @@ export default function VenuesPage() {
         breakfast: false,
         guests: "",
     });
-
-    const page = `limit=${limit}`;
-    const url = `https://api.noroff.dev/api/v1/holidaze/venues?sort=created&${page}`;
-    const { data, loading, error } = useFetch(url);
-    console.log(filterObject)
+    const [ filteredData, setFilteredData ] = useState(data);
+    function handleFilter(e) {
+        e.preventDefault();
+        console.log("submitted")
+        // setFilteredData(() => updateObject.data.filter((value) => {
+        //     value.name.toLowerCase().includes(data.search.toLowerCase())
+        //   })
+        // )
+    }
 
     try {
         return(
             <PageWrapper>
                 {/* <CategoryCarousel /> */}
                 <h1>Find venues</h1>
-                <SearchFilters>{setFilterObject}</SearchFilters>
+                <SearchFilters>
+                    {setFilterObject}
+                    <button type="submit" onClick={handleFilter}>Go <i className="fa-solid fa-arrow-pointer"></i></button>
+                </SearchFilters>
                 <div>
                     {loading && <h2>Loading . . .</h2>}
                     {error  && <h2>Error: Could not load content</h2>}
