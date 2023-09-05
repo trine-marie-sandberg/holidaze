@@ -8,7 +8,7 @@ import SearchFilters from "../../ui/filters";
 
 export default function VenuesPage() {
     
-    const [ limit, setLimit ] = useState(10);
+    const [ limit, setLimit ] = useState(40);
     const page = `limit=${limit}`;
     const url = `https://api.noroff.dev/api/v1/holidaze/venues?sort=created&${page}`;
     const { data, loading, error } = useFetch(url);
@@ -21,15 +21,16 @@ export default function VenuesPage() {
         breakfast: false,
         guests: "",
     });
-    const [ filteredData, setFilteredData ] = useState(data);
-    function handleFilter(e) {
-        e.preventDefault();
-        console.log("submitted")
-        // setFilteredData(() => updateObject.data.filter((value) => {
-        //     value.name.toLowerCase().includes(data.search.toLowerCase())
-        //   })
-        // )
-    }
+    const [ filteredData, setFilteredData ] = useState([]);
+    const [ isSubmitted, setIsSubmitted ] = useState([""]);
+
+    useEffect(() => {
+        const newFilter = data.filter((value) => {
+            return value.name.toLowerCase().includes(filterObject.search.toLowerCase());
+          })
+        setFilteredData(newFilter);
+        console.log(newFilter)
+    }, isSubmitted)
 
     try {
         return(
@@ -38,7 +39,7 @@ export default function VenuesPage() {
                 <h1>Find venues</h1>
                 <SearchFilters>
                     {setFilterObject}
-                    <button type="submit" onClick={handleFilter}>Go <i className="fa-solid fa-arrow-pointer"></i></button>
+                    <button type="submit" onClick={() => setIsSubmitted(["true"])}>Go <i className="fa-solid fa-arrow-pointer"></i></button>
                 </SearchFilters>
                 <div>
                     {loading && <h2>Loading . . .</h2>}
