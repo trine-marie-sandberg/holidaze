@@ -21,7 +21,7 @@ export default function VenuesPage() {
         breakfast: false,
         guests: "",
     });
-    const [ filteredData, setFilteredData ] = useState([]);
+    const [ filteredData, setFilteredData ] = useState(data);
     const [ isSubmitted, setIsSubmitted ] = useState([""]);
     function handleFilter() {
         const newFilter = data.filter((value) => {
@@ -50,7 +50,7 @@ export default function VenuesPage() {
                     {data && 
                     <BtnCardsWrap>
                         <VenueCards>
-                            {data}
+                            {filteredData}
                         </VenueCards>
                         <ShowMoreBtn onClick={() => setLimit(limit + 10)}>Show more</ShowMoreBtn>
                     </BtnCardsWrap>
