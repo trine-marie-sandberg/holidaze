@@ -1,11 +1,48 @@
-import { FilterManager, FilterLabels, TotalGuestsInput, FlexFilters, PaddingOnFilters } from "./style";
+import { useState } from "react";
+import { FilterManager, FilterLabels, TotalGuestsInput, FlexFilters, PaddingOnFilters, SearchFilterWrap, SearchWrap, HideLabel, I, SearchField } from "./style";
 import StarRating from "../star-rating";
 
 export default function SearchFilters() {
 
+    const [ search, setSearch ] = useState("");
+    const [ rating, setRating ] = useState(0);
+    const [ wifi, setWifi ] = useState(false);
+    const [ pets, setPets] = useState(false);
+    const [ parking, setParking ] = useState(false);
+    const [ breakfast, setBreakfast ] = useState(false);
+
+    const filterObject = {
+        search: search,
+        rating: rating,
+        wifi: wifi,
+        pets: pets,
+        parking: parking,
+        breakfast: breakfast,
+    }
+
+    function useFilterSearch(e) {
+
+        e.preventDefault();
+        console.log(filterObject)
+    }
+
     return(
-        <FilterManager>
-        <StarRating />
+        <form onSubmit={useFilterSearch}>
+        <SearchFilterWrap>
+            <SearchWrap>
+                <HideLabel htmlFor="search">Search </HideLabel>
+                <I className="fa-solid fa-search" aria-label="search icon"></I>
+                <SearchField 
+                  type="text" 
+                  id="search" 
+                  aria-label="search input field" 
+                  placeholder="search for destination, contry, venue .." 
+                  onChange={(e) => setSearch(e.target.value)} />
+            </SearchWrap>
+            <PaddingOnFilters>
+            <FilterManager>
+        <StarRating>{setRating}</StarRating>
+        <p>{rating}</p>
         <PaddingOnFilters>
             <FlexFilters>
                 <FilterLabels>
@@ -32,5 +69,9 @@ export default function SearchFilters() {
             </label>
         </PaddingOnFilters>
         </FilterManager>
+            </PaddingOnFilters>
+            <button type="submit">Go <i className="fa-solid fa-arrow-pointer"></i></button>
+        </SearchFilterWrap>
+    </form>
     )
 }
