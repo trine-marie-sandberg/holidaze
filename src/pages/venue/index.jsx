@@ -12,22 +12,17 @@ export default function VenueDetailsPage() {
     function nextImage(array) {
         if(imgIndex > array.length -2) {
             setImgIndex(0);
-            console.log("Array length reached " + "0" + " tot length: " + array.length);
         } else {
             setImgIndex(imgIndex + 1);
-            console.log(imgIndex + 1);
         }
     }
     function previousImage(array) {
          if(imgIndex === 0) {
             setImgIndex(array.length -1);
-            console.log(array.length -1);
         } else if(imgIndex > array.length -1) {
             setImgIndex(0);
-            console.log("Array length reached " + "0" + " tot length: " + array.length);
         } else {
             setImgIndex(imgIndex - 1);
-            console.log(imgIndex - 1);
         }
     }
 
