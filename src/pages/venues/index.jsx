@@ -3,12 +3,12 @@ import useFetch from "../../hooks/api";
 import CategoryCarousel from "../../ui/category-carousel";
 import PageWrapper from "../../ui/pagewrapper";
 import VenueCards from "../../ui/venue-cards";
-import { ShowMoreBtn, BtnCardsWrap } from "./style";
+import { ShowMoreBtn, BtnCardsWrap, FilterBg } from "./style";
 import SearchFilters from "../../ui/filters";
 
 export default function VenuesPage() {
     
-    const [ limit, setLimit ] = useState(40);
+    const [ limit, setLimit ] = useState(20);
     const page = `limit=${limit}`;
     const url = `https://api.noroff.dev/api/v1/holidaze/venues?sort=created&${page}`;
     const { data, loading, error } = useFetch(url);
@@ -24,10 +24,21 @@ export default function VenuesPage() {
     const [ filteredData, setFilteredData ] = useState(data);
     const [ isSubmitted, setIsSubmitted ] = useState([""]);
     function handleFilter() {
+        let wifi = "false";
+        if(filterObject.wifi === "on") {
+            wifi = "true"
+        }
         const newFilter = data.filter((value) => {
-            return value.name.toLowerCase().includes(filterObject.search.toLowerCase());
+             let filterSearch = value.name.toLowerCase().includes(filterObject.search.toLowerCase());
+             let totalGuests = value.maxGuests.toString() === filterObject.guests;
+             return  totalGuests + filterSearch
           })
-        setFilteredData(newFilter);
+          if(newFilter.length > 0) {
+            setFilteredData(newFilter);
+          }
+          else if(newFilter.length === 0) {
+            setFilteredData(data);
+          }
         console.log(newFilter)
     }
 
@@ -47,13 +58,21 @@ export default function VenuesPage() {
                 <div>
                     {loading && <h2>Loading . . .</h2>}
                     {error  && <h2>Error: Could not load content</h2>}
-                    {data && 
+                    <FilterBg>
+                    {filteredData &&
+                        <BtnCardsWrap>
+                            <VenueCards>
+                                {filteredData}
+                            </VenueCards>
+                        </BtnCardsWrap>}
+                    </FilterBg>
+                    {data &&
                     <BtnCardsWrap>
-                        <VenueCards>
-                            {filteredData}
-                        </VenueCards>
-                        <ShowMoreBtn onClick={() => setLimit(limit + 10)}>Show more</ShowMoreBtn>
-                    </BtnCardsWrap>
+                    <VenueCards>
+                        {data}
+                    </VenueCards>
+                    <ShowMoreBtn onClick={() => setLimit(limit + 10)}>Show more</ShowMoreBtn>
+                </BtnCardsWrap>
                     }
                 </div>
             </PageWrapper>

@@ -18,3 +18,7 @@ export const BtnCardsWrap = styled.div`
   display: flex;
   flex-direction: column;
 `;
+export const FilterBg = styled.div`
+  background-color: ${(props) => props.theme.color.darker};
+  border-radius: ${(props) => props.theme.sizes.borderRadius};
+`;
