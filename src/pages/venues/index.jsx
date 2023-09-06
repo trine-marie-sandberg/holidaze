@@ -8,7 +8,7 @@ import SearchFilters from "../../ui/filters";
 
 export default function VenuesPage() {
     
-    const [ limit, setLimit ] = useState(20);
+    const [ limit, setLimit ] = useState(100);
     const page = `limit=${limit}`;
     const url = `https://api.noroff.dev/api/v1/holidaze/venues?sort=created&${page}`;
     const { data, loading, error } = useFetch(url);
@@ -23,16 +23,36 @@ export default function VenuesPage() {
     });
     const [ filteredData, setFilteredData ] = useState();
     const [ isSubmitted, setIsSubmitted ] = useState([""]);
+
     function handleFilter() {
         let wifi = "false";
         if(filterObject.wifi === "on") {
-            wifi = "true"
+            wifi = "true";
+            console.log("true")
         }
-        let guests = parseInt(filterObject.guests)
+        let pets = "false";
+        if(filterObject.pets === "on") {
+            pets = "true";
+        }
+        let parking = "false";
+        if(filterObject.parking === "on") {
+            parking = "true";
+        }
+        let breakFast = "false";
+        if(filterObject.breakfast === "on") {
+            breakFast = "true";
+        }
+        let guests = parseInt(filterObject.guests);
+        let minimumRating = filterObject.rating;
         const newFilter = data.filter((value) => {
              let filterSearch = value.name.toLowerCase().includes(filterObject.search.toLowerCase());
              let totalGuests = value.maxGuests >= guests;
-             return  totalGuests & filterSearch
+             let totalRating = value.rating >= minimumRating;
+             let hasWifi = value.meta.wifi.toString().includes(wifi);
+             let petsAllowed = value.meta.pets.toString().includes(pets);
+             let hasParking = value.meta.parking.toString() == parking;
+             let hasBreakFast = value.meta.breakfast.toString() == breakFast;
+             return totalRating & totalGuests & filterSearch & hasWifi & petsAllowed & hasParking & hasBreakFast;
           })
           setFilteredData(newFilter)
         console.log(newFilter)
@@ -60,15 +80,16 @@ export default function VenuesPage() {
                             <VenueCards>
                                 {filteredData}
                             </VenueCards>
-                        </BtnCardsWrap>}
+                        </BtnCardsWrap>
+                    }
                     </FilterBg>
                     {data &&
-                    <BtnCardsWrap>
-                    <VenueCards>
-                        {data}
-                    </VenueCards>
-                    <ShowMoreBtn onClick={() => setLimit(limit + 10)}>Show more</ShowMoreBtn>
-                </BtnCardsWrap>
+                        <BtnCardsWrap>
+                            <VenueCards>
+                                {data}
+                            </VenueCards>
+                            <ShowMoreBtn onClick={() => setLimit(limit + 10)}>Show more</ShowMoreBtn>
+                        </BtnCardsWrap>
                     }
                 </div>
             </PageWrapper>
