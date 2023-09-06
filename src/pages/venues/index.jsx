@@ -19,26 +19,22 @@ export default function VenuesPage() {
         pets: false,
         parking: false,
         breakfast: false,
-        guests: "",
+        guests: 0,
     });
-    const [ filteredData, setFilteredData ] = useState(data);
+    const [ filteredData, setFilteredData ] = useState();
     const [ isSubmitted, setIsSubmitted ] = useState([""]);
     function handleFilter() {
         let wifi = "false";
         if(filterObject.wifi === "on") {
             wifi = "true"
         }
+        let guests = parseInt(filterObject.guests)
         const newFilter = data.filter((value) => {
              let filterSearch = value.name.toLowerCase().includes(filterObject.search.toLowerCase());
-             let totalGuests = value.maxGuests.toString() === filterObject.guests;
-             return  totalGuests + filterSearch
+             let totalGuests = value.maxGuests >= guests;
+             return  totalGuests & filterSearch
           })
-          if(newFilter.length > 0) {
-            setFilteredData(newFilter);
-          }
-          else if(newFilter.length === 0) {
-            setFilteredData(data);
-          }
+          setFilteredData(newFilter)
         console.log(newFilter)
     }
 

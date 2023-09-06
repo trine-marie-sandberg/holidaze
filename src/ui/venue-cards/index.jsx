@@ -34,6 +34,21 @@ export default function VenueCards(props) {
                                     <Wrap>{...stars}</Wrap>
                                     <Position><i className="fa-solid fa-location-dot"></i> {data.location.country}</Position>
                                     </StarsPositionWrap>
+                                    <Wrap>
+                                        <p>Max guests: {data.maxGuests}</p>
+                                        {data.meta.wifi &&
+                                          <i className="fa-solid fa-wifi"></i>
+                                        }
+                                        {data.meta.pets && 
+                                          <i className="fa-solid fa-paw"></i>
+                                        }
+                                        {data.meta.breakfast &&
+                                          <i className="fa-solid fa-mug-saucer"></i>
+                                        }
+                                        {data.meta.parking &&
+                                          <i className="fa-solid fa-square-parking"></i>
+                                        }
+                                    </Wrap>
                                 </Link>
                             </CardWrap>
                         )
