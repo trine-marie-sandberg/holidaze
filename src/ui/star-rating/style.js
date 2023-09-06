@@ -27,6 +27,9 @@ export const RatingStars = styled.div`
 `;
 export const LabelStar = styled.label`
 `;
+export const InputClear = styled.input`
+  color: ${(props) => props.theme.color.warning};
+`;
 export const InputStar = styled.input`
   cursor: pointer;
   width: ${(props) => props.theme.sizes.sm};

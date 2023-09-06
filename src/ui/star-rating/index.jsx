@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { RatingStars, LabelStar, InputStar, RatingWrap } from "./style";
+import { RatingStars, LabelStar, InputStar, RatingWrap, InputClear } from "./style";
 
 export default function StarRating(props) {
 
@@ -9,6 +9,10 @@ export default function StarRating(props) {
     return(
         <RatingWrap>
             <RatingStars>
+                <LabelStar htmlFor="clear">
+                    <i className="fa-solid fa-circle-xmark"></i>
+                    <InputClear type="radio" name="rating" id="clear" onChange={() => updateRating(0)} />
+                </LabelStar>
                 <LabelStar htmlFor="rs0">
                     <InputStar type="radio" name="rating" id="rs0" onChange={() => updateRating(1)} />
                 </LabelStar>
@@ -24,9 +28,6 @@ export default function StarRating(props) {
                 <LabelStar htmlFor="rs4">
                     <InputStar type="radio" name="rating" id="rs4" onChange={() => updateRating(5)} />
                 </LabelStar>
-                {/* <LabelStar htmlFor="rs5">
-                    <InputStar type="radio" name="rating" id="rs5" onChange={() => updateRating(6)} />
-                </LabelStar> */}
             </RatingStars>
         </RatingWrap>
     )

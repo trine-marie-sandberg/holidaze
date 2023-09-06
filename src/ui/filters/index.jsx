@@ -5,7 +5,6 @@ import StarRating from "../star-rating";
 export default function SearchFilters(props) {
 
     const [ search, setSearch ] = useState("");
-    const [ rating, setRating ] = useState(0);
     const [ guests, setGuests ] = useState(0);
 
     const 
@@ -18,7 +17,10 @@ export default function SearchFilters(props) {
         setPets,
         parking,
         setParking,
-        breakFast, setBreakFast
+        breakFast, 
+        setBreakFast,
+        rating,
+        setRating,
 
     ] = props.children;
     const newFilterObject = {

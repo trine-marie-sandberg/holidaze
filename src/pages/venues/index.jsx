@@ -27,6 +27,7 @@ export default function VenuesPage() {
     const [ pets, setPets ] = useState(false);
     const [ parking, setParking ] = useState(false);
     const [ breakFast, setBreakFast ] = useState(false);
+    const [ rating, setRating ] = useState(0);
 
     function handleFilter() {
         let guests = parseInt(filterObject.guests);
@@ -34,12 +35,12 @@ export default function VenuesPage() {
         const newFilter = data.filter((value) => {
              let filterSearch = value.name.toLowerCase().includes(filterObject.search.toLowerCase());
              let totalGuests = value.maxGuests >= guests;
-             let totalRating = value.rating >= minimumRating;
+             let totalRating = value.rating >= rating;
              let hasWifi = value.meta.wifi === wifi;
              let petsAllowed = value.meta.pets === pets;
              let hasParking = value.meta.parking === parking;
              let hasBreakFast = value.meta.breakfast === breakFast;
-             return hasWifi & petsAllowed & hasParking & hasBreakFast
+             return hasWifi & petsAllowed & hasParking & hasBreakFast & totalRating
             //  return totalRating & totalGuests & filterSearch & hasWifi & petsAllowed & hasParking & hasBreakFast;
           })
           setFilteredData(newFilter)
@@ -67,6 +68,8 @@ export default function VenuesPage() {
                     {setParking}
                     {breakFast}
                     {setBreakFast}
+                    {rating}
+                    {setRating}
                 </SearchFilters>
                 <div>
                     {loading && <h2>Loading . . .</h2>}
