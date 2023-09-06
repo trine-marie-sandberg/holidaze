@@ -12,15 +12,6 @@ export default function VenuesPage() {
     const page = `limit=${limit}`;
     const url = `https://api.noroff.dev/api/v1/holidaze/venues?sort=created&${page}`;
     const { data, loading, error } = useFetch(url);
-    const [ filterObject, setFilterObject ] = useState({
-        search: "",
-        rating: "",
-        wifi: false,
-        pets: false,
-        parking: false,
-        breakfast: false,
-        guests: 0,
-    });
     const [ filteredData, setFilteredData ] = useState();
     const [ isSubmitted, setIsSubmitted ] = useState([""]);
     const [ wifi, setWifi ] = useState(false);
