@@ -5,7 +5,6 @@ import StarRating from "../star-rating";
 export default function SearchFilters(props) {
 
     const [ search, setSearch ] = useState("");
-    const [ guests, setGuests ] = useState(0);
 
     const 
     [   updateObject, 
@@ -21,6 +20,8 @@ export default function SearchFilters(props) {
         setBreakFast,
         rating,
         setRating,
+        guests,
+        setGuests,
 
     ] = props.children;
     const newFilterObject = {
@@ -35,16 +36,13 @@ export default function SearchFilters(props) {
     }
     function submitFilters(e) {
         e.preventDefault();
-        updateObject(newFilterObject);
         let submArray = [];
         if(isSubmitted[0] === "") {
             submArray.push("true")
             submitted([...submArray]);
-            console.log(newFilterObject);
         } if(isSubmitted[0] === "true") {
             submArray.push("")
             submitted([...submArray]);
-            console.log(newFilterObject);
         }
     }
 
@@ -64,7 +62,10 @@ export default function SearchFilters(props) {
             <SubmitBtn type="submit">Go <i className="fa-solid fa-arrow-pointer"></i></SubmitBtn>
             <PaddingOnFilters>
             <FilterManager>
-        <StarRating>{setRating}</StarRating>
+        <StarRating>
+            {setRating}
+            {rating}
+        </StarRating>
         <RatingCounter>
             <p>{rating}</p>
         </RatingCounter>

@@ -3,9 +3,8 @@ import { RatingStars, LabelStar, InputStar, RatingWrap, InputClear } from "./sty
 
 export default function StarRating(props) {
 
-    const initialRating = 0;
-    const updateRating = props.children;
-    useEffect(() => updateRating(initialRating), []);
+    const [ updateRating, rating ] = props.children;
+    useEffect(() => updateRating(rating), []);
     return(
         <RatingWrap>
             <RatingStars>
