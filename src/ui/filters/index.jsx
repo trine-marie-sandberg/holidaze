@@ -6,34 +6,42 @@ export default function SearchFilters(props) {
 
     const [ search, setSearch ] = useState("");
     const [ rating, setRating ] = useState(0);
-    const [ wifi, setWifi ] = useState(false);
-    const [ pets, setPets] = useState(false);
-    const [ parking, setParking ] = useState(false);
-    const [ breakfast, setBreakfast ] = useState(false);
     const [ guests, setGuests ] = useState(0);
 
+    const 
+    [   updateObject, 
+        submitted, 
+        isSubmitted, 
+        wifi,
+        setWifi,
+        pets,
+        setPets,
+        parking,
+        setParking,
+        breakFast, setBreakFast
+
+    ] = props.children;
     const newFilterObject = {
         search: search,
         rating: rating,
+        guests: guests,
+
         wifi: wifi,
         pets: pets,
         parking: parking,
-        breakfast: breakfast,
-        guests: guests,
+        breakfast: breakFast,
     }
-    const [ updateObject, submitted ] = props.children;
-    const [ submittMessage, setSubmittMessage ] = useState(false);
-
     function submitFilters(e) {
         e.preventDefault();
         updateObject(newFilterObject);
-        if(submittMessage === false) {
-            setSubmittMessage(true)
-            submitted(["true"]);
+        let submArray = [];
+        if(isSubmitted[0] === "") {
+            submArray.push("true")
+            submitted([...submArray]);
             console.log(newFilterObject);
-        } if(submittMessage === true) {
-            setSubmittMessage(false)
-            submitted(["false"]);
+        } if(isSubmitted[0] === "true") {
+            submArray.push("")
+            submitted([...submArray]);
             console.log(newFilterObject);
         }
     }
@@ -62,19 +70,43 @@ export default function SearchFilters(props) {
             <FlexFilters>
                 <FilterLabels>
                     <i className="fa-solid fa-wifi" aria-label="wifi"></i>
-                    <input type="checkbox" onChange={(e) => setWifi(e.target.value)}></input>
+                    <input type="checkbox" onChange={() => {
+                        if(wifi === false) {
+                            setWifi(true)
+                        } if(wifi === true) {
+                            setWifi(false)
+                        }
+                    }}></input>
                 </FilterLabels>
                 <FilterLabels>
                     <i className="fa-solid fa-paw" aria-label="pets"></i>
-                    <input type="checkbox" onChange={(e) => setPets(e.target.value)}></input>
+                    <input type="checkbox" onChange={() => {
+                        if(pets === false) {
+                            setPets(true)
+                        } if(pets === true) {
+                            setPets(false)
+                        }
+                    }}></input>
                 </FilterLabels>
                 <FilterLabels>
                     <i className="fa-solid fa-square-parking" aria-label="parking"></i>
-                    <input type="checkbox" onChange={(e) => setParking(e.target.value)}></input>
+                    <input type="checkbox" onChange={() => {
+                        if(parking === false) {
+                            setParking(true)
+                        } if(parking === true) {
+                            setParking(false)
+                        }
+                    }}></input>
                 </FilterLabels>
                 <FilterLabels>
                     <i className="fa-solid fa-mug-saucer" aria-label="breakfast"></i>
-                    <input type="checkbox" onChange={(e) => setBreakfast(e.target.value)}></input>
+                    <input type="checkbox" onChange={() => {
+                        if(breakFast === false) {
+                            setBreakFast(true)
+                        } if(breakFast === true) {
+                            setBreakFast(false)
+                        }
+                    }}></input>
                 </FilterLabels>
             </FlexFilters>
         </PaddingOnFilters>

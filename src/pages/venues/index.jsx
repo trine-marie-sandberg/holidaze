@@ -23,36 +23,24 @@ export default function VenuesPage() {
     });
     const [ filteredData, setFilteredData ] = useState();
     const [ isSubmitted, setIsSubmitted ] = useState([""]);
+    const [ wifi, setWifi ] = useState(false);
+    const [ pets, setPets ] = useState(false);
+    const [ parking, setParking ] = useState(false);
+    const [ breakFast, setBreakFast ] = useState(false);
 
     function handleFilter() {
-        let wifi = "false";
-        if(filterObject.wifi === "on") {
-            wifi = "true";
-            console.log("true")
-        }
-        let pets = "false";
-        if(filterObject.pets === "on") {
-            pets = "true";
-        }
-        let parking = "false";
-        if(filterObject.parking === "on") {
-            parking = "true";
-        }
-        let breakFast = "false";
-        if(filterObject.breakfast === "on") {
-            breakFast = "true";
-        }
         let guests = parseInt(filterObject.guests);
         let minimumRating = filterObject.rating;
         const newFilter = data.filter((value) => {
              let filterSearch = value.name.toLowerCase().includes(filterObject.search.toLowerCase());
              let totalGuests = value.maxGuests >= guests;
              let totalRating = value.rating >= minimumRating;
-             let hasWifi = value.meta.wifi.toString().includes(wifi);
-             let petsAllowed = value.meta.pets.toString().includes(pets);
-             let hasParking = value.meta.parking.toString() == parking;
-             let hasBreakFast = value.meta.breakfast.toString() == breakFast;
-             return totalRating & totalGuests & filterSearch & hasWifi & petsAllowed & hasParking & hasBreakFast;
+             let hasWifi = value.meta.wifi === wifi;
+             let petsAllowed = value.meta.pets === pets;
+             let hasParking = value.meta.parking === parking;
+             let hasBreakFast = value.meta.breakfast === breakFast;
+             return hasWifi & petsAllowed & hasParking & hasBreakFast
+            //  return totalRating & totalGuests & filterSearch & hasWifi & petsAllowed & hasParking & hasBreakFast;
           })
           setFilteredData(newFilter)
         console.log(newFilter)
@@ -70,6 +58,15 @@ export default function VenuesPage() {
                 <SearchFilters>
                     {setFilterObject}
                     {setIsSubmitted}
+                    {isSubmitted}
+                    {wifi}
+                    {setWifi}
+                    {pets}
+                    {setPets}
+                    {parking}
+                    {setParking}
+                    {breakFast}
+                    {setBreakFast}
                 </SearchFilters>
                 <div>
                     {loading && <h2>Loading . . .</h2>}

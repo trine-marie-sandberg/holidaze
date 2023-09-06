@@ -24,9 +24,9 @@ export default function StarRating(props) {
                 <LabelStar htmlFor="rs4">
                     <InputStar type="radio" name="rating" id="rs4" onChange={() => updateRating(5)} />
                 </LabelStar>
-                <LabelStar htmlFor="rs5">
+                {/* <LabelStar htmlFor="rs5">
                     <InputStar type="radio" name="rating" id="rs5" onChange={() => updateRating(6)} />
-                </LabelStar>
+                </LabelStar> */}
             </RatingStars>
         </RatingWrap>
     )
