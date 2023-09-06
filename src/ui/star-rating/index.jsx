@@ -3,29 +3,28 @@ import { RatingStars, LabelStar, InputStar, RatingWrap, InputClear } from "./sty
 
 export default function StarRating(props) {
 
-    const [ updateRating, rating ] = props.children;
-    useEffect(() => updateRating(rating), []);
+    const [ rating, setRating ] = props.children;
     return(
         <RatingWrap>
             <RatingStars>
                 <LabelStar htmlFor="clear">
                     <i className="fa-solid fa-circle-xmark"></i>
-                    <InputClear type="radio" name="rating" id="clear" onChange={() => updateRating(0)} />
+                    <InputClear type="radio" name="rating" id="clear" onChange={() => setRating(0)} />
                 </LabelStar>
                 <LabelStar htmlFor="rs0">
-                    <InputStar type="radio" name="rating" id="rs0" onChange={() => updateRating(1)} />
+                    <InputStar type="radio" name="rating" id="rs0" onChange={() => setRating(1)} />
                 </LabelStar>
                 <LabelStar htmlFor="rs1">
-                    <InputStar type="radio" name="rating" id="rs1" onChange={() => updateRating(2)} />
+                    <InputStar type="radio" name="rating" id="rs1" onChange={() => setRating(2)} />
                 </LabelStar>
                 <LabelStar htmlFor="rs2">
-                    <InputStar type="radio" name="rating" id="rs2" onChange={() => updateRating(3)} />
+                    <InputStar type="radio" name="rating" id="rs2" onChange={() => setRating(3)} />
                 </LabelStar>
                 <LabelStar htmlFor="rs3">
-                    <InputStar type="radio" name="rating" id="rs3" onChange={() => updateRating(4)} />
+                    <InputStar type="radio" name="rating" id="rs3" onChange={() => setRating(4)} />
                 </LabelStar>
                 <LabelStar htmlFor="rs4">
-                    <InputStar type="radio" name="rating" id="rs4" onChange={() => updateRating(5)} />
+                    <InputStar type="radio" name="rating" id="rs4" onChange={() => setRating(5)} />
                 </LabelStar>
             </RatingStars>
         </RatingWrap>

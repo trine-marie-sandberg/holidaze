@@ -29,18 +29,19 @@ export default function VenuesPage() {
     const [ breakFast, setBreakFast ] = useState(false);
     const [ rating, setRating ] = useState(0);
     const [ guests, setGuests ] = useState(0);
+    const [ search, setSearch ] = useState("");
 
     function handleFilter() {
         let minimumRating = filterObject.rating;
         const newFilter = data.filter((value) => {
-             let filterSearch = value.name.toLowerCase().includes(filterObject.search.toLowerCase());
+             let searchName = value.name.toLowerCase().includes(search.toLowerCase());
              let totalGuests = value.maxGuests >= guests;
              let totalRating = value.rating >= rating;
              let hasWifi = value.meta.wifi === wifi;
              let petsAllowed = value.meta.pets === pets;
              let hasParking = value.meta.parking === parking;
              let hasBreakFast = value.meta.breakfast === breakFast;
-             return hasWifi & petsAllowed & hasParking & hasBreakFast & totalRating & totalGuests
+             return hasWifi & petsAllowed & hasParking & hasBreakFast & totalRating & totalGuests & searchName;
             //  return totalRating & totalGuests & filterSearch & hasWifi & petsAllowed & hasParking & hasBreakFast;
           })
           setFilteredData(newFilter)
@@ -57,7 +58,6 @@ export default function VenuesPage() {
                 {/* <CategoryCarousel /> */}
                 <h1>Find venues</h1>
                 <SearchFilters>
-                    {setFilterObject}
                     {setIsSubmitted}
                     {isSubmitted}
                     {wifi}
@@ -70,8 +70,8 @@ export default function VenuesPage() {
                     {setBreakFast}
                     {rating}
                     {setRating}
-                    {guests}
                     {setGuests}
+                    {setSearch}
                 </SearchFilters>
                 <div>
                     {loading && <h2>Loading . . .</h2>}

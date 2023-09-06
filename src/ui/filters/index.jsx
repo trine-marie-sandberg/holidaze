@@ -1,14 +1,10 @@
-import { useState } from "react";
 import { FilterManager, FilterLabels, TotalGuestsInput, FlexFilters, PaddingOnFilters, SearchFilterWrap, SearchWrap, HideLabel, I, SearchField, RatingCounter, SubmitBtn } from "./style";
 import StarRating from "../star-rating";
 
 export default function SearchFilters(props) {
 
-    const [ search, setSearch ] = useState("");
-
     const 
-    [   updateObject, 
-        submitted, 
+    [   submitted, 
         isSubmitted, 
         wifi,
         setWifi,
@@ -20,20 +16,10 @@ export default function SearchFilters(props) {
         setBreakFast,
         rating,
         setRating,
-        guests,
         setGuests,
-
+        setSearch,
     ] = props.children;
-    const newFilterObject = {
-        search: search,
-        rating: rating,
-        guests: guests,
 
-        wifi: wifi,
-        pets: pets,
-        parking: parking,
-        breakfast: breakFast,
-    }
     function submitFilters(e) {
         e.preventDefault();
         let submArray = [];
@@ -63,8 +49,8 @@ export default function SearchFilters(props) {
             <PaddingOnFilters>
             <FilterManager>
         <StarRating>
-            {setRating}
             {rating}
+            {setRating}
         </StarRating>
         <RatingCounter>
             <p>{rating}</p>
