@@ -5,12 +5,12 @@ import PageWrapper from "../../ui/pagewrapper";
 import VenueCards from "../../ui/venue-cards";
 import { ShowMoreBtn, BtnCardsWrap, FilterBg } from "./style";
 import SearchFilters from "../../ui/filters";
+import base, { page, created } from "../../constants.js";
 
 export default function VenuesPage() {
     
     const [ limit, setLimit ] = useState(100);
-    const page = `limit=${limit}`;
-    const url = `https://api.noroff.dev/api/v1/holidaze/venues?sort=created&${page}`;
+    const url = `${base + created + page + limit}`;
     const { data, loading, error } = useFetch(url);
     const [ filteredData, setFilteredData ] = useState();
     const [ isSubmitted, setIsSubmitted ] = useState([""]);
