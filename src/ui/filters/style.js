@@ -1,12 +1,10 @@
 import { styled } from "styled-components";
 
-//filters
 export const FilterManager = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 `;
-//Individual filters
 export const TotalGuestsInput = styled.input`
   width: 40px;
 `;
@@ -22,8 +20,6 @@ export const FlexFilters = styled.div`
 export const PaddingOnFilters = styled.div`
   padding: 0 ${(props) => props.theme.sizes.sm};
 `;
-
-//
 export const SearchField = styled.input`
   width: 40vw;
   max-width: 500px;
@@ -54,4 +50,18 @@ export const RatingCounter = styled.div`
   font-size: ${(props) => props.theme.sizes.sm};
   width: ${(props) => props.theme.sizes.sm};
   text-align: center;
+`;
+export const SubmitBtn = styled.button`
+  align-self: center;
+  margin: ${(props) => props.theme.sizes.sm};
+  padding: ${(props) => props.theme.sizes.xs} ${(props) => props.theme.sizes.lg};
+  border-radius: ${(props) => props.theme.sizes.borderRadius};
+  border: 1px solid ${(props) => props.theme.color.font};
+  height: fit-content;
+  background-color: ${(props) => props.theme.color.secondary};
+  color: ${(props) => props.theme.color.black};
+  cursor: pointer;
+  &:hover {
+    border: 1px solid ${(props) => props.theme.color.black};
+  }
 `;

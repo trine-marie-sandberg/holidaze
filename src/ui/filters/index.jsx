@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FilterManager, FilterLabels, TotalGuestsInput, FlexFilters, PaddingOnFilters, SearchFilterWrap, SearchWrap, HideLabel, I, SearchField, RatingCounter } from "./style";
+import { FilterManager, FilterLabels, TotalGuestsInput, FlexFilters, PaddingOnFilters, SearchFilterWrap, SearchWrap, HideLabel, I, SearchField, RatingCounter, SubmitBtn } from "./style";
 import StarRating from "../star-rating";
 
 export default function SearchFilters(props) {
@@ -23,7 +23,6 @@ export default function SearchFilters(props) {
     }
     const [ updateObject, submitted ] = props.children;
     const [ submittMessage, setSubmittMessage ] = useState(false);
-    //const updateObject = props.children;
 
     function submitFilters(e) {
         e.preventDefault();
@@ -52,6 +51,7 @@ export default function SearchFilters(props) {
                   placeholder="search for destination, contry, venue .." 
                   onChange={(e) => setSearch(e.target.value)} />
             </SearchWrap>
+            <SubmitBtn type="submit">Go <i className="fa-solid fa-arrow-pointer"></i></SubmitBtn>
             <PaddingOnFilters>
             <FilterManager>
         <StarRating>{setRating}</StarRating>
@@ -83,7 +83,6 @@ export default function SearchFilters(props) {
                 Total guests: <TotalGuestsInput type="number" onChange={(e) => setGuests(e.target.value)}></TotalGuestsInput>
             </label>
         </PaddingOnFilters>
-        <button type="submit">Go <i className="fa-solid fa-arrow-pointer"></i></button>
         </FilterManager>
             </PaddingOnFilters>
         </SearchFilterWrap>

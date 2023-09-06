@@ -41,6 +41,9 @@ export const CardWrap = styled.div`
     color: rgb(204, 211, 216);
   }
 `;
+export const HeadingCards = styled.h2`
+  margin: 0;
+`;
 export const Image = styled.div`
   width: 100%;
   height: 200px;
@@ -63,11 +66,15 @@ export const Star = styled.div`
   clip-path: polygon(50% 0%, 66% 32%, 100% 38%, 78% 64%, 83% 100%, 50% 83%, 17% 100%, 22% 64%, 0 38%, 34% 32%);
 `;
 export const Position = styled.p`
-  padding: 0 ${(props) => props.theme.sizes.sm};
+  padding: ${(props) => props.theme.sizes.sm};
+  margin: 0;
 `;
 export const StarsPositionWrap = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
+`;
+export const Metas = styled.p`
+  margin: 0;
 `;

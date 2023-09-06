@@ -1,4 +1,4 @@
-import { CardWrap, CardsGrid, Image, Position, StarsPositionWrap, Wrap } from "./styled";
+import { CardWrap, CardsGrid, HeadingCards, Image, Metas, Position, StarsPositionWrap, Wrap } from "./styled";
 import CreateStars from "../stars";
 import { Link } from "react-router-dom";
 
@@ -23,7 +23,7 @@ export default function VenueCards(props) {
                             <CardWrap key={data.id}>
                                 <Link to={`/venue/${data.id}`}>
                                     <Wrap>
-                                        <h2>{data.name}</h2>
+                                        <HeadingCards>{data.name}</HeadingCards>
                                         <p>${data.price}/night</p>
                                     </Wrap>
                                     <Image style={{ 
@@ -35,7 +35,7 @@ export default function VenueCards(props) {
                                     <Position><i className="fa-solid fa-location-dot"></i> {data.location.country}</Position>
                                     </StarsPositionWrap>
                                     <Wrap>
-                                        <p>Max guests: {data.maxGuests}</p>
+                                        <Metas>Max guests: {data.maxGuests}</Metas>
                                         {data.meta.wifi &&
                                           <i className="fa-solid fa-wifi"></i>
                                         }
