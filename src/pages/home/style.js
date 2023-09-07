@@ -83,7 +83,7 @@ export const ResultsWrap = styled.div`
   }
 `;
 export const TextBgImgWrap = styled.div`
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
   padding-top: ${(props) => props.theme.sizes.med};
   border-radius: ${(props) => props.theme.sizes.borderRadius};
 `;
@@ -93,9 +93,6 @@ export const TextWrap = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-`;
-export const ResultInfo = styled.div`
-background-color: rgba(255, 255, 255, 0.5);
 `;
 export const Metas = styled.div`
   margin: 0;
@@ -108,7 +105,7 @@ export const Metas = styled.div`
   }
 `;
 export const BackgroundImages = styled.div`
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.4);
   border-radius: ${(props) => props.theme.sizes.borderRadius};
   height: 100vw;
   max-height: 350px;

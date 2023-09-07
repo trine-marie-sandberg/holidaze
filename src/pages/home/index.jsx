@@ -2,7 +2,6 @@ import { BgFade, BgImg, FrontPage, SearchField,
          I, HideLabel, FrontPageWrap, SearchWrap, 
          ResultsBox, BackgroundImages, TextBgImgWrap, TextWrap,
          ResultsWrap, Metas,
-         ResultInfo,
         } from "./style";
 import { Link } from "react-router-dom";
 import { BtnPrimary, LinkWrap } from "../../ui/btns/style";
@@ -20,7 +19,8 @@ export default function HomePage() {
     function handleFilter() {
         const newFilter = data.filter((value) => {
              let searchName = value.name.toLowerCase().includes(searchWord.toLowerCase());
-             return searchName;
+             let searchLocation = value.location.country.toLowerCase().includes(searchWord.toLowerCase());
+             return searchName + searchLocation;
           })
           setFilteredData(newFilter);
     }
@@ -59,30 +59,33 @@ export default function HomePage() {
                                                     style={{ 
                                                     backgroundImage: `url(${imgSrc})` 
                                                     }}>
-                                                            <TextBgImgWrap>
-                                                                <TextWrap>
-                                                                    <h2>{data.name}</h2>
-                                                                    <ResultInfo>
-                                                                        <Metas>
-                                                                            <p>Max guests: {data.maxGuests}</p>
-                                                                            {data.meta.wifi &&
-                                                                            <i className="fa-solid fa-wifi"></i>
-                                                                            }
-                                                                            {data.meta.pets && 
-                                                                            <i className="fa-solid fa-paw"></i>
-                                                                            }
-                                                                            {data.meta.breakfast &&
-                                                                            <i className="fa-solid fa-mug-saucer"></i>
-                                                                            }
-                                                                            {data.meta.parking &&
-                                                                            <i className="fa-solid fa-square-parking"></i>
-                                                                            }
-                                                                        </Metas>
-                                                                        <div>
-                                                                        </div>
-                                                                    </ResultInfo>
-                                                                </TextWrap>
-                                                            </TextBgImgWrap>
+                                                    <TextBgImgWrap>
+                                                        <TextWrap>
+                                                            <h2>{data.name}</h2>
+                                                            <div>
+                                                                <Metas>
+                                                                    <p>Max guests: {data.maxGuests}</p>
+                                                                    {data.meta.wifi &&
+                                                                        <i className="fa-solid fa-wifi"></i>
+                                                                    }
+                                                                    {data.meta.pets && 
+                                                                        <i className="fa-solid fa-paw"></i>
+                                                                    }
+                                                                    {data.meta.breakfast &&
+                                                                        <i className="fa-solid fa-mug-saucer"></i>
+                                                                    }
+                                                                    {data.meta.parking &&
+                                                                        <i className="fa-solid fa-square-parking"></i>
+                                                                    }
+                                                                </Metas>
+                                                                <div>
+                                                                    {data.location.country &&
+                                                                        <p><i className="fa-solid fa-location-dot"></i> {data.location.country}</p>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </TextWrap>
+                                                    </TextBgImgWrap>
                                                 </BackgroundImages>
                                             </Link>
                                         )
