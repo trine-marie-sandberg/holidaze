@@ -1,5 +1,6 @@
 import PageWrapper from "../../ui/pagewrapper";
 import { useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useFetch from "../../hooks/api";
 import { ImagesWrap, Image, Flex, VenueWrap, BackBtn, BackArrow, MetaIcon, DescriptionWrap, BackHeadingWrap, Heading, ArrowLeft, ArrowRight } from "./style";
 import CreateStars from "../../ui/stars";
@@ -59,10 +60,16 @@ export default function VenueDetailsPage() {
                 {data && 
                     <VenueWrap>
                         <BackHeadingWrap>
-                            <BackBtn onClick={() => navigate(-1)}>
+                            <Link to={"/venues"}>
+                                <BackBtn>
+                                    <BackArrow className="fa-solid fa-reply"></BackArrow>
+                                    Back
+                                </BackBtn>
+                            </Link>
+                            {/* <BackBtn onClick={() => navigate(-1)}>
                                  <BackArrow className="fa-solid fa-reply"></BackArrow>
                                  Back
-                            </BackBtn>
+                            </BackBtn> */}
                             <Heading>{data.name}</Heading>
                         </BackHeadingWrap>
                         <ImagesWrap>

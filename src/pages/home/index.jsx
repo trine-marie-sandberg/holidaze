@@ -1,14 +1,14 @@
 import { BgFade, BgImg, FrontPage, SearchField, 
          I, HideLabel, FrontPageWrap, SearchWrap, 
-         ResultsBox, ResultWrap, Wrap, StarsPositionWrap, 
-         HeadingCards, Position
+         ResultsBox, BackgroundImages, TextBgImgWrap, TextWrap,
+         ResultsWrap, Metas,
+         ResultInfo,
         } from "./style";
 import { Link } from "react-router-dom";
 import { BtnPrimary, LinkWrap } from "../../ui/btns/style";
 import useFetch from "../../hooks/api";
 import base, { page, created } from "../../constants.js";
 import { useState } from "react";
-import VenueCards from "../../ui/venue-cards";
 
 export default function HomePage() {
 
@@ -46,14 +46,45 @@ export default function HomePage() {
                         </SearchWrap>
                         <ResultsBox>
                             {filteredData && 
-                              <ResultWrap>
+                              <ResultsWrap>
                                 {filteredData.map((data) => {
                                     try {
+                                        let imgSrc = data.media[0];
+                                        if(data.media.length < 1) {
+                                            imgSrc = "/placeholder-img.jpg";
+                                        }
                                         return(
-                                            <div key={data.id}>
-                                                <h2>{data.name}</h2>
-                                            </div>
-                                            
+                                            <Link to={`/venue/${data.id}`} key={data.id}>
+                                                <BackgroundImages 
+                                                    style={{ 
+                                                    backgroundImage: `url(${imgSrc})` 
+                                                    }}>
+                                                            <TextBgImgWrap>
+                                                                <TextWrap>
+                                                                    <h2>{data.name}</h2>
+                                                                    <ResultInfo>
+                                                                        <Metas>
+                                                                            <p>Max guests: {data.maxGuests}</p>
+                                                                            {data.meta.wifi &&
+                                                                            <i className="fa-solid fa-wifi"></i>
+                                                                            }
+                                                                            {data.meta.pets && 
+                                                                            <i className="fa-solid fa-paw"></i>
+                                                                            }
+                                                                            {data.meta.breakfast &&
+                                                                            <i className="fa-solid fa-mug-saucer"></i>
+                                                                            }
+                                                                            {data.meta.parking &&
+                                                                            <i className="fa-solid fa-square-parking"></i>
+                                                                            }
+                                                                        </Metas>
+                                                                        <div>
+                                                                        </div>
+                                                                    </ResultInfo>
+                                                                </TextWrap>
+                                                            </TextBgImgWrap>
+                                                </BackgroundImages>
+                                            </Link>
                                         )
                                     } catch(error) {
                                         console.log(error)
@@ -62,7 +93,7 @@ export default function HomePage() {
                                         )
                                     }
                                     })}
-                               </ResultWrap> 
+                               </ResultsWrap> 
                             }
                         </ResultsBox>
                         <LinkWrap>

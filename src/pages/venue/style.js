@@ -73,6 +73,9 @@ export const BackHeadingWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  & a {
+    text-decoration: none;
+  }
 `;
 export const Heading = styled.h1`
   padding-left: ${(props) => props.theme.sizes.lg};
