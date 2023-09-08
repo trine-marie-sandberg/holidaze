@@ -35,7 +35,7 @@ export const Image = styled.img`
   height: auto;
   max-height: 100% !important;
   width: auto;
-  max-width: 80vw;
+  max-width: 70vw;
   border-radius: ${(props) => props.theme.sizes.borderRadius};
   border: 1px solid ${(props) => props.theme.color.darker};
   animation: fadeIn 5s;

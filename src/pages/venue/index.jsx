@@ -5,6 +5,7 @@ import useFetch from "../../hooks/api";
 import { ImagesWrap, Image, Flex, VenueWrap, Btn, BtnIcon, MetaIcon, DescriptionWrap, BtnHeadingWrap, Heading, ArrowLeft, ArrowRight, TopLinkWrap } from "./style";
 import CreateStars from "../../ui/stars";
 import { useState } from "react";
+import DatePicker from "../../ui/calendar";
 
 export default function VenueDetailsPage() {
 
@@ -110,6 +111,7 @@ export default function VenueDetailsPage() {
                             <p>{description}</p>
                             <p>Last updated: {data.updated}</p>
                         </DescriptionWrap>
+                        <DatePicker />
                     </VenueWrap>
                 }
                 {error && <p>error</p>}
