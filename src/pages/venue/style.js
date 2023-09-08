@@ -21,9 +21,7 @@ export const ImagesWrap = styled.div`
     font-size: 50px;
     @media(max-width: 1000px) {
       font-size: 45px;
-    }
-    @media(max-width: 600px) {
-      height: 60vw;
+      height: 40vw;
       font-size: 30px;
     }
   }
@@ -43,6 +41,9 @@ export const Image = styled.img`
   0% { opacity: 0; }
   100% { opacity: 1; }
   }
+  @media(max-width: 300px) {
+    max-width: 50vw;
+  }
 `;
 export const ArrowLeft = styled.div`
   position: absolute;
@@ -52,6 +53,9 @@ export const ArrowLeft = styled.div`
   margin-right: ${(props) => props.theme.sizes.sm};
   left: 25;
   top: 50;
+  @media(max-width: 300px) {
+    margin: 5px;
+  }
 `;
 export const ArrowRight = styled.div`
   position: absolute;
@@ -62,6 +66,9 @@ export const ArrowRight = styled.div`
   margin-left: ${(props) => props.theme.sizes.sm};
   right: 25;
   top: 50;
+  @media(max-width: 300px) {
+    margin: 5px;
+  }
 `;
 export const Flex = styled.div`
   display: flex;
@@ -81,6 +88,9 @@ export const BtnHeadingWrap = styled.div`
 export const TopLinkWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
+  @media(max-width: 600px) {
+      font-size: 14px;
+    }
 `;
 export const Heading = styled.h1`
   padding-left: ${(props) => props.theme.sizes.lg};
@@ -100,6 +110,9 @@ export const Btn = styled.p`
   height: fit-content;
   &:hover {
     border: 1px solid ${(props) => props.theme.color.darker};
+  }
+  @media(max-width: 600px) {
+    padding: ${(props) => props.theme.sizes.xs} ${(props) => props.theme.sizes.med};
   }
 `;
 export const BtnIcon = styled.i`
