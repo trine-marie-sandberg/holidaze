@@ -69,18 +69,24 @@ export const Flex = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
-export const BackHeadingWrap = styled.div`
+export const BtnHeadingWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
   & a {
     text-decoration: none;
   }
 `;
+export const TopLinkWrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 export const Heading = styled.h1`
   padding-left: ${(props) => props.theme.sizes.lg};
+  margin: 0;
 `;
-export const BackBtn = styled.p`
+export const Btn = styled.p`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -88,6 +94,7 @@ export const BackBtn = styled.p`
   background-color: ${(props) => props.theme.color.primary};
   border: 1px solid ${(props) => props.theme.color.dark};
   padding: ${(props) => props.theme.sizes.sm} ${(props) => props.theme.sizes.lg};
+  margin: 5px;
   border-radius: ${(props) => props.theme.sizes.borderRadius};
   width: fit-content;
   height: fit-content;
@@ -95,7 +102,7 @@ export const BackBtn = styled.p`
     border: 1px solid ${(props) => props.theme.color.darker};
   }
 `;
-export const BackArrow = styled.i`
+export const BtnIcon = styled.i`
   padding-right: ${(props) => props.theme.sizes.xs};
 `;
 export const MetaIcon = styled.i`

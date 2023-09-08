@@ -2,7 +2,7 @@ import PageWrapper from "../../ui/pagewrapper";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import useFetch from "../../hooks/api";
-import { ImagesWrap, Image, Flex, VenueWrap, BackBtn, BackArrow, MetaIcon, DescriptionWrap, BackHeadingWrap, Heading, ArrowLeft, ArrowRight } from "./style";
+import { ImagesWrap, Image, Flex, VenueWrap, Btn, BtnIcon, MetaIcon, DescriptionWrap, BtnHeadingWrap, Heading, ArrowLeft, ArrowRight, TopLinkWrap } from "./style";
 import CreateStars from "../../ui/stars";
 import { useState } from "react";
 
@@ -59,19 +59,17 @@ export default function VenueDetailsPage() {
                 {loading && <p>Loading</p>}
                 {data && 
                     <VenueWrap>
-                        <BackHeadingWrap>
+                        <BtnHeadingWrap>
+                        <Heading>{data.name}</Heading>
+                            <TopLinkWrap>
                             <Link to={"/venues"}>
-                                <BackBtn>
-                                    <BackArrow className="fa-solid fa-reply"></BackArrow>
-                                    Back
-                                </BackBtn>
+                                <Btn><BtnIcon className="fa-solid fa-reply"></BtnIcon>All venues</Btn>
                             </Link>
-                            {/* <BackBtn onClick={() => navigate(-1)}>
-                                 <BackArrow className="fa-solid fa-reply"></BackArrow>
-                                 Back
-                            </BackBtn> */}
-                            <Heading>{data.name}</Heading>
-                        </BackHeadingWrap>
+                            <Link to={"/"}>
+                              <Btn><BtnIcon className="fa-solid fa-reply"></BtnIcon>Home</Btn>
+                            </Link>
+                            </TopLinkWrap>
+                        </BtnHeadingWrap>
                         <ImagesWrap>
                              <ArrowLeft className="fa-solid fa-circle-chevron-left" id={arrowFade} onClick={() => previousImage(data.media)}></ArrowLeft>
                              {data.media.length <= 0 ? (
