@@ -22,11 +22,16 @@ export const Label = styled.label`
   font-weight: bold;
 `;
 export const Input = styled.input`
-  padding: 0.5rem;
+  padding: ${(props) => props.theme.sizes.sm};
   background-color: ${(props) => props.theme.color.primary};
   color: ${(props) => props.theme.color.font};
   width: 100%;
   border: none;
+  border-radius: ${(props) => props.theme.sizes.borderRadius};
+  &:focus {
+    background-color: ${(props) => props.theme.color.darker};
+    outline: 3px solid ${(props) => props.theme.color.black};
+  }
 `;
 export const IconInputWrap = styled.div`
   background-color: ${(props) => props.theme.color.primary};
