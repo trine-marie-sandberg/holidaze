@@ -84,3 +84,23 @@ export const MenuIconWrap = styled.i`
    display: block;
   }
 `;
+export const FormContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: ${(props) => props.theme.color.font};
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.959);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+export const FormWrap = styled.div`
+`;
+export const Close = styled.i`
+  cursor: pointer;
+  font-size: 30px;
+`;

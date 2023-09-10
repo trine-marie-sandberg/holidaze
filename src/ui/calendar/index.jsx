@@ -51,7 +51,7 @@ export default function DatePicker() {
                 />
                 <div ref={refOne}>
                     {open &&
-                    <DateRangePicker
+                    <DateRange
                     date={new Date()}
                     onChange={item => setRange([item.selection])}
                     editableDateInputs= {true}

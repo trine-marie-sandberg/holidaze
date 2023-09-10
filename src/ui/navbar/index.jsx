@@ -1,16 +1,22 @@
-import React from "react";
-import { Nav, Ul, Li, I, HoverText, MenuIconWrap } from "./style";
+import React, { useRef } from "react";
+import { Nav, Ul, Li, I, HoverText, MenuIconWrap, FormContainer, FormWrap, Close } from "./style";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { MobileMenuIcon } from "../mobile-menu-icon";
+import LoginForm from "../login-form";
 
 export function NavBar() {
 
     const [ visible, setVisible ] = useState("");
     const [ clicked, setClicked ] = useState("");
+    const [ openForm, setOpenForm ] = useState(false);
+    const loginRef = useRef(null);
 
-    function login() {
-        console.log("click")
+    function accessLogin() {
+        setOpenForm(true);
+    }
+    function closeLogin() {
+        setOpenForm(false);
     }
     function menuHideShow() {
         if (visible === "") {
@@ -59,13 +65,21 @@ export function NavBar() {
                     </NavLink>
                 </Li>
                 <Li>
-                    <div onClick={login}>
+                    <div onClick={accessLogin}>
                         <I className="fa-solid fa-lock"></I>
                         <HoverText>Login</HoverText>
                     </div>
                 </Li>
             </Ul>
         </Nav>
+        {openForm &&
+            <FormContainer ref={loginRef}>
+                <FormWrap>
+                <Close className="fa-solid fa-xmark" onClick={closeLogin}></Close>
+                <LoginForm />
+                </FormWrap>
+            </FormContainer>
+        }
         </>
     )
 }

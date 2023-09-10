@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react";
-
+//fetch
 export default function useFetch(url) {
 
     const [data, setData] = useState([]);
@@ -34,11 +34,45 @@ export default function useFetch(url) {
         () => {
             getData();
         }, [url]);
-
         return {data, loading, error, responseOk};
 }
+//Post/Put
+export function useSendData(url, userData, method) {
 
-export async function usePost(url, postData, postOptions) {
-    await fetch(url, postOptions);
-    console.log(postData)
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] =useState(false);
+    const [responseOk, setResponse] = useState(false);
+
+    setLoading(true);
+    setError(false);
+    
+    async function sendData() {
+        try {
+            const dataToSend = {
+                method: method,
+                Headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(userData),
+            }
+            console.log(dataToSend)
+            const response = await fetch(url, dataToSend);
+            const json = await response.json();
+            console.log(json)
+            setData(json);
+            if (response.ok) {
+                setResponse(true)
+            } else {
+                setError(true);
+            }
+        } catch(error) {
+            setError(true);
+            console.log(error)
+        }
+    }
+    useEffect( () => {
+        sendData();
+    }, [url]);
+    return {data, loading, error, responseOk};
 }
