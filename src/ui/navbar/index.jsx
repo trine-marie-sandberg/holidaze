@@ -4,19 +4,27 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { MobileMenuIcon } from "../mobile-menu-icon";
 import LoginForm from "../login-form";
+import RegisterForm from "../register";
 
 export function NavBar() {
 
     const [ visible, setVisible ] = useState("");
     const [ clicked, setClicked ] = useState("");
-    const [ openForm, setOpenForm ] = useState(false);
-    const loginRef = useRef(null);
+    const [ openLoginForm, setOpenLoginForm ] = useState(false);
+    const [ openRegisterForm, setOpenRegisterForm ] = useState(false);
 
     function accessLogin() {
-        setOpenForm(true);
+        setOpenLoginForm(true);
     }
     function closeLogin() {
-        setOpenForm(false);
+        setOpenLoginForm(false);
+    }
+    function accessRegister() {
+        setOpenRegisterForm(true);
+        setOpenLoginForm(false)
+    }
+    function closeRegister() {
+        setOpenRegisterForm(false);
     }
     function menuHideShow() {
         if (visible === "") {
@@ -72,11 +80,21 @@ export function NavBar() {
                 </Li>
             </Ul>
         </Nav>
-        {openForm &&
-            <FormContainer ref={loginRef}>
+        {openLoginForm &&
+            <FormContainer>
                 <FormWrap>
                 <Close className="fa-solid fa-xmark" onClick={closeLogin}></Close>
+                <p>New here?</p>
+                <button onClick={accessRegister}>Register</button>
                 <LoginForm />
+                </FormWrap>
+            </FormContainer>
+        }
+        {openRegisterForm &&
+            <FormContainer>
+                <FormWrap>
+                <Close className="fa-solid fa-xmark" onClick={closeRegister}></Close>
+                <RegisterForm />
                 </FormWrap>
             </FormContainer>
         }
