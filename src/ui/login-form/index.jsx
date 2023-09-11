@@ -1,20 +1,12 @@
 import React, { useState } from 'react';
 import { FormContainer, Label, Input, TextArea, Button, Heading, FormElementsWrap, IconInputWrap, InputIcon } from './style';
 import { useSendData } from '../../hooks/api';
+import useSave from '../../hooks/storage';
 
 export default function LoginForm() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   useSendData("https://api.noroff.dev/api/v1/holidaze/auth/login", {
-  //     email: email,
-  //     password: password,
-  //   },"POST");
-
-  // };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -41,6 +33,7 @@ export default function LoginForm() {
     const response = await fetch("https://api.noroff.dev/api/v1/holidaze/auth/login", dataToSend);
     const json = await response.json();
     console.log(json)
+    useSave("token", json.accessToken);
     }}>
       <Heading>Login</Heading>
       <FormElementsWrap>
