@@ -99,8 +99,37 @@ export const FormContainer = styled.div`
   justify-content: center;
 `;
 export const FormWrap = styled.div`
+  background-color: ${(props) => props.theme.color.darker};
+  border-radius: ${(props) => props.theme.sizes.borderRadius};
 `;
 export const Close = styled.i`
   cursor: pointer;
-  font-size: 30px;
+`;
+export const RegisterCancelWrap = styled.div`
+  font-size: 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: ${(props) => props.theme.sizes.sm};
+  & p {
+    font-size: 25px;
+    margin: 0;
+    cursor: pointer;
+  }
+`;
+export const RegisterBtnWrap = styled.div`
+`;
+export const RegisterBtn = styled.button`
+  background-color: ${(props) => props.theme.color.primary};
+  color: ${(props) => props.theme.color.font};
+  border: 1px solid ${(props) => props.theme.color.light};
+  border-radius: 25px;
+  font-size: 16px;
+  padding: 10px 45px;
+  margin: 0;
+  cursor: pointer;
+  &:hover {
+    border: 1px solid ${(props) => props.theme.color.black};
+  }
 `;

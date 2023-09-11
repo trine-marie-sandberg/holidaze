@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Nav, Ul, Li, I, HoverText, MenuIconWrap, FormContainer, FormWrap, Close } from "./style";
+import { Nav, Ul, Li, I, HoverText, MenuIconWrap, FormContainer, FormWrap, Close, RegisterCancelWrap, RegisterBtnWrap, RegisterBtn } from "./style";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { MobileMenuIcon } from "../mobile-menu-icon";
@@ -13,19 +13,6 @@ export function NavBar() {
     const [ openLoginForm, setOpenLoginForm ] = useState(false);
     const [ openRegisterForm, setOpenRegisterForm ] = useState(false);
 
-    function accessLogin() {
-        setOpenLoginForm(true);
-    }
-    function closeLogin() {
-        setOpenLoginForm(false);
-    }
-    function accessRegister() {
-        setOpenRegisterForm(true);
-        setOpenLoginForm(false)
-    }
-    function closeRegister() {
-        setOpenRegisterForm(false);
-    }
     function menuHideShow() {
         if (visible === "") {
             setVisible("visible");
@@ -35,10 +22,7 @@ export function NavBar() {
             setVisible("");
             setClicked("");
         }
-        
-        console.log("click")
     }
-
     return(
         <>
         <MenuIconWrap onClick={menuHideShow}>
@@ -73,7 +57,7 @@ export function NavBar() {
                     </NavLink>
                 </Li>
                 <Li>
-                    <div onClick={accessLogin}>
+                    <div onClick={() => setOpenLoginForm(true)}>
                         <I className="fa-solid fa-lock"></I>
                         <HoverText>Login</HoverText>
                     </div>
@@ -83,9 +67,16 @@ export function NavBar() {
         {openLoginForm &&
             <FormContainer>
                 <FormWrap>
-                <Close className="fa-solid fa-xmark" onClick={closeLogin}></Close>
-                <p>New here?</p>
-                <button onClick={accessRegister}>Register</button>
+                    <RegisterCancelWrap>
+                        <RegisterBtnWrap>
+                            <p>New here?</p>
+                            <RegisterBtn onClick={() => {
+                                setOpenRegisterForm(true);
+                                setOpenLoginForm(false);
+                            }}>Register</RegisterBtn>
+                        </RegisterBtnWrap>
+                        <Close className="fa-solid fa-xmark" onClick={() => setOpenLoginForm(false)}></Close>
+                    </RegisterCancelWrap>
                 <LoginForm />
                 </FormWrap>
             </FormContainer>
@@ -93,7 +84,13 @@ export function NavBar() {
         {openRegisterForm &&
             <FormContainer>
                 <FormWrap>
-                <Close className="fa-solid fa-xmark" onClick={closeRegister}></Close>
+                <RegisterCancelWrap>
+                     <p onClick={() => {
+                        setOpenRegisterForm(false);
+                        setOpenLoginForm(true);
+                     }}><i className="fa-solid fa-angle-left"></i> back</p>
+                    <Close className="fa-solid fa-xmark" onClick={() => setOpenRegisterForm(false)}></Close>
+                </RegisterCancelWrap>
                 <RegisterForm />
                 </FormWrap>
             </FormContainer>
