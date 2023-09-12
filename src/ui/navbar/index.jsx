@@ -1,10 +1,11 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Nav, Ul, Li, I, HoverText, MenuIconWrap, FormContainer, FormWrap, Close, RegisterCancelWrap, RegisterBtnWrap, RegisterBtn } from "./style";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { MobileMenuIcon } from "../mobile-menu-icon";
 import LoginForm from "../login-form";
 import RegisterForm from "../register";
+import { useLoad, useRemove } from "../../hooks/storage";
 
 export function NavBar() {
 
@@ -12,6 +13,16 @@ export function NavBar() {
     const [ clicked, setClicked ] = useState("");
     const [ openLoginForm, setOpenLoginForm ] = useState(false);
     const [ openRegisterForm, setOpenRegisterForm ] = useState(false);
+    const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+
+    useEffect(() => {
+        if(useLoad("token")) {
+            setIsLoggedIn(true);
+        }
+        if(!useLoad("token")) {
+            setIsLoggedIn(false);
+        }
+    })
 
     function menuHideShow() {
         if (visible === "") {
@@ -50,18 +61,32 @@ export function NavBar() {
                         <HoverText>Contact</HoverText>
                     </NavLink>
                 </Li>
+                {isLoggedIn?  
                 <Li>
-                    <NavLink to="account" aria-label="My account">
-                        <I className="fa-solid fa-user"></I>
-                        <HoverText>Account</HoverText>
-                    </NavLink>
+                    <div onClick={() => {
+                        useRemove("token");
+                        setIsLoggedIn(false);
+                    }}>
+                        <I className="fa-solid fa-lock-open"></I>
+                        <HoverText>Logout</HoverText>
+                    </div>
                 </Li>
+                : 
                 <Li>
                     <div onClick={() => setOpenLoginForm(true)}>
                         <I className="fa-solid fa-lock"></I>
                         <HoverText>Login</HoverText>
                     </div>
                 </Li>
+                }
+                {isLoggedIn &&
+                    <Li>
+                        <NavLink to="account" aria-label="My account">
+                            <I className="fa-solid fa-user"></I>
+                            <HoverText>Account</HoverText>
+                        </NavLink>
+                    </Li>
+                }
             </Ul>
         </Nav>
         {openLoginForm &&
