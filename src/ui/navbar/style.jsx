@@ -39,6 +39,7 @@ export const Li = styled.li`
     color: white;
     text-decoration: none;
   }
+  cursor: pointer;
 `;
 export const I = styled.i`
   font-size: ${(props) => props.theme.sizes.med};
