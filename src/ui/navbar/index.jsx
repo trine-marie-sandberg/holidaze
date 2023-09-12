@@ -16,10 +16,10 @@ export function NavBar() {
     const [ isLoggedIn, setIsLoggedIn ] = useState(false);
 
     useEffect(() => {
-        if(useLoad("token")) {
+        if(useLoad("user")) {
             setIsLoggedIn(true);
         }
-        if(!useLoad("token")) {
+        if(!useLoad("user")) {
             setIsLoggedIn(false);
         }
     })

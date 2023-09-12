@@ -41,7 +41,7 @@ export default function LoginForm(props) {
       manager: json.venueManager,
       token: json.accessToken,
     }
-    useSave("token", userDetails);
+    useSave("user", userDetails);
     setOpenLoginForm(false);
     }}>
       <Heading>Login</Heading>
