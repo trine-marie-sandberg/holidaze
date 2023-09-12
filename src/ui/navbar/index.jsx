@@ -102,7 +102,7 @@ export function NavBar() {
                         </RegisterBtnWrap>
                         <Close className="fa-solid fa-xmark" onClick={() => setOpenLoginForm(false)}></Close>
                     </RegisterCancelWrap>
-                <LoginForm />
+                <LoginForm>{setOpenLoginForm}</LoginForm>
                 </FormWrap>
             </FormContainer>
         }

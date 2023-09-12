@@ -3,10 +3,11 @@ import { FormContainer, Label, Input, TextArea, Button, Heading, FormElementsWra
 import { useSendData } from '../../hooks/api';
 import useSave from '../../hooks/storage';
 
-export default function LoginForm() {
+export default function LoginForm(props) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const setOpenLoginForm = props.children;
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -34,6 +35,7 @@ export default function LoginForm() {
     const json = await response.json();
     console.log(json)
     useSave("token", json.accessToken);
+    setOpenLoginForm(false);
     }}>
       <Heading>Login</Heading>
       <FormElementsWrap>
