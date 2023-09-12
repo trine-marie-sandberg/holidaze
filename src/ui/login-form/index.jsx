@@ -34,7 +34,14 @@ export default function LoginForm(props) {
     const response = await fetch("https://api.noroff.dev/api/v1/holidaze/auth/login", dataToSend);
     const json = await response.json();
     console.log(json)
-    useSave("token", json.accessToken);
+    const userDetails = {
+      name: json.name,
+      email: json.email,
+      avatar: json.avatar,
+      manager: json.venueManager,
+      token: json.accessToken,
+    }
+    useSave("token", userDetails);
     setOpenLoginForm(false);
     }}>
       <Heading>Login</Heading>
