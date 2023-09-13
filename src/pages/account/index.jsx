@@ -7,6 +7,8 @@ import { useState } from "react";
 export default function AccountPage() {
     const user = useLoad("user");
     const [ isManager, setIsManager ] = useState(user.manager);
+    let manager = "No";
+    if(isManager === true) manager = "Yes"
     return(
         <PageWrapper>
             <AccountContainer>
@@ -33,7 +35,7 @@ export default function AccountPage() {
                     <ul>
                         <li>Username: {user.name}</li>
                         <li>Email: {user.email}</li>
-                        <li>Venue manager: {user.manager}</li>
+                        <li>Venue manager: {manager}</li>
                     </ul>
                 </div>
             </AccountContainer>
