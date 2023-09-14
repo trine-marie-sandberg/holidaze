@@ -1,15 +1,16 @@
 import PageWrapper from "../../ui/pagewrapper";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import useFetch from "../../hooks/api";
 import { ImagesWrap, Image, Flex, VenueWrap, Btn, BtnIcon, MetaIcon, DescriptionWrap, BtnHeadingWrap, Heading, ArrowLeft, ArrowRight, TopLinkWrap } from "./style";
 import CreateStars from "../../ui/stars";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "../../ui/calendar";
 
 export default function VenueDetailsPage() {
 
     const [ imgIndex, setImgIndex ] = useState(0);
+    const [ bookings, setBookings ] = useState([]);
 
     function nextImage(array) {
         if(imgIndex > array.length -2) {
@@ -31,12 +32,11 @@ export default function VenueDetailsPage() {
     try {
         let params = useParams();
         const id = params.id;
-        const navigate = useNavigate();
-        const url = `https://api.noroff.dev/api/v1/holidaze/venues/${id}`;
+        const url = `https://api.noroff.dev/api/v1/holidaze/venues/${id}?_owner=true&_bookings=true`;
         const { data, loading, error } = useFetch(url);
+        useEffect(() => setBookings(data.bookings), [data]);
         const star = CreateStars(data.rating);
         let arrowFade = "";
-        
         let address;
         let city;
         let zip;
@@ -110,8 +110,11 @@ export default function VenueDetailsPage() {
                             <p>Max guests: {data.maxGuests}</p> 
                             <p>{description}</p>
                             <p>Last updated: {data.updated}</p>
+                            <DatePicker>
+                                {bookings}
+                                {setBookings}
+                            </DatePicker>
                         </DescriptionWrap>
-                        <DatePicker />
                     </VenueWrap>
                 }
                 {error && <p>error</p>}

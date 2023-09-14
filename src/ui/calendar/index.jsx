@@ -5,7 +5,7 @@ import format from "date-fns/format";
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 
-export default function DatePicker() {
+export default function DatePicker(props) {
 
     const [ calendar, setCalendar ] = useState("");
     const [ range, setRange ] = useState([
@@ -16,6 +16,11 @@ export default function DatePicker() {
         }
     ]);
     const [ open, setOpen ] = useState(false);
+    const [
+        bookings,
+        setBookings
+    ] = props.children;
+    console.log(bookings)
 
     useEffect(() => {
         // setCalendar(format(new Date(), "MM/dd/yyyy"));
