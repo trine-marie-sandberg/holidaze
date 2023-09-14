@@ -1,26 +1,60 @@
 import { Link } from "react-router-dom";
 import { useLoad } from "../../hooks/storage";
 import PageWrapper from "../../ui/pagewrapper";
-import { AccountContainer, BookingVenueContainer, BookingVenueWrap, FlexWrap, UpdateBtn, UpdateIcon } from "./style";
+import { AccountContainer, BookVenueBtn, BookingVenueContainer, BookingVenueWrap, FlexWrap, UpdateBtn, UpdateIcon } from "./style";
 import { useState } from "react";
+import BookingsTab from "../../ui/bookings-tab";
+import VenueManagerTab from "../../ui/venuemanager-tab";
 
 export default function AccountPage() {
+    const [ bookings, setBookings ] = useState(true);
+    const [ bookingsActive, setBookingsActive ] = useState("active-btn");
+    const [ venues, setVenues ] = useState(false);
+    const [ venuesActive, setVenuesActive ] = useState("");
     const user = useLoad("user");
     const [ isManager, setIsManager ] = useState(user.manager);
     let manager = "No";
-    if(isManager === true) manager = "Yes"
+    if(isManager === true) manager = "Yes";
+    function displayBookings() {
+        setBookingsActive("active-btn");
+        setVenues(false);
+        setBookings(true);
+        setVenuesActive("");
+    }
+    function displayVenues() {
+        setVenuesActive("active-btn");
+        setBookings(false);
+        setVenues(true);
+        setBookingsActive("");
+    }
     return(
         <PageWrapper>
             <AccountContainer>
                 <BookingVenueContainer>
+                    <FlexWrap>
+                        <BookVenueBtn 
+                          onClick={displayBookings}
+                          id={bookingsActive}
+                          aria-label="Display my bookings tab">
+                            Bookings
+                        </BookVenueBtn>
+                        <BookVenueBtn
+                          onClick={displayVenues}
+                          id={venuesActive}
+                          aria-label="Display venue manager tab">
+                            Venues
+                        </BookVenueBtn>
+                    </FlexWrap>
+                    {bookings && 
                     <BookingVenueWrap>
-                        <div>
-                            <h2>My bookings</h2>
-                            <div>
-                                <p>Currently no bookings</p>
-                            </div>
-                        </div>
+                        <BookingsTab />
                     </BookingVenueWrap>
+                    }
+                    {venues && 
+                    <BookingVenueWrap>
+                        <VenueManagerTab />
+                    </BookingVenueWrap>
+                    }
                 </BookingVenueContainer>
                 <div>
                     <h1>Hi, {user.name}</h1>

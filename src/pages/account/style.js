@@ -16,11 +16,18 @@ export const BookingVenueWrap = styled.div`
 `;
 export const BookingVenueContainer = styled.div`
   min-width: 50%;
+  @media(max-width: 1200px) {
+    min-width: 100%;
+  }
 `;
 export const FlexWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  & #active-btn {
+    background-color: ${(props) => props.theme.color.secondary};
+    color: ${(props) => props.theme.color.black};
+  }
 `;
 export const UpdateBtn = styled.button`
   cursor: pointer;
@@ -35,4 +42,14 @@ export const UpdateBtn = styled.button`
 export const UpdateIcon = styled.i`
   padding: 0 ${(props) => props.theme.sizes.xs};
   border-bottom: 1px dashed ${(props) => props.theme.color.font};
+`;
+export const BookVenueBtn = styled.button`
+  border-top-left-radius: ${(props) => props.theme.sizes.borderRadius};
+  border-top-right-radius: ${(props) => props.theme.sizes.borderRadius};
+  margin-left: 12px;
+  padding: 4px 10px;
+  border: none;
+  background-color: ${(props) => props.theme.color.primary};
+  color: ${(props) => props.theme.color.font};
+  cursor: pointer;
 `;
