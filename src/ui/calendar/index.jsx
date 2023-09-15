@@ -8,6 +8,7 @@ import 'react-date-range/dist/theme/default.css';
 export default function DatePicker(props) {
 
     const [ calendar, setCalendar ] = useState("");
+    //const [ excludeDateIntervals, setExcludeDateIntervals ] = useState([]);
     const [ range, setRange ] = useState([
         {
             startDate: new Date(),
@@ -20,30 +21,43 @@ export default function DatePicker(props) {
         bookings,
         setBookings
     ] = props.children;
-    console.log(bookings)
+    //Exclude reserved bookings
+    const excludeDateIntervals = bookings?.map((booking) => ({
+        start: new Date(booking.dateFrom),
+        end: new Date(booking.dateTo),
+    }));
+    // Calculate disabled dates
+    console.log(excludeDateIntervals)
+    const disabledDates = excludeDateIntervals?.flatMap(interval => {
+    const currentDate = new Date(interval.startDate);
+    const endDate = new Date(interval.endDate);
 
-    useEffect(() => {
-        // setCalendar(format(new Date(), "MM/dd/yyyy"));
-        document.addEventListener("keydown", hideOnEscape, true);
-        document.addEventListener("click", hidenOnClickOutside, true);
-    }, []);
+    const dates = [];
+        while (currentDate <= endDate) {
+            dates.push(currentDate);
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+        return dates;
+    });
 
-    // function handleSelect(date) {
-    //     console.log(date)
-    //     setCalendar(format(date, "MM/dd/yyyy"))
+    //Toogle visibility
+    // useEffect(() => {
+    //     document.addEventListener("keydown", hideOnEscape, true);
+    //     document.addEventListener("click", hidenOnClickOutside, true);
+    // }, []);
+
+    // function hideOnEscape(event) {
+    //     if(event.key === "Escape") {
+    //         setOpen(false);
+    //     }
     // }
-    function hideOnEscape(event) {
-        if(event.key === "Escape") {
-            setOpen(false);
-        }
-    }
-    const refOne = useRef(null)
-    function hidenOnClickOutside(event) {
-        if(refOne.current && !refOne.current.contains(event.target)) {
-            setOpen(false);
-        }
-    }
-
+    // const refOne = useRef(null)
+    // function hidenOnClickOutside(event) {
+    //     if(refOne.current && !refOne.current.contains(event.target)) {
+    //         setOpen(false);
+    //     }
+    // }
+    //
     return(
         <div>
             <h2>Calendar</h2>
@@ -52,10 +66,9 @@ export default function DatePicker(props) {
                     value={`${format(range[0].startDate, "MM/dd/yyyy")} to ${format(range[0].endDate, "MM/dd/yyyy")}`} 
                     readOnly
                     className="inputBox"
-                    onClick={() => setOpen(open => !open)}
                 />
-                <div ref={refOne}>
-                    {open &&
+                <div>
+                    {/* {open && */}
                     <DateRange
                     date={new Date()}
                     onChange={item => setRange([item.selection])}
@@ -66,7 +79,7 @@ export default function DatePicker(props) {
                     direction="horizontal"
                     className="calendarElement"
                     />
-                    }
+                    {/* } */}
                 </div>
             </div>
         </div>
