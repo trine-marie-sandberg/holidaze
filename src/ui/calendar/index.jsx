@@ -4,6 +4,7 @@ import { addDays } from "date-fns";
 import format from "date-fns/format";
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
+import { useLoad } from "../../hooks/storage";
 
 export default function DatePicker(props) {
 
@@ -19,7 +20,10 @@ export default function DatePicker(props) {
     const [ open, setOpen ] = useState(false);
     const [
         bookings,
-        setBookings
+        setBookings,
+        newBooking,
+        setNewBooking,
+        id
     ] = props.children;
     //Exclude reserved bookings
     const excludeDateIntervals = bookings?.map((booking) => ({
@@ -27,7 +31,7 @@ export default function DatePicker(props) {
         end: new Date(booking.dateTo),
     }));
     // Calculate disabled dates
-    console.log(excludeDateIntervals)
+    // console.log(excludeDateIntervals)
     const disabledDates = excludeDateIntervals?.flatMap(interval => {
     const currentDate = new Date(interval.startDate);
     const endDate = new Date(interval.endDate);
@@ -39,7 +43,6 @@ export default function DatePicker(props) {
         }
         return dates;
     });
-
     //Toogle visibility
     // useEffect(() => {
     //     document.addEventListener("keydown", hideOnEscape, true);
@@ -61,19 +64,49 @@ export default function DatePicker(props) {
     return(
         <div>
             <h2>Calendar</h2>
-            <div className="calendarWrap">
+            <form 
+              className="calendarWrap"
+              onSubmit={async (event) => {
+                event.preventDefault();
+                const user = useLoad("user");
+                const token = user.token;
+                const data = {
+                    "dateFrom": newBooking.startDate,
+                    "dateTo": newBooking.endDate,
+                    "guests": 1,
+                    "venueId": id
+                }
+                  const dataToSend = {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                }
+                console.log(dataToSend)
+                const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/bookings`, dataToSend);
+                const json = await response.json();
+                console.log(json)
+                }}>
                 <input 
                     value={`${format(range[0].startDate, "MM/dd/yyyy")} to ${format(range[0].endDate, "MM/dd/yyyy")}`} 
                     readOnly
                     className="inputBox"
                 />
+                <button type="submit">Submit</button>
                 <div>
                     {/* {open && */}
                     <DateRange
                     date={new Date()}
-                    onChange={item => setRange([item.selection])}
+                    onChange={item => {
+                        setRange([item.selection])
+                        setNewBooking(item.selection);
+                        console.log(item.selection)
+                    }}
                     editableDateInputs= {true}
                     moveRangeOnFirstSelection={false}
+                    excludeDateIntervals={excludeDateIntervals}
                     ranges={range}
                     months={2}
                     direction="horizontal"
@@ -81,10 +114,12 @@ export default function DatePicker(props) {
                     />
                     {/* } */}
                 </div>
-            </div>
+            </form>
         </div>
     )
 }
+//https://reactdatepicker.com/ 
+//https://reactdatepicker.com/#example-date-range-for-one-datepicker-with-disabled-dates-highlighted 
 //https://hypeserver.github.io/react-date-range/
 //https://www.npmjs.com/package/react-date-range 
 //https://www.youtube.com/watch?v=5OEOLDBow_0

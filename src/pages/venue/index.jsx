@@ -11,6 +11,7 @@ export default function VenueDetailsPage() {
 
     const [ imgIndex, setImgIndex ] = useState(0);
     const [ bookings, setBookings ] = useState([]);
+    const [ newBooking, setNewBooking ] = useState({});
 
     function nextImage(array) {
         if(imgIndex > array.length -2) {
@@ -43,6 +44,7 @@ export default function VenueDetailsPage() {
         let contry;
         let continent;
         let description = "No description";
+
         if(data) {
             address = data.location.address;
             city = data.location.city;
@@ -113,6 +115,9 @@ export default function VenueDetailsPage() {
                             <DatePicker>
                                 {bookings}
                                 {setBookings}
+                                {newBooking}
+                                {setNewBooking}
+                                {id}
                             </DatePicker>
                         </DescriptionWrap>
                     </VenueWrap>
