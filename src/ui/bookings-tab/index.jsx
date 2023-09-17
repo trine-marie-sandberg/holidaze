@@ -14,6 +14,20 @@ export default function BookingsTab() {
     }
     const { data, load, error } = useFetch(`https://api.noroff.dev/api/v1/holidaze/profiles/${user.name}/bookings`, fetchOptions);
 
+    function formatDate(date) {
+
+        var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+        if (month.length < 2) 
+            month = '0' + month;
+        if (day.length < 2) 
+            day = '0' + day;
+        return [year, month, day].join('-');
+    }
+    //https://stackoverflow.com/questions/23593052/format-javascript-date-as-yyyy-mm-dd 
+
     return(
         <div>
             <h2>Upcoming bookings</h2>
@@ -25,7 +39,7 @@ export default function BookingsTab() {
                         <div key={data.id}>
                             <FlexWrap>
                                 <div>
-                                    <p>From {data.dateFrom} to {data.dateFrom}</p>
+                                    <p>From { formatDate(data.dateFrom)} to {formatDate(data.dateFrom)}</p>
                                     <p>Guests: {data.guests}</p>
                                 </div>
                                 <FlexWrap>
