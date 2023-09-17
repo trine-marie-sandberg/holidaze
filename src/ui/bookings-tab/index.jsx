@@ -1,7 +1,7 @@
 import { useLoad } from "../../hooks/storage";
 import useFetch from "../../hooks/api";
 import { Link } from "react-router-dom";
-import { DelUpdBtn, DelIcon, FlexWrap } from "./style";
+import { DelUpdBtn, DelIcon, FlexWrap, Bold } from "./style";
 
 export default function BookingsTab() {
     const user = useLoad("user");
@@ -39,7 +39,7 @@ export default function BookingsTab() {
                         <div key={data.id}>
                             <FlexWrap>
                                 <div>
-                                    <p>From { formatDate(data.dateFrom)} to {formatDate(data.dateFrom)}</p>
+                                    <p>From <Bold>{formatDate(data.dateFrom)}</Bold> to <Bold>{formatDate(data.dateFrom)}</Bold></p>
                                     <p>Guests: {data.guests}</p>
                                 </div>
                                 <FlexWrap>

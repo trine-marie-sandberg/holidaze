@@ -20,3 +20,6 @@ export const FlexWrap = styled.div`
   background-color: ${(props) => props.theme.color.black};
   border-radius: ${(props) => props.theme.sizes.borderRadius};
 `;
+export const Bold = styled.span`
+  font-weight: 500;
+`;
