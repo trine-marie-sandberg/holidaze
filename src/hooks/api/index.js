@@ -76,3 +76,5 @@ export function useSendData(url, userData, method) {
     }, [url]);
     return {data, loading, error, responseOk};
 }
+
+export function useDeleteData(url, options) {}

@@ -45,7 +45,7 @@ export default function VenueDetailsPage() {
         let continent;
         let description = "No description";
 
-        if(data) {
+        if(data.location) {
             address = data.location.address;
             city = data.location.city;
             zip = data.location.zip;
@@ -56,10 +56,10 @@ export default function VenueDetailsPage() {
                 arrowFade = "arrow-faded";
             }
         }
-    
         return(
             <PageWrapper>
-                {loading && <p>Loading</p>}
+                {loading && <h2>Loading . . .</h2>}
+                {error  && <h2>Error: Could not load content</h2>}
                 {data && 
                     <VenueWrap>
                         <BtnHeadingWrap>
@@ -122,7 +122,6 @@ export default function VenueDetailsPage() {
                         </DescriptionWrap>
                     </VenueWrap>
                 }
-                {error && <p>error</p>}
             </PageWrapper>
         )
     }
