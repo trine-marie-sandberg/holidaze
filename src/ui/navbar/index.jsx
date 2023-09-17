@@ -64,7 +64,7 @@ export function NavBar() {
                 {isLoggedIn?  
                 <Li>
                     <div onClick={() => {
-                        useRemove("token");
+                        useRemove("user");
                         setIsLoggedIn(false);
                     }}>
                         <I className="fa-solid fa-lock-open"></I>
