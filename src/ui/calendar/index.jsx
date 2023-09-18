@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import { Calendar, DateRange, DateRangePicker } from "react-date-range";
-import { addDays, subDays } from "date-fns";
+import { useState } from "react";
+import { DateRange } from "react-date-range";
+import { addDays } from "date-fns";
 import format from "date-fns/format";
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
@@ -9,7 +9,6 @@ import { CalendarWrap } from "./style";
 
 export default function DatePicker(props) {
 
-    const [ open, setOpen ] = useState(false);
     const [ range, setRange ] = useState([
         {
             startDate: new Date(),
@@ -31,7 +30,6 @@ export default function DatePicker(props) {
         end: new Date(booking.dateTo),
     }));
     // Calculate disabled dates
-    // console.log(excludeDateIntervals)
     const disabledDates = excludeDateIntervals?.flatMap(interval => {
     const currentDate = new Date(interval.startDate);
     const endDate = new Date(interval.endDate);
@@ -43,24 +41,7 @@ export default function DatePicker(props) {
         }
         return dates;
     });
-    //Toogle visibility
-    // useEffect(() => {
-    //     document.addEventListener("keydown", hideOnEscape, true);
-    //     document.addEventListener("click", hidenOnClickOutside, true);
-    // }, []);
 
-    // function hideOnEscape(event) {
-    //     if(event.key === "Escape") {
-    //         setOpen(false);
-    //     }
-    // }
-    // const refOne = useRef(null)
-    // function hidenOnClickOutside(event) {
-    //     if(refOne.current && !refOne.current.contains(event.target)) {
-    //         setOpen(false);
-    //     }
-    // }
-    //
     return(
         <div>
             <form 
@@ -96,7 +77,6 @@ export default function DatePicker(props) {
                 />
                 <button type="submit">Submit</button>
                 <CalendarWrap>
-                    {/* {open && */}
                     <DateRange
                     date={new Date()}
                     onChange={item => {
@@ -112,7 +92,6 @@ export default function DatePicker(props) {
                     direction="horizontal"
                     className="calendarElement"
                     />
-                    {/* } */}
                 </CalendarWrap>
             </form>
         </div>
