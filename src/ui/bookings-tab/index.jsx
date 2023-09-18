@@ -42,7 +42,7 @@ export default function BookingsTab() {
                         <div key={booking.id}>
                             <FlexWrap>
                                 <div>
-                                    <p>From <Bold>{formatDate(booking.dateFrom)}</Bold> to <Bold>{formatDate(booking.dateFrom)}</Bold></p>
+                                    <p>From <Bold>{formatDate(booking.dateFrom)}</Bold> to <Bold>{formatDate(booking.dateTo)}</Bold></p>
                                     <p>Guests: {booking.guests}</p>
                                 </div>
                                 <FlexWrap>

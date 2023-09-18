@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { Calendar, DateRange, DateRangePicker } from "react-date-range";
-import { addDays } from "date-fns";
+import { addDays, subDays } from "date-fns";
 import format from "date-fns/format";
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { useLoad } from "../../hooks/storage";
+import { CalendarWrap } from "./style";
 
 export default function DatePicker(props) {
 
-    const [ calendar, setCalendar ] = useState("");
-    //const [ excludeDateIntervals, setExcludeDateIntervals ] = useState([]);
+    const [ open, setOpen ] = useState(false);
     const [ range, setRange ] = useState([
         {
             startDate: new Date(),
@@ -17,7 +17,6 @@ export default function DatePicker(props) {
             key: "selection",
         }
     ]);
-    const [ open, setOpen ] = useState(false);
     const [
         bookings,
         setBookings,
@@ -25,6 +24,7 @@ export default function DatePicker(props) {
         setNewBooking,
         id
     ] = props.children;
+
     //Exclude reserved bookings
     const excludeDateIntervals = bookings?.map((booking) => ({
         start: new Date(booking.dateFrom),
@@ -63,7 +63,6 @@ export default function DatePicker(props) {
     //
     return(
         <div>
-            <h2>Calendar</h2>
             <form 
               className="calendarWrap"
               onSubmit={async (event) => {
@@ -84,10 +83,8 @@ export default function DatePicker(props) {
                     },
                     body: JSON.stringify(data),
                 }
-                console.log(dataToSend)
                 const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/bookings`, dataToSend);
                 const json = await response.json();
-                console.log(json)
                 }}>
                 <input 
                     value={`${format(range[0].startDate, "MM/dd/yyyy")} to ${format(range[0].endDate, "MM/dd/yyyy")}`} 
@@ -95,25 +92,25 @@ export default function DatePicker(props) {
                     className="inputBox"
                 />
                 <button type="submit">Submit</button>
-                <div>
+                <CalendarWrap>
                     {/* {open && */}
                     <DateRange
                     date={new Date()}
                     onChange={item => {
                         setRange([item.selection])
                         setNewBooking(item.selection);
-                        console.log(item.selection)
                     }}
+                    isClearable={true}
                     editableDateInputs= {true}
                     moveRangeOnFirstSelection={false}
-                    excludeDateIntervals={excludeDateIntervals}
+                    excludeDateIntervals={disabledDates}
                     ranges={range}
                     months={2}
                     direction="horizontal"
                     className="calendarElement"
                     />
                     {/* } */}
-                </div>
+                </CalendarWrap>
             </form>
         </div>
     )

@@ -2,16 +2,19 @@ import PageWrapper from "../../ui/pagewrapper";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import useFetch from "../../hooks/api";
-import { ImagesWrap, Image, Flex, VenueWrap, Btn, BtnIcon, MetaIcon, DescriptionWrap, BtnHeadingWrap, Heading, ArrowLeft, ArrowRight, TopLinkWrap } from "./style";
+import { ImagesWrap, Image, Flex, VenueWrap, Btn, BtnIcon, MetaIcon, DescriptionWrap, BtnHeadingWrap, Heading, ArrowLeft, ArrowRight, TopLinkWrap, DetailsWrap, CalendarContainer, ReserveBtn, BookCloseWrap } from "./style";
 import CreateStars from "../../ui/stars";
 import { useEffect, useState } from "react";
 import DatePicker from "../../ui/calendar";
+import { useLoad } from "../../hooks/storage";
 
 export default function VenueDetailsPage() {
 
     const [ imgIndex, setImgIndex ] = useState(0);
     const [ bookings, setBookings ] = useState([]);
     const [ newBooking, setNewBooking ] = useState({});
+    const [ visibleBooking, setVisibleBooking ] = useState(false);
+    const [ logedOutMessage, setLogedOutMessage ] = useState(false);
 
     function nextImage(array) {
         if(imgIndex > array.length -2) {
@@ -108,17 +111,50 @@ export default function VenueDetailsPage() {
                                     <div>{data.meta.breakfast && <MetaIcon className="fa-solid fa-mug-saucer" aria-label="breakfast included" />}</div>
                                 </Flex>
                             </Flex>
-                            <p>Price: ${data.price}/night</p>
-                            <p>Max guests: {data.maxGuests}</p> 
-                            <p>{description}</p>
-                            <p>Last updated: {data.updated}</p>
-                            <DatePicker>
-                                {bookings}
-                                {setBookings}
-                                {newBooking}
-                                {setNewBooking}
-                                {id}
-                            </DatePicker>
+                            <Flex>
+                                <DetailsWrap>
+                                    <Flex>
+                                        <p>Price: ${data.price}/night</p>
+                                        <ReserveBtn onClick={() => {
+                                            let getUser = useLoad("user");
+                                            if(getUser) {
+                                                setVisibleBooking(true);
+                                                setLogedOutMessage(false);
+                                            } if(!getUser) {
+                                                setVisibleBooking(false);
+                                                alert("please log in to access the calendar")
+                                                setLogedOutMessage(true);
+                                            }
+                                        }}>
+                                            Open calendar <i className="fa-regular fa-calendar-check"></i>
+                                        </ReserveBtn>
+                                    </Flex>
+                                    <p>Max guests: {data.maxGuests}</p> 
+                                    <p>{description}</p>
+                                    <p>Last updated: {data.updated}</p>
+                                </DetailsWrap>
+                                {visibleBooking &&
+                                    <CalendarContainer>
+                                        <div>
+                                            <BookCloseWrap>
+                                                <h2>Booking calendar</h2>
+                                                <button onClick={() => {
+                                                setVisibleBooking(false)
+                                                }}>
+                                                    CLOSE <i className="fa-solid fa-xmark"></i>
+                                                </button>
+                                            </BookCloseWrap>
+                                            <DatePicker>
+                                                {bookings}
+                                                {setBookings}
+                                                {newBooking}
+                                                {setNewBooking}
+                                                {id}
+                                            </DatePicker>
+                                        </div>
+                                    </CalendarContainer>
+                                }
+                            </Flex>
                         </DescriptionWrap>
                     </VenueWrap>
                 }

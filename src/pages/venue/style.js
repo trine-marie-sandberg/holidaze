@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 
 export const VenueWrap = styled.div`
   padding: ${(props) => props.theme.sizes.sm};
-  max-width: 1200px;
+  /* max-width: 1200px; */
   @media(max-width: 600px) {
     padding: 0;
   }
@@ -129,4 +129,39 @@ export const DescriptionWrap = styled.div`
   border-end-end-radius: ${(props) => props.theme.sizes.borderRadius};
   border-end-start-radius: ${(props) => props.theme.sizes.borderRadius};
   border: 1px solid ${(props) => props.theme.color.darker};
+`;
+export const DetailsWrap = styled.div`
+  max-width: 700px;
+`;
+export const CalendarContainer = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`;
+export const ReserveBtn = styled.button`
+  color: ${(props) => props.theme.color.black};
+  background-color: ${(props) => props.theme.color.secondary};
+  border: 1px solid ${(props) => props.theme.color.black};
+  border-radius: 25px;
+  font-size: 16px;
+  padding: 10px 25px;
+  margin: 0;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  cursor: pointer;
+`;
+export const BookCloseWrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 `;
