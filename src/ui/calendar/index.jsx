@@ -85,6 +85,9 @@ export default function DatePicker(props) {
                 }
                 const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/bookings`, dataToSend);
                 const json = await response.json();
+                if(response.ok) {
+                    alert(`Booked venue from ${newBooking.startDate} to ${newBooking.endDate}`)
+                }
                 }}>
                 <input 
                     value={`${format(range[0].startDate, "MM/dd/yyyy")} to ${format(range[0].endDate, "MM/dd/yyyy")}`} 
