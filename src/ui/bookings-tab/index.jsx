@@ -5,26 +5,29 @@ import { DelUpdBtn, DelIcon, FlexWrap, Bold } from "./style";
 import { useEffect, useState } from "react";
 import useFormatDate from "../../hooks/format-dates";
 
-export default function BookingsTab() {
-    const user = useLoad("user");
-    const fetchOptions = {
-        method: "GET",
-        headers: {
-            Authorization: `Bearer ${user.token}`,
-            "Content-Type": "application/json",
-        },
-    }
-    const { data, load, error } = useFetch(`https://api.noroff.dev/api/v1/holidaze/profiles/${user.name}/bookings`, fetchOptions);
+export default function BookingsTab(props) {
+    const [
+        data,
+        load,
+        error,
+    ] = props.children;
+
     const [ bookingDisplay, setBookingDisplay ] = useState(data);
     useEffect(() => setBookingDisplay(data), [data]);
-
+    console.log(bookingDisplay.bookings)
     return(
         <div>
             <h2>Upcoming bookings</h2>
             <div>
-                {data.length >= 1 && 
+                {load && 
+                <p>Loading . . .</p>
+                }
+                {error &&
+                <p>error</p>
+                }
+                {data && 
                   <div>
-                    {bookingDisplay.map((booking) => {
+                    {bookingDisplay.bookings?.map((booking) => {
                     return(
                         <div key={booking.id}>
                             <FlexWrap>
@@ -36,6 +39,7 @@ export default function BookingsTab() {
                                     <DelUpdBtn 
                                       aria-label="Delete this booking"
                                       onClick={async () => {
+                                        const user = useLoad("user");
                                         const dataToSend = {
                                             method: "DELETE",
                                             headers: {
@@ -44,7 +48,8 @@ export default function BookingsTab() {
                                             },
                                         }
                                         await fetch(`https://api.noroff.dev/api/v1/holidaze/bookings/${booking.id}?_venue=true`, dataToSend);
-                                        setBookingDisplay(bookingDisplay.filter((item) => item.id !== booking.id));
+                                        setBookingDisplay(bookingDisplay.bookings?.filter((item) => item.id === booking.id));
+                                        console.log(`bookingDisplay.bookings: ${bookingDisplay.bookings} booking.id: ${booking.id}`)
                                     }}>
                                         <DelIcon className="fa-solid fa-trash"></DelIcon>
                                     </DelUpdBtn>
