@@ -17,7 +17,6 @@ export default function DatePicker(props) {
         }
     ]);
     const [ guests, setGuests ] = useState(1);
-    const [ reservedDates, setReservedDates ] = useState([]);
     const [
         bookings,
         setBookings,
@@ -39,20 +38,18 @@ export default function DatePicker(props) {
         start: new Date(booking.dateFrom),
         end: new Date(booking.dateTo),
     }));
-    //console.log(excludeDateIntervals)
     // Calculate disabled dates
-    // function disabledDates() {
-    //     excludeDateIntervals.flatMap(interval => {
-    //     const currentDate = new Date(interval.startDate);
-    //     const endDate = new Date(interval.endDate);
+    const disabledDates = excludeDateIntervals.flatMap(interval => {
+        const currentDate = new Date(interval.start);
+        const endDate = new Date(interval.end);
+        const dates = [];
+        while (currentDate <= endDate) {
+            dates.push(currentDate);
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+        return dates;
+    });
 
-    //         while (currentDate <= endDate) {
-    //             setReservedDates(...reservedDates, currentDate)
-    //             currentDate.setDate(currentDate.getDate() + 1);
-    //         }
-    //     });
-    // }
-    // useEffect(disabledDates, [])
     return(
         <div>
             <form 
@@ -112,13 +109,13 @@ export default function DatePicker(props) {
                         isClearable={true}
                         editableDateInputs= {true}
                         moveRangeOnFirstSelection={false}
-                        excludeDateIntervals={excludeDateIntervals}
+                        disabledDates={disabledDates}
                         ranges={range}
                         months={1}
                         direction="horizontal"
                         className="calendarElement"
                         minDate={new Date()}
-                        showDisabledMonthNavigation
+                        rangeColors={["rgb(87, 128, 152)"]}
                         />
                     </CalendarWrap>
             </form>
