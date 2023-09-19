@@ -12,11 +12,12 @@ export default function DatePicker(props) {
     const [ range, setRange ] = useState([
         {
             startDate: new Date(),
-            endDate: addDays(new Date(), 7),
+            endDate: addDays(new Date(), 0),
             key: "selection",
         }
     ]);
     const [ guests, setGuests ] = useState(1);
+    const [ reservedDates, setReservedDates ] = useState([]);
     const [
         bookings,
         setBookings,
@@ -38,19 +39,20 @@ export default function DatePicker(props) {
         start: new Date(booking.dateFrom),
         end: new Date(booking.dateTo),
     }));
+    //console.log(excludeDateIntervals)
     // Calculate disabled dates
-    const disabledDates = excludeDateIntervals?.flatMap(interval => {
-    const currentDate = new Date(interval.startDate);
-    const endDate = new Date(interval.endDate);
+    // function disabledDates() {
+    //     excludeDateIntervals.flatMap(interval => {
+    //     const currentDate = new Date(interval.startDate);
+    //     const endDate = new Date(interval.endDate);
 
-    const dates = [];
-        while (currentDate <= endDate) {
-            dates.push(currentDate);
-            currentDate.setDate(currentDate.getDate() + 1);
-        }
-        return dates;
-    });
-
+    //         while (currentDate <= endDate) {
+    //             setReservedDates(...reservedDates, currentDate)
+    //             currentDate.setDate(currentDate.getDate() + 1);
+    //         }
+    //     });
+    // }
+    // useEffect(disabledDates, [])
     return(
         <div>
             <form 
@@ -100,7 +102,6 @@ export default function DatePicker(props) {
                         </div>
                         <SubmitBtn type="submit">Submit</SubmitBtn>
                     </SubmitInputWrap>
-                    
                     <CalendarWrap>
                         <DateRange
                         date={new Date()}
@@ -111,11 +112,13 @@ export default function DatePicker(props) {
                         isClearable={true}
                         editableDateInputs= {true}
                         moveRangeOnFirstSelection={false}
-                        excludeDateIntervals={disabledDates}
+                        excludeDateIntervals={excludeDateIntervals}
                         ranges={range}
                         months={1}
                         direction="horizontal"
                         className="calendarElement"
+                        minDate={new Date()}
+                        showDisabledMonthNavigation
                         />
                     </CalendarWrap>
             </form>
