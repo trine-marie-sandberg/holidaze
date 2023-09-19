@@ -3,6 +3,7 @@ import useFetch from "../../hooks/api";
 import { Link } from "react-router-dom";
 import { DelUpdBtn, DelIcon, FlexWrap, Bold } from "./style";
 import { useEffect, useState } from "react";
+import useFormatDate from "../../hooks/format-dates";
 
 export default function BookingsTab() {
     const user = useLoad("user");
@@ -17,20 +18,6 @@ export default function BookingsTab() {
     const [ bookingDisplay, setBookingDisplay ] = useState(data);
     useEffect(() => setBookingDisplay(data), [data]);
 
-    function formatDate(date) {
-
-        var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
-        if (month.length < 2) 
-            month = '0' + month;
-        if (day.length < 2) 
-            day = '0' + day;
-        return [year, month, day].join('-');
-    }
-    //https://stackoverflow.com/questions/23593052/format-javascript-date-as-yyyy-mm-dd 
-
     return(
         <div>
             <h2>Upcoming bookings</h2>
@@ -42,7 +29,7 @@ export default function BookingsTab() {
                         <div key={booking.id}>
                             <FlexWrap>
                                 <div>
-                                    <p>From <Bold>{formatDate(booking.dateFrom)}</Bold> to <Bold>{formatDate(booking.dateTo)}</Bold></p>
+                                    <p>From <Bold>{useFormatDate(booking.dateFrom)}</Bold> to <Bold>{useFormatDate(booking.dateTo)}</Bold></p>
                                     <p>Guests: {booking.guests}</p>
                                 </div>
                                 <FlexWrap>
