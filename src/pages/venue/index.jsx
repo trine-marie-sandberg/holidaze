@@ -2,7 +2,7 @@ import PageWrapper from "../../ui/pagewrapper";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import useFetch from "../../hooks/api";
-import { ImagesWrap, Image, Flex, VenueWrap, Btn, BtnIcon, MetaIcon, DescriptionWrap, BtnHeadingWrap, Heading, ArrowLeft, ArrowRight, TopLinkWrap, DetailsWrap, CalendarContainer, ReserveBtn, BookCloseWrap } from "./style";
+import { ImagesWrap, Image, Flex, VenueWrap, Btn, BtnIcon, MetaIcon, DescriptionWrap, BtnHeadingWrap, Heading, ArrowLeft, ArrowRight, TopLinkWrap, DetailsWrap, CalendarContainer, ReserveBtn, BookCloseWrap, CalendarBg, CloseBtn } from "./style";
 import CreateStars from "../../ui/stars";
 import { useEffect, useState } from "react";
 import DatePicker from "../../ui/calendar";
@@ -135,14 +135,14 @@ export default function VenueDetailsPage() {
                                 </DetailsWrap>
                                 {visibleBooking &&
                                     <CalendarContainer>
-                                        <div>
+                                        <CalendarBg>
                                             <BookCloseWrap>
                                                 <h2>Booking calendar</h2>
-                                                <button onClick={() => {
+                                                <CloseBtn onClick={() => {
                                                 setVisibleBooking(false)
                                                 }}>
-                                                    CLOSE <i className="fa-solid fa-xmark"></i>
-                                                </button>
+                                                    <i className="fa-solid fa-xmark"></i>
+                                                </CloseBtn>
                                             </BookCloseWrap>
                                             <DatePicker>
                                                 {bookings}
@@ -151,7 +151,7 @@ export default function VenueDetailsPage() {
                                                 {setNewBooking}
                                                 {id}
                                             </DatePicker>
-                                        </div>
+                                        </CalendarBg>
                                     </CalendarContainer>
                                 }
                             </Flex>

@@ -139,7 +139,8 @@ export const CalendarContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 10;
   top: 0;
   left: 0;
   width: 100%;
@@ -159,9 +160,28 @@ export const ReserveBtn = styled.button`
   cursor: pointer;
 `;
 export const BookCloseWrap = styled.div`
+  border-top-right-radius: ${(props) => props.theme.sizes.borderRadius};
+  border-top-left-radius: ${(props) => props.theme.sizes.borderRadius};
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  padding-bottom: ${(props) => props.theme.sizes.med};
+`;
+export const CalendarBg = styled.div`
+  background-image: linear-gradient(${(props) => props.theme.color.primary} 40%, rgb(64, 115, 123));
+  border-radius: ${(props) => props.theme.sizes.borderRadius};
+  padding: 15px;
+  @media(max-width: 450px) {
+    padding: 5px;
+  }
+`;
+export const CloseBtn = styled.button`
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  color: ${(props) => props.theme.color.font};
+  font-size: 45px;
+  cursor: pointer;
+  border: none;
 `;
