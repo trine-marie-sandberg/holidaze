@@ -153,10 +153,7 @@ export const ReserveBtn = styled.button`
   border-radius: 25px;
   font-size: 16px;
   padding: 10px 25px;
-  margin: 0;
-  &:hover {
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
+  margin: 0 5px;
   cursor: pointer;
 `;
 export const BookCloseWrap = styled.div`

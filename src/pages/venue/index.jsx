@@ -126,7 +126,7 @@ export default function VenueDetailsPage() {
                                                 setLogedOutMessage(true);
                                             }
                                         }}>
-                                            Open calendar <i className="fa-regular fa-calendar-check"></i>
+                                            Booking <i className="fa-regular fa-calendar-check"></i>
                                         </ReserveBtn>
                                     </Flex>
                                     <p>Max guests: {data.maxGuests}</p> 
