@@ -21,10 +21,10 @@ export default function BookingsTab(props) {
                     return(
                         <div key={booking.id}>
                             <FlexWrap>
-                                <div>
+                                <Link to={`/venue/${booking.venue.id}`}>
                                     <p>From <Bold>{useFormatDate(booking.dateFrom)}</Bold> to <Bold>{useFormatDate(booking.dateTo)}</Bold></p>
                                     <p>Guests: {booking.guests}</p>
-                                </div>
+                                </Link>
                                 <FlexWrap>
                                     <DelUpdBtn 
                                       aria-label="Delete this booking"
