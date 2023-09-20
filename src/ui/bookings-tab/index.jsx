@@ -17,7 +17,7 @@ export default function BookingsTab(props) {
             <div>
                 {initialBookings && 
                   <div>
-                    {initialBookings.bookings?.map((booking) => {
+                    {initialBookings.map((booking) => {
                     return(
                         <div key={booking.id}>
                             <FlexWrap>
@@ -44,7 +44,7 @@ export default function BookingsTab(props) {
 
                                         await fetch(`https://api.noroff.dev/api/v1/holidaze/bookings/${booking.id}?_venue=true`, dataToSend);
 
-                                        const newBookings = initialBookings.bookings?.filter((b) => checkIds(b.id, booking.id));
+                                        const newBookings = initialBookings?.filter((b) => checkIds(b.id, booking.id));
                                         console.log("FILTERED BOOKINGS:");
                                         console.log(newBookings);
                                         setInitialBookings(newBookings);
@@ -58,7 +58,6 @@ export default function BookingsTab(props) {
                                       }}>
                                         <DelIcon className="fa-solid fa-pen-clip"></DelIcon>
                                     </DelUpdBtn>
-                                    
                                 </FlexWrap>
                             </FlexWrap>
                         </div>

@@ -37,7 +37,7 @@ export default function AccountPage() {
     }
     const { data, load, error } = useFetch(`https://api.noroff.dev/api/v1/holidaze/profiles/${user.name}?_bookings=true&_venues=true`, fetchOptions);
     const [ initialBookings, setInitialBookings ] = useState([]);
-    useEffect(() => setInitialBookings(data), [data]);
+    useEffect(() => setInitialBookings(data.bookings), [data]);
     return(
         <PageWrapper>
             <AccountContainer>
@@ -75,9 +75,13 @@ export default function AccountPage() {
                 </BookingVenueContainer>
                 <div>
                     <h1>Hi, {user.name}</h1>
-                    <p>You have currently no reservations.</p>
-                    <Link to="/venues">
-                        <p>Look for venues</p>
+                    <p>
+                        Thank you for using Holidayz's services.
+                        If you want to chat with uss about your next holiday, 
+                        please use our contact form:
+                    </p>
+                    <Link to="/contact">
+                        <p>Contact form</p>
                     </Link>
                     <FlexWrap>
                         <h2>My account information</h2>
