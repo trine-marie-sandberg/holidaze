@@ -12,9 +12,10 @@ export default function BookingsTab(props) {
         error,
     ] = props.children;
 
-    const [ bookingDisplay, setBookingDisplay ] = useState(data);
-    useEffect(() => setBookingDisplay(data), [data]);
-    console.log(bookingDisplay.bookings)
+    const [ initialBookings, setInitialBookings ] = useState([]);
+    const [ idsArray, setIdsArray ] = useState([]);
+    useEffect(() => setInitialBookings(data), [data]);
+
     return(
         <div>
             <h2>Upcoming bookings</h2>
@@ -27,7 +28,7 @@ export default function BookingsTab(props) {
                 }
                 {data && 
                   <div>
-                    {bookingDisplay.bookings?.map((booking) => {
+                    {initialBookings.bookings?.map((booking) => {
                     return(
                         <div key={booking.id}>
                             <FlexWrap>
@@ -47,9 +48,29 @@ export default function BookingsTab(props) {
                                                 "Content-Type": "application/json",
                                             },
                                         }
+                                        function checkIds(ids, deletedId) {
+                                            // console.log(`ids: ${ids}`)
+                                            console.log(`search and kill id: ${deletedId}`)
+                                            return ids !== deletedId
+                                        }
+                                        // const idsToMerge = initialBookings.bookings;
+                                        // const mergedIds = [];
+                                        // console.log("IDS TO MERGE:")
+                                        // console.log(idsToMerge)
+                                        // for(let i = 0; i < idsToMerge.length; i++) {
+                                        //     mergedIds.push(idsToMerge[i].id)
+                                        // }
+                                        // console.log("MERGED IDS")
+                                        // console.log(mergedIds)
+                                        // setIdsArray(mergedIds)
                                         await fetch(`https://api.noroff.dev/api/v1/holidaze/bookings/${booking.id}?_venue=true`, dataToSend);
-                                        setBookingDisplay(bookingDisplay.bookings?.filter((item) => item.id === booking.id));
-                                        console.log(`bookingDisplay.bookings: ${bookingDisplay.bookings} booking.id: ${booking.id}`)
+                                        // setInitialBookings(idsArray.filter((ids) => checkIds(ids, booking.id)));
+                                        // const filteredIds = mergedIds?.filter((ids) => checkIds(ids, booking.id));
+                                        const newBookings = initialBookings.bookings?.filter((b) => checkIds(b.id, booking.id))
+                                        console.log("FILTERED BOOKINGS:")
+                                        console.log(newBookings)
+                                        // setInitialBookings(initialBookings.bookings?.filter((bookings) => bookings.id !== booking.id))
+                                        setInitialBookings(newBookings)
                                     }}>
                                         <DelIcon className="fa-solid fa-trash"></DelIcon>
                                     </DelUpdBtn>
