@@ -1,6 +1,6 @@
 import PageWrapper from "../../ui/pagewrapper";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/api";
 import { ImagesWrap, Image, Flex, VenueWrap, Btn, BtnIcon, MetaIcon, DescriptionWrap, BtnHeadingWrap, Heading, ArrowLeft, ArrowRight, TopLinkWrap, DetailsWrap, CalendarContainer, ReserveBtn, BookCloseWrap, CalendarBg, CloseBtn } from "./style";
 import CreateStars from "../../ui/stars";
@@ -15,6 +15,7 @@ export default function VenueDetailsPage() {
     const [ newBooking, setNewBooking ] = useState({});
     const [ visibleBooking, setVisibleBooking ] = useState(false);
     const [ logedOutMessage, setLogedOutMessage ] = useState(false);
+    const navigate = useNavigate();
 
     function nextImage(array) {
         if(imgIndex > array.length -2) {
@@ -68,11 +69,11 @@ export default function VenueDetailsPage() {
                         <BtnHeadingWrap>
                         <Heading>{data.name}</Heading>
                             <TopLinkWrap>
-                            <Link to={"/venues"}>
-                                <Btn><BtnIcon className="fa-solid fa-reply"></BtnIcon>All venues</Btn>
+                            <Link onClick={() => navigate(-1)}>
+                                <Btn><BtnIcon className="fa-solid fa-reply"></BtnIcon>Back</Btn>
                             </Link>
-                            <Link to={"/"}>
-                              <Btn><BtnIcon className="fa-solid fa-reply"></BtnIcon>Home</Btn>
+                            <Link to={"/venues"}>
+                              <Btn><BtnIcon className="fa-solid fa-bed"></BtnIcon>All venues</Btn>
                             </Link>
                             </TopLinkWrap>
                         </BtnHeadingWrap>
