@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useLoad } from "../../hooks/storage";
 import PageWrapper from "../../ui/pagewrapper";
 import { AccountContainer, BookVenueBtn, BookingVenueContainer, BookingVenueWrap, FlexWrap, UpdateBtn, UpdateIcon } from "./style";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BookingsTab from "../../ui/bookings-tab";
 import VenueManagerTab from "../../ui/venuemanager-tab";
 import useFetch from "../../hooks/api";
@@ -36,6 +36,8 @@ export default function AccountPage() {
         },
     }
     const { data, load, error } = useFetch(`https://api.noroff.dev/api/v1/holidaze/profiles/${user.name}?_bookings=true&_venues=true`, fetchOptions);
+    const [ initialBookings, setInitialBookings ] = useState([]);
+    useEffect(() => setInitialBookings(data), [data]);
     return(
         <PageWrapper>
             <AccountContainer>
@@ -57,18 +59,16 @@ export default function AccountPage() {
                     {bookings && 
                     <BookingVenueWrap>
                         <BookingsTab>
-                            {data}
-                            {load}
-                            {error}
+                            {initialBookings}
+                            {setInitialBookings}
                         </BookingsTab>
                     </BookingVenueWrap>
                     }
                     {venues && 
                     <BookingVenueWrap>
                         <VenueManagerTab>
-                            {data}
-                            {load}
-                            {error}
+                        {initialBookings}
+                        {setInitialBookings}
                         </VenueManagerTab>
                     </BookingVenueWrap>
                     }
