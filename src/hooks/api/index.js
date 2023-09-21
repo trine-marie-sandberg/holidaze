@@ -37,7 +37,7 @@ export default function useFetch(url, options) {
         return {data, loading, error, responseOk};
 }
 //Post/Put
-export function useSendData(url, userData, method) {
+export function useSendData(url, options, body) {
 
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -47,14 +47,11 @@ export function useSendData(url, userData, method) {
     setLoading(true);
     setError(false);
     
-    async function sendData() {
+    async function sendData(url, options, body) {
         try {
             const dataToSend = {
-                method: method,
-                Headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(userData),
+                options,
+                body: JSON.stringify(body),
             }
             console.log(dataToSend)
             const response = await fetch(url, dataToSend);
@@ -63,6 +60,7 @@ export function useSendData(url, userData, method) {
             setData(json);
             if (response.ok) {
                 setResponse(true)
+                setData(json)
             } else {
                 setError(true);
             }

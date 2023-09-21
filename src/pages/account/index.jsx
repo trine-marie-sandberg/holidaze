@@ -16,6 +16,7 @@ export default function AccountPage() {
     const [ isManager, setIsManager ] = useState(user.manager);
     let manager = "No";
     if(isManager === true) manager = "Yes";
+    
     function displayBookings() {
         setBookingsActive("active-btn");
         setVenues(false);
@@ -37,7 +38,9 @@ export default function AccountPage() {
     }
     const { data, load, error } = useFetch(`https://api.noroff.dev/api/v1/holidaze/profiles/${user.name}?_bookings=true&_venues=true`, fetchOptions);
     const [ initialBookings, setInitialBookings ] = useState([]);
+    const [ initiAlVenues, setInitialVenues ] = useState([]);
     useEffect(() => setInitialBookings(data.bookings), [data]);
+    useEffect(() => setInitialVenues(data.venues), [data]);
     return(
         <PageWrapper>
             <AccountContainer>
@@ -67,8 +70,10 @@ export default function AccountPage() {
                     {venues && 
                     <BookingVenueWrap>
                         <VenueManagerTab>
-                        {initialBookings}
-                        {setInitialBookings}
+                        {initiAlVenues}
+                        {setInitialVenues}
+                        {isManager}
+                        {setIsManager}
                         </VenueManagerTab>
                     </BookingVenueWrap>
                     }
