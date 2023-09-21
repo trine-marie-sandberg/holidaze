@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLoad } from "../../hooks/storage";
+import useSave, { useLoad } from "../../hooks/storage";
 import useFetch, { useSendData } from "../../hooks/api";
 import ListVenueForm from "../list-venue";
 
@@ -12,8 +12,15 @@ export default function VenueManagerTab(props) {
         setIsManager,
     ] = props.children;
     console.log(initialVenues);
-    const [ formVisible, setFormVisible ] = useState(false);
     const user = useLoad("user");
+    const [ formVisible, setFormVisible ] = useState(false);
+    const [ options, setOptions ] = useState({
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${user.token}`,
+            "Content-Type": "application/json",
+        },
+    });
     
     return(
         <div>
@@ -38,18 +45,40 @@ export default function VenueManagerTab(props) {
                                     </button>
                                 </div>
                                 <ListVenueForm>
-                                    {setInitialVenues}
+                                    {options}
                                 </ListVenueForm>
                             </div>
                             }
                         </div>
+                    }
+                    {initialVenues &&
+                    <div>
+                        <button onClick={() => {
+                            setFormVisible(true);
+                        }}>
+                            Create a new listing
+                        </button>
+                        {formVisible &&
+                            <div>
+                                <div>
+                                    <button onClick={() => {
+                                        setFormVisible(false)
+                                    }}>
+                                        Close X
+                                    </button>
+                                </div>
+                                <ListVenueForm>
+                                    {options}
+                                </ListVenueForm>
+                            </div>
+                        }
+                    </div>
                     }
                     {initialVenues > 0 &&
                     <div>venues</div>
                     }
                 </div>
             }
-            
             {isManager === false &&
                 <div>
                     <h2>Want to become a venue manager?</h2>
@@ -71,6 +100,13 @@ export default function VenueManagerTab(props) {
                             console.log(json)
                             if(response.ok) {
                                 setIsManager(true);
+                                useSave("user", ({
+                                    avatar: user.avatar,
+                                    email: user.email,
+                                    manager: true,
+                                    name: user.name,
+                                    token: user.token,
+                                }))
                             }}}>
                         Become a venue manager
                     </button>

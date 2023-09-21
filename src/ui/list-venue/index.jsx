@@ -1,82 +1,70 @@
 import { useState } from "react";
+import { useLoad } from "../../hooks/storage";
 
 export default function ListVenueForm(props) {
 
-    // const [ name, setName ] = useState("");
-    // const [ description, setDescription ] = useState("");
-    // const [ media, setMedia ] = useState([]);
-    // const [ price, setPrice ] = useState(0);
-    // const [ maxGuests, setMaxGuests ] = useState(0);
-    // const [ rating, setRating ] = useState(0);
+    const [ name, setName ] = useState("");
+    const [ description, setDescription ] = useState("");
+    const [ media, setMedia ] = useState([]);
+    const [ price, setPrice ] = useState(0);
+    const [ maxGuests, setMaxGuests ] = useState(0);
+    const [ rating, setRating ] = useState(0);
 
-    // const [ meta, setMeta ] = useState({})
-    // const [ wifi, setWifi ] = useState(false);
-    // const [ parking, setParking ] = useState(false);
-    // const [ breakfast, setBreakfast ] = useState(false);
-    // const [ pets, setPets ] = useState(false);
-    // return(
-    //     <div>form</div>
-    // )
+    const [ meta, setMeta ] = useState({})
+    const [ wifi, setWifi ] = useState(false);
+    const [ parking, setParking ] = useState(false);
+    const [ breakfast, setBreakfast ] = useState(false);
+    const [ pets, setPets ] = useState(false);
 
+    const [ address, setAdress ] = useState("");
+    const [ city, setCity ] = useState("");
+    const [ zip, setZip ] = useState("");
+    const [ contry, setContry ] = useState("");
+    const [ continent, setContinent ] = useState("");
+    const [ lat, setLat ] = useState(0);
+    const [ ing, setIng ] = useState(0);
 
-  const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    media: [''],
-    price: 0,
-    maxGuests: 0,
-    rating: 0,
-    meta: {
-      wifi: false,
-      parking: false,
-      breakfast: false,
-      pets: false,
-    },
-    location: {
-      address: 'Unknown',
-      city: 'Unknown',
-      zip: 'Unknown',
-      country: 'Unknown',
-      continent: 'Unknown',
-      lat: 0,
-      lng: 0,
-    },
-  });
+    const user = useLoad("user")
+    const options = props.children;
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleMetaChange = (e) => {
-    const { name, checked } = e.target;
-    setFormData({
-      ...formData,
-      meta: {
-        ...formData.meta,
-        [name]: checked,
-      },
-    });
-  };
-
-  const handleLocationChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      location: {
-        ...formData.location,
-        [name]: value,
-      },
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Send formData to your API or perform any other actions here
-    console.log(formData);
+    const submitData = {
+        name: name,
+        description: description,
+        media: [media],
+        price: parseFloat(price),
+        maxGuests: parseInt(maxGuests),
+        rating: parseInt(rating),
+        meta: {
+            wifi: wifi,
+            parking: parking,
+            breakfast: breakfast,
+            pets: pets,
+        },
+        location: {
+            address: address,
+            city: city,
+            zip: zip,
+            contry: contry,
+            continent: continent,
+            lat: parseInt(lat),
+            ing: parseInt(ing),
+        }
+    };
+    const dataToSend = {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${user.token}`,
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(submitData),
+    }
+    console.log(submitData);
+    console.log(options);
+    const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/venues`, dataToSend);
+    const json = await response.json();
+    console.log(json)
   };
 
   return (
@@ -87,8 +75,8 @@ export default function ListVenueForm(props) {
           type="text"
           id="name"
           name="name"
-          value={formData.name}
-          onChange={handleChange}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           required
         />
       </div>
@@ -98,19 +86,20 @@ export default function ListVenueForm(props) {
           type="text"
           id="description"
           name="description"
-          value={formData.description}
-          onChange={handleChange}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           required
         />
       </div>
+      {}
       <div>
         <label htmlFor="media">Media (comma-separated):</label>
         <input
           type="text"
           id="media"
           name="media"
-          value={formData.media.join(',')}
-          onChange={handleChange}
+          value={media}
+          onChange={(e) => setMedia(e.target.value)}
         />
       </div>
       <div>
@@ -119,8 +108,8 @@ export default function ListVenueForm(props) {
           type="number"
           id="price"
           name="price"
-          value={formData.price}
-          onChange={handleChange}
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
           required
         />
       </div>
@@ -130,8 +119,8 @@ export default function ListVenueForm(props) {
           type="number"
           id="maxGuests"
           name="maxGuests"
-          value={formData.maxGuests}
-          onChange={handleChange}
+          value={maxGuests}
+          onChange={(e) => setMaxGuests(e.target.value)}
           required
         />
       </div>
@@ -141,8 +130,8 @@ export default function ListVenueForm(props) {
           type="number"
           id="rating"
           name="rating"
-          value={formData.rating}
-          onChange={handleChange}
+          value={rating}
+          onChange={(e) => setRating(e.target.value)}
         />
       </div>
       <div>
@@ -152,8 +141,13 @@ export default function ListVenueForm(props) {
             <input
               type="checkbox"
               name="wifi"
-              checked={formData.meta.wifi}
-              onChange={handleMetaChange}
+              onChange={() => {
+                if(wifi === false) {
+                    setWifi(true)
+                } if(wifi === true) {
+                    setWifi(false)
+                }
+              }}
             />{' '}
             Wi-Fi
           </label>
@@ -163,8 +157,13 @@ export default function ListVenueForm(props) {
             <input
               type="checkbox"
               name="parking"
-              checked={formData.meta.parking}
-              onChange={handleMetaChange}
+              onChange={() => {
+                if(parking === false) {
+                    setParking(true)
+                } if(parking === true) {
+                    setParking(false)
+                }
+              }}
             />{' '}
             Parking
           </label>
@@ -174,8 +173,13 @@ export default function ListVenueForm(props) {
             <input
               type="checkbox"
               name="breakfast"
-              checked={formData.meta.breakfast}
-              onChange={handleMetaChange}
+              onChange={() => {
+                if(breakfast === false) {
+                    setBreakfast(true)
+                } if(breakfast === true) {
+                    setBreakfast(false)
+                }
+              }}
             />{' '}
             Breakfast
           </label>
@@ -185,8 +189,13 @@ export default function ListVenueForm(props) {
             <input
               type="checkbox"
               name="pets"
-              checked={formData.meta.pets}
-              onChange={handleMetaChange}
+              onChange={() => {
+                if(pets === false) {
+                    setPets(true)
+                } if(pets === true) {
+                    setPets(false)
+                }
+              }}
             />{' '}
             Pets
           </label>
@@ -200,8 +209,8 @@ export default function ListVenueForm(props) {
             type="text"
             id="address"
             name="address"
-            value={formData.location.address}
-            onChange={handleLocationChange}
+            value={address}
+            onChange={(e) => setAdress(e.target.value)}
           />
         </div>
         <div>
@@ -210,8 +219,8 @@ export default function ListVenueForm(props) {
             type="text"
             id="city"
             name="city"
-            value={formData.location.city}
-            onChange={handleLocationChange}
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
           />
         </div>
         <div>
@@ -220,8 +229,8 @@ export default function ListVenueForm(props) {
             type="text"
             id="zip"
             name="zip"
-            value={formData.location.zip}
-            onChange={handleLocationChange}
+            value={zip}
+            onChange={(e) => setZip(e.target.value)}
           />
         </div>
         <div>
@@ -230,8 +239,8 @@ export default function ListVenueForm(props) {
             type="text"
             id="country"
             name="country"
-            value={formData.location.country}
-            onChange={handleLocationChange}
+            value={contry}
+            onChange={(e) => setContry(e.target.value)}
           />
         </div>
         <div>
@@ -240,8 +249,8 @@ export default function ListVenueForm(props) {
             type="text"
             id="continent"
             name="continent"
-            value={formData.location.continent}
-            onChange={handleLocationChange}
+            value={continent}
+            onChange={(e) => setContinent(e.target.value)}
           />
         </div>
         <div>
@@ -250,8 +259,8 @@ export default function ListVenueForm(props) {
             type="number"
             id="lat"
             name="lat"
-            value={formData.location.lat}
-            onChange={handleLocationChange}
+            value={lat}
+            onChange={(e) => setLat(e.target.value)}
           />
         </div>
         <div>
@@ -260,8 +269,8 @@ export default function ListVenueForm(props) {
             type="number"
             id="lng"
             name="lng"
-            value={formData.location.lng}
-            onChange={handleLocationChange}
+            value={ing}
+            onChange={(e) => setIng(e.target.value)}
           />
         </div>
       </div>
