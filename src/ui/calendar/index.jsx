@@ -49,6 +49,47 @@ export default function DatePicker(props) {
         }
         return dates;
     });
+    //JONAS SIN LØSNING
+    // const generateDisabledDates = () => {
+    //     const disabledDates = [];
+    //     venueData?.bookings.forEach((booking) => {
+    //       const startDate = new Date(booking.dateFrom);
+    //       const endDate = new Date(booking.dateTo);
+    
+    //       while (startDate <= endDate) {
+    //         disabledDates.push(new Date(startDate));
+    //         startDate.setDate(startDate.getDate() + 1);
+    //       }
+    //     });
+    //     return disabledDates;
+    //   };
+//     <DatePicker
+//     selected={dateRange[0]}
+//     startDate={dateRange[0]}
+//     endDate={dateRange[1]}
+//     onChange={handleDateSelection}
+//     selectsRange
+//     inline
+//     dateFormat="dd/MM/yyyy"
+//     excludeDates={disabledDates}
+//   />
+//   {overlapError && <OverlappMessage>{overlapError}</OverlappMessage>}
+    //https://github.com/JonasHope/Project-Exam-2/blob/main/src/components/venue/BookingForm.jsx 
+    // const handleDateSelection = (dates) => {
+    //     const [startDate, endDate] = dates;
+    //     const overlappingBooking = venueData.bookings.find(
+    //       (booking) =>
+    //         startDate <= new Date(booking.dateTo) &&
+    //         endDate >= new Date(booking.dateFrom)
+    //     );
+      
+    //     if (overlappingBooking) {
+    //       setOverlapError("This date range overlaps with an existing booking.");
+    //     } else {
+    //       setOverlapError("");
+    //       setDateRange(dates);
+    //     }
+    //   };
 
     return(
         <div>
