@@ -19,13 +19,12 @@ export default function ListVenueForm(props) {
     const [ address, setAdress ] = useState("");
     const [ city, setCity ] = useState("");
     const [ zip, setZip ] = useState("");
-    const [ contry, setContry ] = useState("");
+    const [ country, setCountry ] = useState("");
     const [ continent, setContinent ] = useState("");
     const [ lat, setLat ] = useState(0);
     const [ ing, setIng ] = useState(0);
 
     const user = useLoad("user")
-    const options = props.children;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,7 +45,7 @@ export default function ListVenueForm(props) {
             address: address,
             city: city,
             zip: zip,
-            contry: contry,
+            country: country,
             continent: continent,
             lat: parseInt(lat),
             ing: parseInt(ing),
@@ -61,7 +60,6 @@ export default function ListVenueForm(props) {
         body: JSON.stringify(submitData),
     }
     console.log(submitData);
-    console.log(options);
     const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/venues`, dataToSend);
     const json = await response.json();
     console.log(json)
@@ -239,8 +237,8 @@ export default function ListVenueForm(props) {
             type="text"
             id="country"
             name="country"
-            value={contry}
-            onChange={(e) => setContry(e.target.value)}
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
           />
         </div>
         <div>

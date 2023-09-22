@@ -40,7 +40,7 @@ export default function AccountPage() {
     const [ initialBookings, setInitialBookings ] = useState([]);
     const [ initiAlVenues, setInitialVenues ] = useState([]);
     useEffect(() => setInitialBookings(data.bookings), [data]);
-    useEffect(() => setInitialVenues(data.venues), [data]);
+    useEffect(() => setInitialVenues(data), [data]);
     return(
         <PageWrapper>
             <AccountContainer>

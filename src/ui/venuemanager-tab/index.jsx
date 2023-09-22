@@ -14,13 +14,6 @@ export default function VenueManagerTab(props) {
     console.log(initialVenues);
     const user = useLoad("user");
     const [ formVisible, setFormVisible ] = useState(false);
-    const [ options, setOptions ] = useState({
-        method: "POST",
-        headers: {
-            Authorization: `Bearer ${user.token}`,
-            "Content-Type": "application/json",
-        },
-    });
     
     return(
         <div>
@@ -45,7 +38,6 @@ export default function VenueManagerTab(props) {
                                     </button>
                                 </div>
                                 <ListVenueForm>
-                                    {options}
                                 </ListVenueForm>
                             </div>
                             }
@@ -68,10 +60,23 @@ export default function VenueManagerTab(props) {
                                     </button>
                                 </div>
                                 <ListVenueForm>
-                                    {options}
                                 </ListVenueForm>
                             </div>
                         }
+                        <div>{initialVenues.venues.map((venue) => {
+                            return(
+                                <div key={venue.id}>
+                                    <h2>{venue.name}</h2>
+                                    <button onClick={() => {
+                                        setMethod("PUT")
+                                        setFormVisible(true)
+                                        console.log("click")
+                                    }}>
+                                        <i className="fa-solid fa-pen-clip"></i>
+                                    </button>
+                                </div>
+                            )
+                        })}</div>
                     </div>
                     }
                     {initialVenues > 0 &&
