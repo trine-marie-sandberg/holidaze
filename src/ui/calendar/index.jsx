@@ -33,7 +33,6 @@ export default function DatePicker(props) {
         }
     }, [guests])
 
-    //Exclude reserved bookings
     const generateDisabledDates = () => {
         const dates = [];
         bookings?.forEach((booking) => {
@@ -49,44 +48,47 @@ export default function DatePicker(props) {
       };
     const disabledDates = generateDisabledDates();
 
+    async function handleSubmit(event) {
+        event.preventDefault();
+        const user = useLoad("user");
+        const token = user.token;
+        const data = {
+            "dateFrom": newBooking.startDate,
+            "dateTo": newBooking.endDate,
+            "guests": guests,
+            "venueId": id
+        }
+        const dataToSend = {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        }
+        console.log(dataToSend)
+        const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/bookings`, dataToSend);
+        const json = await response.json();
+        if(response.ok) {
+            alert(`Booked venue from ${newBooking.startDate} to ${newBooking.endDate}`)
+        }
+        if(!response.ok) {
+            console.log(json)
+        }
+    }
+
     return(
         <div>
             <form 
               className="calendarWrap"
-              onSubmit={async (event) => {
-                    event.preventDefault();
-                    const user = useLoad("user");
-                    const token = user.token;
-                    const data = {
-                        "dateFrom": newBooking.startDate,
-                        "dateTo": newBooking.endDate,
-                        "guests": guests,
-                        "venueId": id
-                    }
-                    const dataToSend = {
-                        method: "POST",
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(data),
-                    }
-                    console.log(dataToSend)
-                    const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/bookings`, dataToSend);
-                    const json = await response.json();
-                    if(response.ok) {
-                        alert(`Booked venue from ${newBooking.startDate} to ${newBooking.endDate}`)
-                    }
-                    if(!response.ok) {
-                        console.log(json)
-                    }
-                    }}>
+              onSubmit={async (event) => handleSubmit(event)}>
+                    <CalendarInput 
+                        value={`Reserve from ${format(range[0].startDate, "MM/dd/yyyy")} to ${format(range[0].endDate, "MM/dd/yyyy")}`} 
+                        readOnly
+                        disabled
+                        className="inputBox"
+                    />
                     <SubmitInputWrap>
-                        <CalendarInput 
-                            value={`${format(range[0].startDate, "MM/dd/yyyy")} to ${format(range[0].endDate, "MM/dd/yyyy")}`} 
-                            readOnly
-                            className="inputBox"
-                        />
                         <div>
                             <label htmlFor="guests">Total guests: </label>
                             <GuestsInput 

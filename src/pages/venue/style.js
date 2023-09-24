@@ -165,13 +165,20 @@ export const BookCloseWrap = styled.div`
   align-items: center;
   width: 100%;
   padding-bottom: ${(props) => props.theme.sizes.med};
+  @media(max-width: 500px) {
+    font-size: 15px;
+  }
+  & button {
+    font-size: 40px;
+  }
 `;
 export const CalendarBg = styled.div`
   background-image: linear-gradient(${(props) => props.theme.color.primary} 40%, rgb(64, 115, 123));
   border-radius: ${(props) => props.theme.sizes.borderRadius};
   padding: 15px;
-  @media(max-width: 450px) {
+  @media(max-width: 370px) {
     padding: 5px;
+
   }
 `;
 export const CloseBtn = styled.button`
