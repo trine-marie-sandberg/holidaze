@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useLoad } from "../../hooks/storage";
 import PageWrapper from "../../ui/pagewrapper";
-import { AccountContainer, BookVenueBtn, BookingVenueContainer, BookingVenueWrap, FlexWrap, UpdateBtn, UpdateIcon } from "./style";
+import { AccountContainer, AccountInfoWrap, BookVenueBtn, BookingVenueContainer, BookingVenueWrap, FlexWrap, UpdateBtn, UpdateIcon } from "./style";
 import { useState, useEffect } from "react";
 import BookingsTab from "../../ui/bookings-tab";
 import VenueManagerTab from "../../ui/venuemanager-tab";
@@ -78,7 +78,7 @@ export default function AccountPage() {
                     </BookingVenueWrap>
                     }
                 </BookingVenueContainer>
-                <div>
+                <AccountInfoWrap>
                     <h1>Hi, {user.name}</h1>
                     <p>
                         Thank you for using Holidayz's services.
@@ -97,7 +97,7 @@ export default function AccountPage() {
                         <li>Email: {user.email}</li>
                         <li>Venue manager: {manager}</li>
                     </ul>
-                </div>
+                </AccountInfoWrap>
             </AccountContainer>
         </PageWrapper>
     )

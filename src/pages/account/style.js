@@ -7,17 +7,26 @@ export const AccountContainer = styled.div`
   align-items: center;
   flex-wrap: wrap;
 `;
+export const AccountInfoWrap = styled.div`
+  max-width: 600px;
+  padding: 10px;
+`;
 export const BookingVenueWrap = styled.div`
   min-height: 500px;
   border: 1px solid ${(props) => props.theme.color.border};
   background-color: ${(props) => props.theme.color.darker};
   border-radius: ${(props) => props.theme.sizes.borderRadius};
-  padding: ${(props) => props.theme.sizes.sm};
+  max-height: 500px;
+  overflow-y: scroll;
 `;
 export const BookingVenueContainer = styled.div`
   min-width: 50%;
   @media(max-width: 1200px) {
     min-width: 100%;
+  }
+  & a {
+    text-decoration: none;
+    color: ${(props) => props.theme.color.font};
   }
 `;
 export const FlexWrap = styled.div`
