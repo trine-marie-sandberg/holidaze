@@ -8,7 +8,7 @@ export const AccountContainer = styled.div`
   flex-wrap: wrap;
 `;
 export const AccountInfoWrap = styled.div`
-  max-width: 600px;
+  max-width: 400px;
   padding: 10px;
 `;
 export const BookingVenueWrap = styled.div`
@@ -20,7 +20,10 @@ export const BookingVenueWrap = styled.div`
   overflow-y: scroll;
 `;
 export const BookingVenueContainer = styled.div`
-  min-width: 50%;
+  min-width: 60%;
+  @media(max-width: 1500px) {
+    min-width: 50%;
+  }
   @media(max-width: 1200px) {
     min-width: 100%;
   }
