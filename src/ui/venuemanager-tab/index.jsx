@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import useSave, { useLoad } from "../../hooks/storage";
 import useFetch, { useSendData } from "../../hooks/api";
 import ListVenueForm from "../list-venue";
+import { Bold, BtnImageWrap, DelUpdBtn, DelUpdBtnWrap, FlexWrap, PaddingRight } from "./style";
+import { Link } from "react-router-dom";
 
 export default function VenueManagerTab(props) {
 
@@ -22,12 +24,14 @@ export default function VenueManagerTab(props) {
                     <h2>My venues</h2>
                     {initialVenues <= 0 &&
                         <div>
-                            <p>Currently no venues</p>
-                            <button onClick={() => {
-                                setFormVisible(true);
-                            }}>
-                                Create a new listing
-                            </button>
+                            <PaddingRight>
+                                <p>Currently no venues</p>
+                                <button onClick={() => {
+                                    setFormVisible(true);
+                                }}>
+                                    Create a new listing
+                                </button>
+                            </PaddingRight>
                             {formVisible &&
                             <div>
                                 <div>
@@ -45,11 +49,13 @@ export default function VenueManagerTab(props) {
                     }
                     {initialVenues &&
                     <div>
-                        <button onClick={() => {
-                            setFormVisible(true);
-                        }}>
-                            Create a new listing
-                        </button>
+                        <PaddingRight>
+                            <button onClick={() => {
+                                setFormVisible(true);
+                            }}>
+                                Create a new listing
+                            </button>
+                        </PaddingRight>
                         {formVisible &&
                             <div>
                                 <div>
@@ -64,16 +70,48 @@ export default function VenueManagerTab(props) {
                             </div>
                         }
                         <div>{initialVenues.venues.map((venue) => {
+
+                            let imageSrc = venue.media;
+                            if(venue.media?.length < 1) {
+                                imageSrc = "/placeholder-img.jpg";
+                            }
                             return(
                                 <div key={venue.id}>
-                                    <h2>{venue.name}</h2>
-                                    <button onClick={() => {
-                                        setMethod("PUT")
-                                        setFormVisible(true)
-                                        console.log("click")
-                                    }}>
-                                        <i className="fa-solid fa-pen-clip"></i>
-                                    </button>
+                                    <FlexWrap>
+                                        <Link to={`/venue/${venue.id}`}>
+                                            <PaddingRight>
+                                                <h3>{venue.name}</h3>
+                                                <p>Price: ${venue.price}</p>
+                                                <p>Maximum guets: {venue.maxGuests}</p>
+                                                <p>Rating: {venue.rating}</p>
+                                                <h4>Location</h4>
+                                                <FlexWrap>
+                                                    <p><Bold>Address:</Bold>{venue.location.address}</p>
+                                                    <p><Bold>City:</Bold>{venue.location.city}</p>
+                                                    <p><Bold>Continent:</Bold>{venue.location.continent}</p>
+                                                    <p><Bold>Country:</Bold>{venue.location.country}</p>
+                                                </FlexWrap>
+                                            </PaddingRight>
+                                        </Link>
+                                        <BtnImageWrap
+                                            style={{ 
+                                            backgroundImage: `url(${imageSrc})` 
+                                            }}
+                                        >
+                                            <DelUpdBtnWrap>
+                                                <DelUpdBtn onClick={() => {
+                                                    console.log("click")
+                                                }}>
+                                                    <i className="fa-solid fa-trash-can"></i>
+                                                </DelUpdBtn>
+                                                <DelUpdBtn onClick={() => {
+                                                    console.log("click")
+                                                }}>
+                                                    <i className="fa-solid fa-pen-clip"></i>
+                                                </DelUpdBtn>
+                                            </DelUpdBtnWrap>
+                                        </BtnImageWrap>
+                                    </FlexWrap>
                                 </div>
                             )
                         })}</div>
