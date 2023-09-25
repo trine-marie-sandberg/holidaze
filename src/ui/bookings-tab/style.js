@@ -5,23 +5,24 @@ export const DelIcon = styled.i`
   color: ${(props) => props.theme.color.font};
 `;
 export const DelUpdBtn = styled.button`
-  background-color: rgba(0, 0, 0, 0.0);
+  background-color: ${(props) => props.theme.color.dark};
+  padding: 0;
   border: none;
   font-size: 22px;
 `;
 export const DelUpdBtnWrap = styled.div`
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: ${(props) => props.theme.color.dark};
   display: flex;
   justify-content: space-between;
-  width: 100px;
-  border: 1px solid ${(props) => props.theme.color.font};
+  min-width: 150px;
+  padding: 5px 0;
 `;
 export const FlexWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   margin-bottom: 10px;
-  background-color: ${(props) => props.theme.color.black};
+  background-color: ${(props) => props.theme.color.dark};
   width: 100%;
 `;
 export const BookingDetailsWrap = styled.div`

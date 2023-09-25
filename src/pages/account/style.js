@@ -13,7 +13,7 @@ export const AccountInfoWrap = styled.div`
 `;
 export const BookingVenueWrap = styled.div`
   min-height: 500px;
-  border: 1px solid ${(props) => props.theme.color.border};
+  border: 1px solid ${(props) => props.theme.color.secondary};
   background-color: ${(props) => props.theme.color.darker};
   border-radius: ${(props) => props.theme.sizes.borderRadius};
   max-height: 500px;
@@ -27,6 +27,9 @@ export const BookingVenueContainer = styled.div`
   & a {
     text-decoration: none;
     color: ${(props) => props.theme.color.font};
+    & :hover {
+      text-decoration: underline;
+    }
   }
 `;
 export const FlexWrap = styled.div`
