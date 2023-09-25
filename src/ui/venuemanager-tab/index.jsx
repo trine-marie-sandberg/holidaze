@@ -8,21 +8,30 @@ import { Link } from "react-router-dom";
 export default function VenueManagerTab(props) {
 
     const [
-        initialVenues,
-        setInitialVenues,
         isManager,
         setIsManager,
     ] = props.children;
-    console.log(initialVenues);
     const user = useLoad("user");
     const [ formVisible, setFormVisible ] = useState(false);
-    
+    const [ initiAlVenues, setInitialVenues ] = useState([]);
+    const [ bookings, setBookings ] = useState([]);
+    const [ filteredBookings, setFilteredBookings ] = useState([]);
+    const fetchOptions = {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${user.token}`,
+            "Content-Type": "application/json",
+        },
+    }
+    const { data, load, error } = useFetch(`https://api.noroff.dev/api/v1/holidaze/profiles/${user.name}/venues/?_bookings=true`, fetchOptions);
+    useEffect(() => setInitialVenues(data), [data]);
+
     return(
         <div>
             {isManager &&
                 <div>
                     <h2>My venues</h2>
-                    {initialVenues <= 0 &&
+                    {data <= 0 &&
                         <div>
                             <PaddingRight>
                                 <p>Currently no venues</p>
@@ -47,7 +56,7 @@ export default function VenueManagerTab(props) {
                             }
                         </div>
                     }
-                    {initialVenues &&
+                    {initiAlVenues &&
                     <div>
                         <PaddingRight>
                             <button onClick={() => {
@@ -69,8 +78,7 @@ export default function VenueManagerTab(props) {
                                 </ListVenueForm>
                             </div>
                         }
-                        <div>{initialVenues.venues.map((venue) => {
-
+                        <div>{initiAlVenues.map((venue) => {
                             let imageSrc = venue.media;
                             if(venue.media?.length < 1) {
                                 imageSrc = "/placeholder-img.jpg";
@@ -80,17 +88,30 @@ export default function VenueManagerTab(props) {
                                     <FlexWrap>
                                         <Link to={`/venue/${venue.id}`}>
                                             <PaddingRight>
-                                                <h3>{venue.name}</h3>
+                                                <h2>{venue.name}</h2>
                                                 <p>Price: ${venue.price}</p>
                                                 <p>Maximum guets: {venue.maxGuests}</p>
                                                 <p>Rating: {venue.rating}</p>
-                                                <h4>Location</h4>
-                                                <FlexWrap>
-                                                    <p><Bold>Address:</Bold>{venue.location.address}</p>
-                                                    <p><Bold>City:</Bold>{venue.location.city}</p>
-                                                    <p><Bold>Continent:</Bold>{venue.location.continent}</p>
-                                                    <p><Bold>Country:</Bold>{venue.location.country}</p>
-                                                </FlexWrap>
+                                                <h3>Location</h3>
+                                                <ul>
+                                                    <li><Bold>Address:</Bold>{venue.location.address}</li>
+                                                    <li><Bold>City:</Bold>{venue.location.city}</li>
+                                                    <li><Bold>Continent:</Bold>{venue.location.continent}</li>
+                                                    <li><Bold>Country:</Bold>{venue.location.country}</li>
+                                                </ul>
+                                                <h3>Current reservations for this venue</h3>
+                                                <div>
+                                                    {
+                                                    venue.bookings.map((booking) => {
+                                                        return (
+                                                            <div key={booking.id}>
+                                                                <p>From {booking.dateFrom} to {booking.dateTo}</p>
+                                                                <p>Guests {booking.guests}</p>
+                                                            </div>
+                                                        )
+                                                    })
+                                                    }
+                                                </div>
                                             </PaddingRight>
                                         </Link>
                                         <BtnImageWrap
@@ -117,7 +138,7 @@ export default function VenueManagerTab(props) {
                         })}</div>
                     </div>
                     }
-                    {initialVenues > 0 &&
+                    {initiAlVenues > 0 &&
                     <div>venues</div>
                     }
                 </div>
