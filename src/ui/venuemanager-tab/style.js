@@ -58,3 +58,8 @@ export const DetailsWrap = styled.div`
 export const LocationWrap = styled.div`
   padding: 10px;
 `;
+export const MetasWrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+`;

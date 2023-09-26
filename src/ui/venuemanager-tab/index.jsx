@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import useSave, { useLoad } from "../../hooks/storage";
 import useFetch, { useSendData } from "../../hooks/api";
 import ListVenueForm from "../list-venue";
-import { Bold, BtnImageWrap, DelUpdBtn, DelUpdBtnWrap, DetailsWrap, FlexWrap, LocationWrap, PaddingRight, ToVenueBtn } from "./style";
+import { Bold, BtnImageWrap, DelUpdBtn, DelUpdBtnWrap, DetailsWrap, FlexWrap, LocationWrap, MetasWrap, PaddingRight, ToVenueBtn } from "./style";
 import { Link } from "react-router-dom";
 import useFormatDate from "../../hooks/format-dates";
 import HeadingAndBtn from "../heading-and-btn";
@@ -116,21 +116,40 @@ export default function VenueManagerTab(props) {
                                             </LocationWrap>
                                         </div>
                                         <DetailsWrap>
-                                                <p>Price: ${venue.price}</p>
-                                                <p>Maximum guets: {venue.maxGuests}</p>
-                                                <p>Rating: {venue.rating}</p>
+                                                <h3>Venue details</h3>
+                                                <p>Price: <Bold>${venue.price}</Bold></p>
+                                                <p>Maximum guets: <Bold>{venue.maxGuests}</Bold></p>
+                                                <p>Rating: <Bold>{venue.rating}</Bold></p>
                                                 <h3>Current reservations for this venue</h3>
                                                 <div>
                                                     {
                                                     venue.bookings.map((booking) => {
                                                         return (
                                                             <div key={booking.id}>
-                                                                <p>From {useFormatDate(booking.dateFrom)} to {useFormatDate(booking.dateTo)}</p>
-                                                                <p>Guests {booking.guests}</p>
+                                                                <p>
+                                                                    <Bold>From</Bold>{useFormatDate(booking.dateFrom)}
+                                                                    <Bold>to</Bold>{useFormatDate(booking.dateTo)}
+                                                                </p>
+                                                                <p>Guests <Bold>{booking.guests}</Bold></p>
                                                             </div>
                                                         )
                                                     })
                                                     }
+                                                    <MetasWrap>
+                                                        {venue.meta.wifi &&
+                                                            <i className="fa-solid fa-wifi"/>
+                                                        }
+                                                        {venue.meta.pets && 
+                                                            <i className="fa-solid fa-paw"/>
+                                                        }
+                                                        {venue.meta.breakfast &&
+                                                            <i className="fa-solid fa-mug-saucer"/>
+                                                        }
+                                                        {venue.meta.parking &&
+                                                            <i className="fa-solid fa-square-parking"/>
+                                                        }
+                                                    </MetasWrap>
+                                                    <p>Last updated: {useFormatDate(venue.updated)}</p>
                                                 </div>
                                             </DetailsWrap>
                                     </FlexWrap>
