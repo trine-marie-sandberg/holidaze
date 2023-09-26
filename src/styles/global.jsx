@@ -31,6 +31,18 @@ const GlobalStyle = createGlobalStyle`
     font-family: "finalsix", sans-serif;
     font-weight: 300;
     font-style: normal;
+    overflow-y: scroll;
+    overflow-y: hidden;
+    scrollbar-color: var(--color-secondary) var(--color-black);
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--color-black);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: ${(props) => props.theme.color.secondary};
+    }
   }
   h1 {
     font-family: "stevie-sans", sans-serif;

@@ -18,6 +18,16 @@ export const BookingVenueWrap = styled.div`
   border-radius: ${(props) => props.theme.sizes.borderRadius};
   max-height: 500px;
   overflow-y: scroll;
+  scrollbar-color: ${(props) => props.theme.color.secondary} ${(props) => props.theme.color.black};
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: ${(props) => props.theme.color.secondary};
+  }
 `;
 export const BookingVenueContainer = styled.div`
   min-width: 60%;

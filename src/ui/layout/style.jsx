@@ -13,5 +13,5 @@ export const Wrapper = styled.div`
   display: grid;
   grid-template-rows: 1fr 7.5fr 0.5fr;
   height: 100vh;
-  overflow: scroll;
+  overflow-y: scroll;
 `;

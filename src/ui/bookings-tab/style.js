@@ -5,13 +5,13 @@ export const DelIcon = styled.i`
   color: ${(props) => props.theme.color.font};
 `;
 export const DelUpdBtn = styled.button`
-  background-color: ${(props) => props.theme.color.dark};
-  padding: 0;
+  background-color: ${(props) => props.theme.color.darker};
+  margin: 0;
   border: none;
   font-size: 22px;
 `;
 export const DelUpdBtnWrap = styled.div`
-  background-color: ${(props) => props.theme.color.dark};
+  background-color: ${(props) => props.theme.color.darker};
   display: flex;
   justify-content: space-between;
   min-width: 150px;
@@ -38,4 +38,7 @@ export const BtnImageWrap = styled.div`
   justify-content: space-evenly;
   height: 150px;
   background-size: cover;
+  @media(max-width: 643px) {
+    align-items: end;
+  }
 `;
