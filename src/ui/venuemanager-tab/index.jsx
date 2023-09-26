@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import useSave, { useLoad } from "../../hooks/storage";
 import useFetch, { useSendData } from "../../hooks/api";
 import ListVenueForm from "../list-venue";
-import { Bold, BtnImageWrap, DelUpdBtn, DelUpdBtnWrap, DetailsWrap, FlexWrap, HeaderBtnWrap, LocationWrap, NewListingBtn, PaddingRight, ToVenueBtn } from "./style";
+import { Bold, BtnImageWrap, DelUpdBtn, DelUpdBtnWrap, DetailsWrap, FlexWrap, LocationWrap, PaddingRight, ToVenueBtn } from "./style";
 import { Link } from "react-router-dom";
 import useFormatDate from "../../hooks/format-dates";
+import HeadingAndBtn from "../heading-and-btn";
 
 export default function VenueManagerTab(props) {
 
@@ -31,14 +32,11 @@ export default function VenueManagerTab(props) {
         <div>
             {isManager &&
                 <div>
-                    <HeaderBtnWrap>
-                        <h2>My venues</h2>
-                        <NewListingBtn onClick={() => {
-                            setFormVisible(true);
-                        }}>
-                            <i className="fa-solid fa-plus"></i>
-                        </NewListingBtn>
-                    </HeaderBtnWrap>
+                    <HeadingAndBtn>
+                        {setFormVisible}
+                        {<h2>My venues</h2>}
+                        {<i className="fa-solid fa-plus"></i>}
+                    </HeadingAndBtn>
                     {data <= 0 &&
                         <div>
                             <PaddingRight>
