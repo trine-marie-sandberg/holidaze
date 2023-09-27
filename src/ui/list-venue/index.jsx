@@ -67,25 +67,24 @@ export default function ListVenueForm(props) {
         body: JSON.stringify(submitData),
     }
 
-    const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/venues`, dataToSend);
+    const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/venues?_venue=true`, dataToSend);
     const json = await response.json();
-
     if(response.ok) {
       setFormVisible(false);
       setInitialVenues((state) => [
         {
           bookings: [],
-          created: "",
-          description: submitData.description,
-          id: "new item",
-          location: submitData.location,
-          maxGuests: submitData.maxGuests,
-          media: submitData.media,
-          meta: submitData.meta,
-          name: submitData.name,
-          price: submitData.price,
-          rating: submitData.rating,
-          updated: "",
+          created: json.created,
+          description: json.description,
+          id: json.id,
+          location: json.location,
+          maxGuests: json.maxGuests,
+          media: json.media,
+          meta: json.meta,
+          name: json.name,
+          price: json.price,
+          rating: json.rating,
+          updated: json.updated,
         }, ...state
       ]);
     } if(!response.ok) { 
