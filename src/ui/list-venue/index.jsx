@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLoad } from "../../hooks/storage";
+import { InputLabelWrap, StyledForm, SubmitBtn } from "./style";
 
 export default function ListVenueForm(props) {
 
@@ -93,76 +94,80 @@ export default function ListVenueForm(props) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <StyledForm onSubmit={handleSubmit}>
       <div>{userFeedBack}</div>
       <div>
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
+        <h2>List new venue <i className="fa-solid fa-house-chimney"></i></h2>
+        <h3>Description</h3>
+        <InputLabelWrap>
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </InputLabelWrap>
+        <InputLabelWrap>
+          <label htmlFor="description">Description:</label>
+          <textarea
+            type="text"
+            id="description"
+            name="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          />
+        </InputLabelWrap>
+        {}
+        <InputLabelWrap>
+          <label htmlFor="media">Media (comma-separated):</label>
+          <input
+            type="text"
+            id="media"
+            name="media"
+            value={media}
+            onChange={(e) => setMedia(e.target.value)}
+          />
+        </InputLabelWrap>
+        <InputLabelWrap>
+          <label htmlFor="price">Price:</label>
+          <input
+            type="number"
+            id="price"
+            name="price"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            required
+          />
+        </InputLabelWrap>
+        <InputLabelWrap>
+          <label htmlFor="maxGuests">Max Guests:</label>
+          <input
+            type="number"
+            id="maxGuests"
+            name="maxGuests"
+            value={maxGuests}
+            onChange={(e) => setMaxGuests(e.target.value)}
+            required
+          />
+        </InputLabelWrap>
+        <InputLabelWrap>
+          <label htmlFor="rating">Rating:</label>
+          <input
+            type="number"
+            id="rating"
+            name="rating"
+            value={rating}
+            onChange={(e) => setRating(e.target.value)}
+          />
+        </InputLabelWrap>
       </div>
       <div>
-        <label htmlFor="description">Description:</label>
-        <input
-          type="text"
-          id="description"
-          name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-      </div>
-      {}
-      <div>
-        <label htmlFor="media">Media (comma-separated):</label>
-        <input
-          type="text"
-          id="media"
-          name="media"
-          value={media}
-          onChange={(e) => setMedia(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="price">Price:</label>
-        <input
-          type="number"
-          id="price"
-          name="price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="maxGuests">Max Guests:</label>
-        <input
-          type="number"
-          id="maxGuests"
-          name="maxGuests"
-          value={maxGuests}
-          onChange={(e) => setMaxGuests(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="rating">Rating:</label>
-        <input
-          type="number"
-          id="rating"
-          name="rating"
-          value={rating}
-          onChange={(e) => setRating(e.target.value)}
-        />
-      </div>
-      <div>
-        <h2>Meta</h2>
-        <div>
+        <h3>Meta</h3>
+        <InputLabelWrap>
           <label>
             <input
               type="checkbox"
@@ -177,8 +182,8 @@ export default function ListVenueForm(props) {
             />{' '}
             Wi-Fi
           </label>
-        </div>
-        <div>
+        </InputLabelWrap>
+        <InputLabelWrap>
           <label>
             <input
               type="checkbox"
@@ -193,8 +198,8 @@ export default function ListVenueForm(props) {
             />{' '}
             Parking
           </label>
-        </div>
-        <div>
+        </InputLabelWrap>
+        <InputLabelWrap>
           <label>
             <input
               type="checkbox"
@@ -209,8 +214,8 @@ export default function ListVenueForm(props) {
             />{' '}
             Breakfast
           </label>
-        </div>
-        <div>
+        </InputLabelWrap>
+        <InputLabelWrap>
           <label>
             <input
               type="checkbox"
@@ -225,11 +230,11 @@ export default function ListVenueForm(props) {
             />{' '}
             Pets
           </label>
-        </div>
+        </InputLabelWrap>
       </div>
       <div>
-        <h2>Location</h2>
-        <div>
+        <h3>Location</h3>
+        <InputLabelWrap>
           <label htmlFor="address">Address:</label>
           <input
             type="text"
@@ -238,8 +243,8 @@ export default function ListVenueForm(props) {
             value={address}
             onChange={(e) => setAdress(e.target.value)}
           />
-        </div>
-        <div>
+        </InputLabelWrap>
+        <InputLabelWrap>
           <label htmlFor="city">City:</label>
           <input
             type="text"
@@ -248,8 +253,8 @@ export default function ListVenueForm(props) {
             value={city}
             onChange={(e) => setCity(e.target.value)}
           />
-        </div>
-        <div>
+        </InputLabelWrap>
+        <InputLabelWrap>
           <label htmlFor="zip">ZIP:</label>
           <input
             type="text"
@@ -258,8 +263,8 @@ export default function ListVenueForm(props) {
             value={zip}
             onChange={(e) => setZip(e.target.value)}
           />
-        </div>
-        <div>
+        </InputLabelWrap>
+        <InputLabelWrap>
           <label htmlFor="country">Country:</label>
           <input
             type="text"
@@ -268,8 +273,8 @@ export default function ListVenueForm(props) {
             value={country}
             onChange={(e) => setCountry(e.target.value)}
           />
-        </div>
-        <div>
+        </InputLabelWrap>
+        <InputLabelWrap>
           <label htmlFor="continent">Continent:</label>
           <input
             type="text"
@@ -278,8 +283,8 @@ export default function ListVenueForm(props) {
             value={continent}
             onChange={(e) => setContinent(e.target.value)}
           />
-        </div>
-        <div>
+        </InputLabelWrap>
+        <InputLabelWrap>
           <label htmlFor="lat">Latitude:</label>
           <input
             type="number"
@@ -288,8 +293,8 @@ export default function ListVenueForm(props) {
             value={lat}
             onChange={(e) => setLat(e.target.value)}
           />
-        </div>
-        <div>
+        </InputLabelWrap>
+        <InputLabelWrap>
           <label htmlFor="lng">Longitude:</label>
           <input
             type="number"
@@ -298,11 +303,11 @@ export default function ListVenueForm(props) {
             value={ing}
             onChange={(e) => setIng(e.target.value)}
           />
-        </div>
+        </InputLabelWrap>
       </div>
       <div>
-        <button type="submit">Submit</button>
+        <SubmitBtn type="submit">Submit</SubmitBtn>
       </div>
-    </form>
+    </StyledForm>
   );
 }

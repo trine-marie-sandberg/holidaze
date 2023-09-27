@@ -63,3 +63,24 @@ export const MetasWrap = styled.div`
   flex-wrap: wrap;
   justify-content: space-around;
 `;
+//Form visibility functions
+export const FormContainer = styled.div`
+  background-color: rgba(2, 21, 32);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+`;
+export const CloseBtn = styled.button`
+  background-color: rgba(0, 0, 0, 0);
+  padding-left: 20px;
+  position: fixed;
+  color: white;
+  border: none;
+  font-size: 60px;
+  cursor: pointer;
+`;
+export const CloseBtnWrap = styled.div`
+  margin: 0 1%;
+`;

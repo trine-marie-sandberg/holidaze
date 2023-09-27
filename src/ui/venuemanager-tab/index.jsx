@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import useSave, { useLoad } from "../../hooks/storage";
 import useFetch, { useSendData } from "../../hooks/api";
 import ListVenueForm from "../list-venue";
-import { Bold, BtnImageWrap, DelUpdBtn, DelUpdBtnWrap, DetailsWrap, FlexWrap, LocationWrap, MetasWrap, PaddingRight, ToVenueBtn } from "./style";
+import { Bold, BtnImageWrap, CloseBtn, CloseBtnWrap, DelUpdBtn, DelUpdBtnWrap, DetailsWrap, FlexWrap, FormContainer, LocationWrap, MetasWrap, PaddingRight, ToVenueBtn } from "./style";
 import { Link } from "react-router-dom";
 import useFormatDate from "../../hooks/format-dates";
 import HeadingAndBtn from "../heading-and-btn";
@@ -35,7 +35,7 @@ export default function VenueManagerTab(props) {
                     <HeadingAndBtn>
                         {setFormVisible}
                         {<h2>My venues</h2>}
-                        {<i className="fa-solid fa-plus"></i>}
+                        {<i className="fa-solid fa-plus" aria-label="List new venue"></i>}
                     </HeadingAndBtn>
                     {data <= 0 &&
                         <div>
@@ -45,11 +45,14 @@ export default function VenueManagerTab(props) {
                             {formVisible &&
                             <div>
                                 <div>
-                                    <button onClick={() => {
+                                    <CloseBtn 
+                                    onClick={() => {
                                         setFormVisible(false)
-                                    }}>
+                                    }}
+                                    aria-label="Close form"
+                                    >
                                         Close X
-                                    </button>
+                                    </CloseBtn>
                                 </div>
                                 <ListVenueForm>
                                 </ListVenueForm>
@@ -60,20 +63,23 @@ export default function VenueManagerTab(props) {
                     {initiAlVenues &&
                     <div>
                         {formVisible &&
-                            <div>
-                                <div>
-                                    <button onClick={() => {
+                            <FormContainer>
+                                <CloseBtnWrap>
+                                    <CloseBtn 
+                                    onClick={() => {
                                         setFormVisible(false)
-                                    }}>
-                                        Close X
-                                    </button>
-                                </div>
+                                    }}
+                                    aria-label="Close form"
+                                    >
+                                        <i className="fa-solid fa-xmark"></i>
+                                    </CloseBtn>
+                                </CloseBtnWrap>
                                 <ListVenueForm>
                                     {initiAlVenues}
                                     {setInitialVenues}
                                     {setFormVisible}
                                 </ListVenueForm>
-                            </div>
+                            </FormContainer>
                         }
                         {initiAlVenues.map((venue) => {
                             let imageSrc = venue.media;
