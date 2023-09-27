@@ -90,9 +90,25 @@ export default function VenueManagerTab(props) {
                                                     }}
                                                 >
                                                     <DelUpdBtnWrap>
-                                                        <DelUpdBtn onClick={() => {
-                                                            console.log("click")
-                                                        }}>
+                                                        <DelUpdBtn 
+                                                                onClick={async () => {
+                                                                const dataToSend = {
+                                                                    method: "DELETE",
+                                                                    headers: {
+                                                                        Authorization: `Bearer ${user.token}`,
+                                                                        "Content-Type": "application/json",
+                                                                    },
+                                                                }
+                                                                function checkIds(ids, deletedId) {
+                                                                    console.log(`filter and remove object with id: ${deletedId}`)
+                                                                    return ids !== deletedId;
+                                                                }
+                                                                await fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${venue.id}`, dataToSend);
+                                                                const newVenues = initiAlVenues?.filter((b) => checkIds(b.id, venue.id));
+                                                                console.log("FILTERED Venues:");
+                                                                console.log(newVenues);
+                                                                setInitialVenues(newVenues);
+                                                            }}>
                                                             <i className="fa-solid fa-trash-can"></i>
                                                         </DelUpdBtn>
                                                         <DelUpdBtn onClick={() => {
