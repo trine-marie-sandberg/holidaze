@@ -69,6 +69,9 @@ export default function VenueManagerTab(props) {
                                     </button>
                                 </div>
                                 <ListVenueForm>
+                                    {initiAlVenues}
+                                    {setInitialVenues}
+                                    {setFormVisible}
                                 </ListVenueForm>
                             </div>
                         }
@@ -120,6 +123,20 @@ export default function VenueManagerTab(props) {
                                                 <p>Price: <Bold>${venue.price}</Bold></p>
                                                 <p>Maximum guets: <Bold>{venue.maxGuests}</Bold></p>
                                                 <p>Rating: <Bold>{venue.rating}</Bold></p>
+                                                <MetasWrap>
+                                                        {venue.meta.wifi &&
+                                                            <i className="fa-solid fa-wifi"/>
+                                                        }
+                                                        {venue.meta.pets && 
+                                                            <i className="fa-solid fa-paw"/>
+                                                        }
+                                                        {venue.meta.breakfast &&
+                                                            <i className="fa-solid fa-mug-saucer"/>
+                                                        }
+                                                        {venue.meta.parking &&
+                                                            <i className="fa-solid fa-square-parking"/>
+                                                        }
+                                                </MetasWrap>
                                                 <h3>Current reservations for this venue</h3>
                                                 <div>
                                                     {
@@ -135,20 +152,6 @@ export default function VenueManagerTab(props) {
                                                         )
                                                     })
                                                     }
-                                                    <MetasWrap>
-                                                        {venue.meta.wifi &&
-                                                            <i className="fa-solid fa-wifi"/>
-                                                        }
-                                                        {venue.meta.pets && 
-                                                            <i className="fa-solid fa-paw"/>
-                                                        }
-                                                        {venue.meta.breakfast &&
-                                                            <i className="fa-solid fa-mug-saucer"/>
-                                                        }
-                                                        {venue.meta.parking &&
-                                                            <i className="fa-solid fa-square-parking"/>
-                                                        }
-                                                    </MetasWrap>
                                                     <p>Last updated: {useFormatDate(venue.updated)}</p>
                                                 </div>
                                             </DetailsWrap>

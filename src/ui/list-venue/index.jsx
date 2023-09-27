@@ -24,10 +24,17 @@ export default function ListVenueForm(props) {
     const [ lat, setLat ] = useState(0);
     const [ ing, setIng ] = useState(0);
 
-    const user = useLoad("user")
+    const [ userFeedBack, setUserFeedBack ] = useState("");
+    const [
+      initialVenues,
+      setInitialVenues,
+      setFormVisible,
+    ] = props.children;
+    const user = useLoad("user");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setUserFeedBack("Loading . . .")
     const submitData = {
         name: name,
         description: description,
@@ -59,15 +66,37 @@ export default function ListVenueForm(props) {
         },
         body: JSON.stringify(submitData),
     }
-    console.log(submitData);
+
     const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/venues`, dataToSend);
     const json = await response.json();
-    console.log(json)
+
+    if(response.ok) {
+      setFormVisible(false);
+      setInitialVenues((state) => [
+        {
+          bookings: [],
+          created: "",
+          description: submitData.description,
+          id: "new item",
+          location: submitData.location,
+          maxGuests: submitData.maxGuests,
+          media: submitData.media,
+          meta: submitData.meta,
+          name: submitData.name,
+          price: submitData.price,
+          rating: submitData.rating,
+          updated: "",
+        }, ...state
+      ]);
+    } if(!response.ok) { 
+      setUserFeedBack("Something went wrong when we where trying to send your data. Please try again later.");
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-            <div>
+      <div>{userFeedBack}</div>
+      <div>
         <label htmlFor="name">Name:</label>
         <input
           type="text"
