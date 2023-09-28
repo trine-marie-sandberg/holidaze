@@ -35,6 +35,7 @@ export default function ListVenueForm(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setUserFeedBack("Loading . . .")
+
     const submitData = {
         name: name,
         description: description,
@@ -58,6 +59,13 @@ export default function ListVenueForm(props) {
             ing: parseInt(ing),
         }
     };
+    submitData.media = submitData.media.filter(
+      (mediaUrl) => mediaUrl.trim() !== ""
+    );
+
+    if (submitData.media.length === 0) {
+      delete submitData.media;
+    }
     const dataToSend = {
         method: "POST",
         headers: {
