@@ -73,8 +73,10 @@ export const FormContainer = styled.div`
   min-height: 100%;
 `;
 export const CloseBtn = styled.button`
-  background-color: rgba(0, 0, 0, 0);
-  padding-left: 20px;
+  background-color: ${(props) => props.theme.color.darker};
+  border-bottom-right-radius: ${(props) => props.theme.sizes.borderRadius};
+  border-top-left-radius: ${(props) => props.theme.sizes.borderRadius};
+  padding: 0 10px;
   position: fixed;
   color: white;
   border: none;
@@ -82,5 +84,5 @@ export const CloseBtn = styled.button`
   cursor: pointer;
 `;
 export const CloseBtnWrap = styled.div`
-  margin: 0 1%;
+  margin: 0;
 `;

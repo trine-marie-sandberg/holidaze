@@ -6,12 +6,11 @@ export default function ListVenueForm(props) {
 
     const [ name, setName ] = useState("");
     const [ description, setDescription ] = useState("");
-    const [ media, setMedia ] = useState([]);
+    const [ media, setMedia ] = useState([""]);
     const [ price, setPrice ] = useState(0);
     const [ maxGuests, setMaxGuests ] = useState(0);
     const [ rating, setRating ] = useState(0);
 
-    const [ meta, setMeta ] = useState({})
     const [ wifi, setWifi ] = useState(false);
     const [ parking, setParking ] = useState(false);
     const [ breakfast, setBreakfast ] = useState(false);
@@ -39,7 +38,7 @@ export default function ListVenueForm(props) {
     const submitData = {
         name: name,
         description: description,
-        media: [media],
+        media: media,
         price: parseFloat(price),
         maxGuests: parseInt(maxGuests),
         rating: parseInt(rating),
@@ -70,6 +69,7 @@ export default function ListVenueForm(props) {
 
     const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/venues?_venue=true`, dataToSend);
     const json = await response.json();
+    console.log(media)
     if(response.ok) {
       setFormVisible(false);
       setInitialVenues((state) => [
@@ -100,7 +100,7 @@ export default function ListVenueForm(props) {
         <h2>List new venue <i className="fa-solid fa-house-chimney"></i></h2>
         <h3>Description</h3>
         <InputLabelWrap>
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">Name</label>
           <input
             type="text"
             id="name"
@@ -123,17 +123,19 @@ export default function ListVenueForm(props) {
         </InputLabelWrap>
         {}
         <InputLabelWrap>
-          <label htmlFor="media">Media (comma-separated):</label>
-          <input
+          <label htmlFor="media">Media (comma-separated)</label>
+          <textarea
             type="text"
             id="media"
             name="media"
+            placeholder="url1,url2"
             value={media}
-            onChange={(e) => setMedia(e.target.value)}
+            pattern=""
+            onChange={(e) => setMedia(e.target.value.split(","))}
           />
         </InputLabelWrap>
         <InputLabelWrap>
-          <label htmlFor="price">Price:</label>
+          <label htmlFor="price">Price</label>
           <input
             type="number"
             id="price"
