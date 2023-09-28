@@ -18,6 +18,7 @@ export default function VenueManagerTab(props) {
     const [ formVisible, setFormVisible ] = useState(false);
     const [ updateVisible, setUpdateVisible ] = useState(false);
     const [ initiAlVenues, setInitialVenues ] = useState([]);
+    const [ updateVenue, setUpdateVenue ] = useState({});
     const fetchOptions = {
         method: "GET",
         headers: {
@@ -104,8 +105,9 @@ export default function VenueManagerTab(props) {
                                                     <i className="fa-solid fa-xmark"></i>
                                                 </CloseBtn>
                                                 <UpdateVenueForm>
-                                                    {venue}
+                                                    {updateVenue}
                                                     {setUpdateVisible}
+                                                    {setInitialVenues}
                                                 </UpdateVenueForm>
                                             </FormContainer>
                                             }
@@ -138,6 +140,7 @@ export default function VenueManagerTab(props) {
                                                         </DelUpdBtn>
                                                         <DelUpdBtn onClick={() => {
                                                             setUpdateVisible(true);
+                                                            setUpdateVenue(venue);
                                                         }}>
                                                             <i className="fa-solid fa-pen-clip"></i>
                                                         </DelUpdBtn>

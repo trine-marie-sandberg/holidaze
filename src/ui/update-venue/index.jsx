@@ -5,29 +5,30 @@ import { InputLabelWrap, StyledForm, SubmitBtn } from "./style";
 export default function UpdateVenueForm(props) {
 
     const [
-      venue,
+      updateVenue,
       setUpdateVisible,
+      setInitialVenues,
     ] = props.children;
 
-    const [ name, setName ] = useState(venue.name);
-    const [ description, setDescription ] = useState(venue.description);
-    const [ media, setMedia ] = useState(venue.media);
-    const [ price, setPrice ] = useState(venue.price);
-    const [ maxGuests, setMaxGuests ] = useState(venue.maxGuests);
-    const [ rating, setRating ] = useState(venue.rating);
+    const [ name, setName ] = useState(updateVenue.name);
+    const [ description, setDescription ] = useState(updateVenue.description);
+    const [ media, setMedia ] = useState(updateVenue.media);
+    const [ price, setPrice ] = useState(updateVenue.price);
+    const [ maxGuests, setMaxGuests ] = useState(updateVenue.maxGuests);
+    const [ rating, setRating ] = useState(updateVenue.rating);
 
     const [ wifi, setWifi ] = useState(false);
     const [ parking, setParking ] = useState(false);
     const [ breakfast, setBreakfast ] = useState(false);
     const [ pets, setPets ] = useState(false);
 
-    const [ address, setAdress ] = useState(venue.location.address);
-    const [ city, setCity ] = useState(venue.location.city);
-    const [ zip, setZip ] = useState(venue.location.zip);
-    const [ country, setCountry ] = useState(venue.location.country);
-    const [ continent, setContinent ] = useState(venue.location.continent);
-    const [ lat, setLat ] = useState(venue.location.lat);
-    const [ ing, setIng ] = useState(venue.location.ing);
+    const [ address, setAdress ] = useState(updateVenue.location.address);
+    const [ city, setCity ] = useState(updateVenue.location.city);
+    const [ zip, setZip ] = useState(updateVenue.location.zip);
+    const [ country, setCountry ] = useState(updateVenue.location.country);
+    const [ continent, setContinent ] = useState(updateVenue.location.continent);
+    const [ lat, setLat ] = useState(updateVenue.location.lat);
+    const [ ing, setIng ] = useState(updateVenue.location.ing);
 
     const [ userFeedBack, setUserFeedBack ] = useState("");
     const user = useLoad("user");
@@ -75,12 +76,12 @@ export default function UpdateVenueForm(props) {
         body: JSON.stringify(submitData),
     }
 
-    const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${venue.id}?_venue=true`, dataToSend);
+    const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${updateVenue.id}?_venue=true`, dataToSend);
     const json = await response.json();
-    console.log(media)
+    console.log(json)
     if(response.ok) {
       setUpdateVisible(false);
-      setInitialVenues((state) => [
+      setInitialVenues(() => [
         {
           bookings: [],
           created: json.created,
@@ -94,7 +95,7 @@ export default function UpdateVenueForm(props) {
           price: json.price,
           rating: json.rating,
           updated: json.updated,
-        }, ...state
+        }
       ]);
     } if(!response.ok) { 
       setUserFeedBack("Something went wrong when we where trying to send your data. Please try again later.");
