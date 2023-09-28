@@ -13,9 +13,9 @@ export const AccountInfoWrap = styled.div`
   padding: 10px;
 `;
 export const BookingVenueWrap = styled.div`
-position: relative;
+  position: relative;
   height: 600px;
-  border: 1px solid ${(props) => props.theme.color.secondary};
+  border: 3px solid ${(props) => props.theme.color.secondary};
   background-color: ${(props) => props.theme.color.darker};
   border-radius: ${(props) => props.theme.sizes.borderRadius};
   overflow-y: scroll;

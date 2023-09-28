@@ -6,12 +6,17 @@ export const StyledForm = styled.form`
   align-items: center;
   background-color: rgba(2, 21, 32);
   padding-top: 65px;
+  padding-bottom: 100vh;
 `;
 export const InputLabelWrap = styled.div`
   display: flex;
   flex-direction: column;
   & label {
     padding: 5px 0;
+  }
+  & input {
+    padding: 5px;
+    border: none;
   }
 `;
 export const SubmitBtn = styled.button`

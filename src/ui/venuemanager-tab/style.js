@@ -76,10 +76,12 @@ export const CloseBtn = styled.button`
   background-color: ${(props) => props.theme.color.darker};
   border-bottom-right-radius: ${(props) => props.theme.sizes.borderRadius};
   border-top-left-radius: ${(props) => props.theme.sizes.borderRadius};
+  border: none;
+  border-right: 2px solid ${(props) => props.theme.color.secondary};
+  border-bottom: 1px solid ${(props) => props.theme.color.secondary};
   padding: 0 10px;
   position: fixed;
   color: white;
-  border: none;
   font-size: 60px;
   cursor: pointer;
 `;

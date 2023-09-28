@@ -105,7 +105,7 @@ export default function ListVenueForm(props) {
     <StyledForm onSubmit={handleSubmit}>
       <div>{userFeedBack}</div>
       <div>
-        <h2>List new venue <i className="fa-solid fa-house-chimney"></i></h2>
+        <h2>List new venue <i className="fa-solid fa-pen-to-square"></i></h2>
         <h3>Description</h3>
         <InputLabelWrap>
           <label htmlFor="name">Name</label>
