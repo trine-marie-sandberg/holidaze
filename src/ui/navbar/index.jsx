@@ -116,7 +116,7 @@ export function NavBar() {
                      }}><i className="fa-solid fa-angle-left"></i> back</p>
                     <Close className="fa-solid fa-xmark" onClick={() => setOpenRegisterForm(false)}></Close>
                 </RegisterCancelWrap>
-                <RegisterForm />
+                <RegisterForm>{setOpenRegisterForm}</RegisterForm>
                 </FormWrap>
             </FormContainer>
         }

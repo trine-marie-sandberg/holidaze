@@ -55,6 +55,9 @@ export default function VenueManagerTab(props) {
                                     </CloseBtn>
                                 </div>
                                 <ListVenueForm>
+                                    {initiAlVenues}
+                                    {setInitialVenues}
+                                    {setFormVisible}
                                 </ListVenueForm>
                             </div>
                             }

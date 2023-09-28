@@ -1,21 +1,14 @@
 import React, { useState } from 'react';
 import { FormContainer, Label, Input, TextArea, Button, Heading, FormElementsWrap, IconInputWrap, InputIcon } from './style';
-import { useSendData } from '../../hooks/api';
+import useSave from '../../hooks/storage';
 
-export default function RegisterForm() {
+export default function RegisterForm(props) {
 
   const [ userName, setUserName ] = useState("")
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   useSendData("https://api.noroff.dev/api/v1/holidaze/auth/login", {
-  //     email: email,
-  //     password: password,
-  //   },"POST");
-
-  // };
+  const setOpenRegisterForm = props.children;
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -44,14 +37,39 @@ export default function RegisterForm() {
         },
         body: JSON.stringify(user),
     }
-    console.log(dataToSend)
     const response = await fetch("https://api.noroff.dev/api/v1/holidaze/auth/register", dataToSend);
-    const json = await response.json();
-    console.log(json)
+    await response.json();
+
+    if(response.ok) {
+      const loginResp = await fetch("https://api.noroff.dev/api/v1/holidaze/auth/login", 
+      {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password
+        }),
+      });
+      const json = await loginResp.json();
+      if(response.ok) {
+        const userDetails = {
+          name: json.name,
+          email: json.email,
+          avatar: json.avatar,
+          manager: json.venueManager,
+          token: json.accessToken,
+        }
+        console.log(json)
+        useSave("user", userDetails);
+        setOpenRegisterForm(false);
+      }
+    }
     }}>
       <Heading>Register</Heading>
       <FormElementsWrap>
-        <Label htmlFor="username">Email</Label>
+        <Label htmlFor="username">Username</Label>
         <IconInputWrap>
         <InputIcon className="fa-solid fa-user"></InputIcon>
         <Input
