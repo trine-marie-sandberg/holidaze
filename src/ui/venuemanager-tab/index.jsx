@@ -6,6 +6,7 @@ import { Bold, BtnImageWrap, CloseBtn, CloseBtnWrap, DelUpdBtn, DelUpdBtnWrap, D
 import { Link } from "react-router-dom";
 import useFormatDate from "../../hooks/format-dates";
 import HeadingAndBtn from "../heading-and-btn";
+import UpdateVenueForm from "../update-venue";
 
 export default function VenueManagerTab(props) {
 
@@ -15,9 +16,8 @@ export default function VenueManagerTab(props) {
     ] = props.children;
     const user = useLoad("user");
     const [ formVisible, setFormVisible ] = useState(false);
+    const [ updateVisible, setUpdateVisible ] = useState(false);
     const [ initiAlVenues, setInitialVenues ] = useState([]);
-    const [ bookings, setBookings ] = useState([]);
-    const [ filteredBookings, setFilteredBookings ] = useState([]);
     const fetchOptions = {
         method: "GET",
         headers: {
@@ -93,6 +93,22 @@ export default function VenueManagerTab(props) {
                                 <div key={venue.id}>
                                     <FlexWrap>
                                         <div>
+                                            {updateVisible &&
+                                            <FormContainer>
+                                                <CloseBtn 
+                                                onClick={() => {
+                                                    setUpdateVisible(false)
+                                                }}
+                                                aria-label="Close form"
+                                                >
+                                                    <i className="fa-solid fa-xmark"></i>
+                                                </CloseBtn>
+                                                <UpdateVenueForm>
+                                                    {venue}
+                                                    {setUpdateVisible}
+                                                </UpdateVenueForm>
+                                            </FormContainer>
+                                            }
                                             <BtnImageWrap
                                                     style={{ 
                                                     backgroundImage: `url(${imageSrc})` 
@@ -121,7 +137,7 @@ export default function VenueManagerTab(props) {
                                                             <i className="fa-solid fa-trash-can"></i>
                                                         </DelUpdBtn>
                                                         <DelUpdBtn onClick={() => {
-                                                            console.log("click")
+                                                            setUpdateVisible(true);
                                                         }}>
                                                             <i className="fa-solid fa-pen-clip"></i>
                                                         </DelUpdBtn>
