@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { useLoad } from "../../hooks/storage";
 import PageWrapper from "../../ui/pagewrapper";
-import { AccountContainer, AccountInfoWrap, BookVenueBtn, BookingVenueContainer, BookingVenueWrap, FlexWrap, UpdateBtn, UpdateIcon } from "./style";
+import { AccountContainer, AccountInfoWrap, Avatarimg, BookVenueBtn, BookingVenueContainer, BookingVenueWrap, ContactLink, FlexWrap, UpdateBtn, UpdateIcon } from "./style";
 import { useState, useEffect } from "react";
 import BookingsTab from "../../ui/bookings-tab";
 import VenueManagerTab from "../../ui/venuemanager-tab";
 import useFetch from "../../hooks/api";
+import UpdateAccountForm from "../../ui/update-accountinfo";
 
 export default function AccountPage() {
     const [ bookings, setBookings ] = useState(true);
@@ -16,6 +17,8 @@ export default function AccountPage() {
     const [ isManager, setIsManager ] = useState(user.manager);
     let manager = "No";
     if(isManager === true) manager = "Yes";
+    const [ updateFormVisible, setUpdateFormVisible ] = useState(false);
+    const [ avatar, setAvatar ] = useState(user.avatar);
     
     function displayBookings() {
         setBookingsActive("active-btn");
@@ -76,18 +79,38 @@ export default function AccountPage() {
                     }
                 </BookingVenueContainer>
                 <AccountInfoWrap>
-                    <h1>Hi, {user.name}</h1>
+                    <div>
+                        <h1>Hi, {user.name}</h1>
+                        <Avatarimg src={avatar} />
+                    </div>
                     <p>
                         Thank you for using Holidayz's services.
-                        If you want to chat with uss about your next holiday, 
-                        please use our contact form:
+                        If you want to chat with us about your next holiday, 
+                        please use this contact form:
                     </p>
-                    <Link to="/contact">
-                        <p>Contact form</p>
-                    </Link>
+                    <ContactLink>
+                        <Link to="/contact">
+                            <p>Contact form</p>
+                        </Link>
+                    </ContactLink>
                     <FlexWrap>
                         <h2>My account information</h2>
-                        <UpdateBtn>Update <UpdateIcon className="fa-solid fa-pen-clip"></UpdateIcon></UpdateBtn>
+                        <UpdateBtn
+                          onClick={() => {
+                            setUpdateFormVisible(true);
+                          }}
+                        >
+                            Update or add avatar + <i className="fa-solid fa-circle-user"></i>
+                        </UpdateBtn>
+                        {updateFormVisible &&
+                        <div>
+                            <UpdateAccountForm>
+                                {setUpdateFormVisible}
+                                {setAvatar}
+                                {avatar}
+                            </UpdateAccountForm>
+                        </div>
+                        }
                     </FlexWrap>
                     <ul>
                         <li>Username: {user.name}</li>

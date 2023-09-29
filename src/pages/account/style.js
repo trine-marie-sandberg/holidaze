@@ -59,11 +59,13 @@ export const UpdateBtn = styled.button`
   cursor: pointer;
   height: fit-content;
   margin: 0 ${(props) => props.theme.sizes.med};
-  padding: 8px;
+  padding: 10px 20px;
   border: 1px solid ${(props) => props.theme.color.border};
   background-color: ${(props) => props.theme.color.dark};
   color: ${(props) => props.theme.color.font};
   border-radius: ${(props) => props.theme.sizes.borderRadius};
+  font-size: 20px;
+  font-weight: 200;
 `;
 export const UpdateIcon = styled.i`
   padding: 0 ${(props) => props.theme.sizes.xs};
@@ -78,4 +80,19 @@ export const BookVenueBtn = styled.button`
   background-color: ${(props) => props.theme.color.primary};
   color: ${(props) => props.theme.color.font};
   cursor: pointer;
+`;
+export const Avatarimg = styled.img`
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+`;
+export const ContactLink = styled.div`
+& a {
+  color: white;
+  text-decoration: none;
+  font-weight: 400;
+  & :hover {
+    text-decoration: underline;
+  }
+}
 `;
