@@ -120,17 +120,17 @@ export const RegisterCancelWrap = styled.div`
   }
 `;
 export const RegisterBtnWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 export const RegisterBtn = styled.button`
   background-color: ${(props) => props.theme.color.primary};
   color: ${(props) => props.theme.color.font};
-  border: 1px solid ${(props) => props.theme.color.light};
-  border-radius: 25px;
+  border: none;
+  border-radius: 5px;
   font-size: 16px;
-  padding: 10px 45px;
-  margin: 0;
+  padding: 10px 35px;
+  margin: 5px 0;
   cursor: pointer;
-  &:hover {
-    border: 1px solid ${(props) => props.theme.color.black};
-  }
 `;

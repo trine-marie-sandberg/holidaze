@@ -1,7 +1,7 @@
 import { useLoad } from "../../hooks/storage";
 import useFetch from "../../hooks/api";
 import { Link } from "react-router-dom";
-import { DelUpdBtn, DelIcon, FlexWrap, Bold, BtnImageWrap, DelUpdBtnWrap, BookingDetailsWrap, BookingWrap } from "./style";
+import { DelUpdBtn, DelIcon, FlexWrap, Bold, BtnImageWrap, DelUpdBtnWrap, BookingDetailsWrap, BookingWrap, BookingsHeading } from "./style";
 import { useEffect, useState } from "react";
 import useFormatDate from "../../hooks/format-dates";
 
@@ -14,7 +14,7 @@ export default function BookingsTab(props) {
     return(
         <div>
             <BookingDetailsWrap>
-                <h2>Upcoming bookings</h2>
+                <BookingsHeading>Upcoming bookings</BookingsHeading>
             </BookingDetailsWrap>
             <div>
                 {initialBookings && 

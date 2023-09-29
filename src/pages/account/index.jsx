@@ -81,8 +81,12 @@ export default function AccountPage() {
                 <AccountInfoWrap>
                     <FlexWrap>
                         <h1>Hi, {user.name}</h1>
-                        <Avatarimg src={avatar} />
+                        <Avatarimg 
+                        src={avatar}
+                        aria-label="Your avatar"
+                         />
                         <UpdateBtn
+                          aria-label="Open update avatar form modal"
                           onClick={() => {
                             setUpdateFormVisible(true);
                           }}

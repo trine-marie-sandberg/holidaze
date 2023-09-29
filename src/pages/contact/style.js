@@ -5,3 +5,6 @@ export const BgImg = styled.div`
   background-image: url("tranquility.jpg");
   background-size: cover;
 `;
+export const ContactWrap = styled.div`
+  padding: 10px 0;
+`;

@@ -9,7 +9,7 @@ export const BookingWrap = styled.div`
 export const DelIcon = styled.i`
   cursor: pointer;
   color: ${(props) => props.theme.color.font};
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0) !important;
 `;
 export const DelUpdBtn = styled.button`
   background-color: ${(props) => props.theme.color.darker} !important;
@@ -34,6 +34,9 @@ export const FlexWrap = styled.div`
 `;
 export const BookingDetailsWrap = styled.div`
   padding: 0 10px;
+`;
+export const BookingsHeading = styled.h2`
+  margin: 30px;
 `;
 export const Bold = styled.span`
   font-weight: 500;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FormContainer, Label, Input, TextArea, Button, Heading, FormElementsWrap, IconInputWrap, InputIcon } from './style';
+import { FormContainer, Label, Input, Button, Heading, FormElementsWrap, IconInputWrap, InputIcon } from './style';
 import { useSendData } from '../../hooks/api';
 import useSave from '../../hooks/storage';
 

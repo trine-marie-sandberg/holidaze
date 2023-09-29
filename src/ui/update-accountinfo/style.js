@@ -28,7 +28,6 @@ export const Input = styled.input`
   color: ${(props) => props.theme.color.font};
   border: none;
   width: 100%;
-
   &:focus {
     background-color: ${(props) => props.theme.color.darker};
     border-radius: 5px;
