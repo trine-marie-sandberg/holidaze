@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import useSave, { useLoad } from "../../hooks/storage";
 import useFetch, { useSendData } from "../../hooks/api";
 import ListVenueForm from "../list-venue";
@@ -28,9 +28,12 @@ export default function VenueManagerTab(props) {
     }
     const { data, load, error } = useFetch(`https://api.noroff.dev/api/v1/holidaze/profiles/${user.name}/venues/?_bookings=true`, fetchOptions);
     useEffect(() => setInitialVenues(data), [data]);
-
+    const topRef = useRef(null);
+    const scrollToTop = () => topRef.current.scrollIntoView();
     return(
-        <div>
+        <div
+        ref={topRef}
+        >
             {isManager &&
                 <div>
                     <HeadingAndBtn>
@@ -141,6 +144,7 @@ export default function VenueManagerTab(props) {
                                                         <DelUpdBtn onClick={() => {
                                                             setUpdateVisible(true);
                                                             setUpdateVenue(venue);
+                                                            scrollToTop();
                                                         }}>
                                                             <i className="fa-solid fa-pen-clip"></i>
                                                         </DelUpdBtn>

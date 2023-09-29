@@ -39,6 +39,7 @@ export default function AccountPage() {
     const { data, load, error } = useFetch(`https://api.noroff.dev/api/v1/holidaze/profiles/${user.name}?_bookings=true&_venues=true`, fetchOptions);
     const [ initialBookings, setInitialBookings ] = useState([]);
     useEffect(() => setInitialBookings(data.bookings), [data]);
+    
     return(
         <PageWrapper>
             <AccountContainer>

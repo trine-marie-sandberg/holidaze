@@ -81,7 +81,7 @@ export default function UpdateVenueForm(props) {
     console.log(json)
     if(response.ok) {
       setUpdateVisible(false);
-      setInitialVenues(() => [
+      setInitialVenues((state) => [
         {
           bookings: [],
           created: json.created,
@@ -95,7 +95,7 @@ export default function UpdateVenueForm(props) {
           price: json.price,
           rating: json.rating,
           updated: json.updated,
-        }
+        }, ...state
       ]);
     } if(!response.ok) { 
       setUserFeedBack("Something went wrong when we where trying to send your data. Please try again later.");
