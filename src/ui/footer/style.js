@@ -7,6 +7,7 @@ export const Foot = styled.footer`
   justify-content: space-between;
   padding: 0 ${(props) => props.theme.sizes.sm};
   color: ${(props) => props.theme.color.font};
+  background-color: ${(props) => props.theme.color.primary};
 `;
 export const SocialIcons = styled.i`
   padding: ${(props) => props.theme.sizes.xs};

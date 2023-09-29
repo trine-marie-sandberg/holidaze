@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useLoad } from "../../hooks/storage";
 import PageWrapper from "../../ui/pagewrapper";
-import { AccountContainer, AccountInfoWrap, Avatarimg, BookVenueBtn, BookingVenueContainer, BookingVenueWrap, ContactLink, FlexWrap, UpdateBtn, UpdateIcon } from "./style";
+import { AccountContainer, AccountInfoWrap, Avatarimg, BookVenueBtn, BookingVenueContainer, BookingVenueWrap, ContactLink, FlexWrap, FormContainer, UpdateBtn, UpdateIcon } from "./style";
 import { useState, useEffect } from "react";
 import BookingsTab from "../../ui/bookings-tab";
 import VenueManagerTab from "../../ui/venuemanager-tab";
@@ -79,10 +79,17 @@ export default function AccountPage() {
                     }
                 </BookingVenueContainer>
                 <AccountInfoWrap>
-                    <div>
+                    <FlexWrap>
                         <h1>Hi, {user.name}</h1>
                         <Avatarimg src={avatar} />
-                    </div>
+                        <UpdateBtn
+                          onClick={() => {
+                            setUpdateFormVisible(true);
+                          }}
+                        >
+                            Update or add avatar + <i className="fa-solid fa-circle-user"></i>
+                        </UpdateBtn>
+                    </FlexWrap>
                     <p>
                         Thank you for using Holidayz's services.
                         If you want to chat with us about your next holiday, 
@@ -95,21 +102,14 @@ export default function AccountPage() {
                     </ContactLink>
                     <FlexWrap>
                         <h2>My account information</h2>
-                        <UpdateBtn
-                          onClick={() => {
-                            setUpdateFormVisible(true);
-                          }}
-                        >
-                            Update or add avatar + <i className="fa-solid fa-circle-user"></i>
-                        </UpdateBtn>
                         {updateFormVisible &&
-                        <div>
+                        <FormContainer>
                             <UpdateAccountForm>
                                 {setUpdateFormVisible}
                                 {setAvatar}
                                 {avatar}
                             </UpdateAccountForm>
-                        </div>
+                        </FormContainer>
                         }
                     </FlexWrap>
                     <ul>

@@ -1,17 +1,24 @@
 import styled from "styled-components";
 
+export const BookingWrap = styled.div`
+  background-color: ${(props) => props.theme.color.dark};
+  & :hover {
+    background-color: ${(props) => props.theme.color.light};
+  }
+`;
 export const DelIcon = styled.i`
   cursor: pointer;
   color: ${(props) => props.theme.color.font};
+  background-color: rgba(0, 0, 0, 0);
 `;
 export const DelUpdBtn = styled.button`
-  background-color: ${(props) => props.theme.color.darker};
+  background-color: ${(props) => props.theme.color.darker} !important;
   margin: 0;
   border: none;
   font-size: 22px;
 `;
 export const DelUpdBtnWrap = styled.div`
-  background-color: ${(props) => props.theme.color.darker};
+  background-color: ${(props) => props.theme.color.darker} !important;
   display: flex;
   justify-content: space-between;
   min-width: 150px;

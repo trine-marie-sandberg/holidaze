@@ -60,7 +60,7 @@ export const UpdateBtn = styled.button`
   height: fit-content;
   margin: 0 ${(props) => props.theme.sizes.med};
   padding: 10px 20px;
-  border: 1px solid ${(props) => props.theme.color.border};
+  border: 1px solid ${(props) => props.theme.color.darker};
   background-color: ${(props) => props.theme.color.dark};
   color: ${(props) => props.theme.color.font};
   border-radius: ${(props) => props.theme.sizes.borderRadius};
@@ -85,6 +85,7 @@ export const Avatarimg = styled.img`
   height: 50px;
   width: 50px;
   border-radius: 100%;
+  margin: 15px;
 `;
 export const ContactLink = styled.div`
 & a {
@@ -95,4 +96,18 @@ export const ContactLink = styled.div`
     text-decoration: underline;
   }
 }
+`;
+export const FormContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: ${(props) => props.theme.color.font};
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.959);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;

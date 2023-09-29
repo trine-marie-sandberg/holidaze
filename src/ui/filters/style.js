@@ -6,13 +6,19 @@ export const FilterManager = styled.div`
   flex-wrap: wrap;
 `;
 export const TotalGuestsInput = styled.input`
-  width: 40px;
+  width: 35px;
+  padding: 5px;
+  margin: 5px;
+  border-radius: ${(props) => props.theme.sizes.borderRadius};
+  border: none;
 `;
 export const FilterLabels = styled.label`
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   padding: ${(props) => props.theme.sizes.xs};
+  cursor: pointer;
 `;
 export const FlexFilters = styled.div`
   display: flex;
@@ -53,15 +59,12 @@ export const RatingCounter = styled.div`
 `;
 export const SubmitBtn = styled.button`
   align-self: center;
+  border: none;
   margin: ${(props) => props.theme.sizes.sm};
   padding: ${(props) => props.theme.sizes.xs} ${(props) => props.theme.sizes.lg};
-  border-radius: ${(props) => props.theme.sizes.borderRadius};
-  border: 1px solid ${(props) => props.theme.color.font};
+  border-radius: 25px;
   height: fit-content;
   background-color: ${(props) => props.theme.color.secondary};
   color: ${(props) => props.theme.color.black};
   cursor: pointer;
-  &:hover {
-    border: 1px solid ${(props) => props.theme.color.black};
-  }
 `;

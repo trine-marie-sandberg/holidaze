@@ -37,7 +37,6 @@ export default function SearchFilters(props) {
         <SearchFilterWrap>
             <SearchWrap>
                 <HideLabel htmlFor="search">Search </HideLabel>
-                <I className="fa-solid fa-search" aria-label="search icon"></I>
                 <SearchField 
                   type="text" 
                   id="search" 
@@ -59,37 +58,52 @@ export default function SearchFilters(props) {
             <FlexFilters>
                 <FilterLabels>
                     <i className="fa-solid fa-wifi" aria-label="wifi"></i>
-                    <input type="checkbox" onChange={() => {
+                    <input 
+                      type="checkbox" 
+                      aria-label="Wifi checked/unchecked"
+                      onChange={() => {
                         if(wifi === false) {
                             setWifi(true)
                         } if(wifi === true) {
                             setWifi(false)
                         }
-                    }}></input>
+                      }}>
+                    </input>
                 </FilterLabels>
                 <FilterLabels>
                     <i className="fa-solid fa-paw" aria-label="pets"></i>
-                    <input type="checkbox" onChange={() => {
+                    <input 
+                    type="checkbox" 
+                    aria-label="Pets checked/unchecked"
+                    onChange={() => {
                         if(pets === false) {
                             setPets(true)
                         } if(pets === true) {
                             setPets(false)
                         }
-                    }}></input>
+                    }}>
+                    </input>
                 </FilterLabels>
                 <FilterLabels>
                     <i className="fa-solid fa-square-parking" aria-label="parking"></i>
-                    <input type="checkbox" onChange={() => {
+                    <input 
+                    type="checkbox"
+                    aria-label="Parking checked/unchecked"
+                    onChange={() => {
                         if(parking === false) {
                             setParking(true)
                         } if(parking === true) {
                             setParking(false)
                         }
-                    }}></input>
+                    }}>
+                    </input>
                 </FilterLabels>
                 <FilterLabels>
                     <i className="fa-solid fa-mug-saucer" aria-label="breakfast"></i>
-                    <input type="checkbox" onChange={() => {
+                    <input 
+                    type="checkbox" 
+                    aria-label="Breakfast checked/unchecked"
+                    onChange={() => {
                         if(breakFast === false) {
                             setBreakFast(true)
                         } if(breakFast === true) {
@@ -101,7 +115,7 @@ export default function SearchFilters(props) {
         </PaddingOnFilters>
         <PaddingOnFilters>
             <label>
-                Total guests: <TotalGuestsInput type="number" onChange={(e) => setGuests(e.target.value)}></TotalGuestsInput>
+                Total guests: <TotalGuestsInput type="number" onChange={(e) => setGuests(e.target.value)}/>
             </label>
         </PaddingOnFilters>
         </FilterManager>

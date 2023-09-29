@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FormContainer, Label, Input, TextArea, Button, Heading, FormElementsWrap, IconInputWrap, InputIcon } from './style';
+import { FormContainer, Label, Input, TextArea, Button, Heading, FormElementsWrap, IconInputWrap, InputIcon, BtnHeadingWrap, CloseBtn } from './style';
 import { useSendData } from '../../hooks/api';
 import useSave, { useLoad } from '../../hooks/storage';
 
@@ -39,23 +39,25 @@ export default function UpdateAccountForm(props) {
       setAvatar(newAvatar);
       setUpdateFormVisible(false);
       }}>
-        <Heading>Login</Heading>
         <FormElementsWrap>
-          <button
+          <BtnHeadingWrap>
+          <Heading>Update avatar</Heading>
+          <CloseBtn
             onClick={() => setUpdateFormVisible(false)}
           >
-            close
-          </button>
+            <i className="fa-solid fa-xmark"></i>
+          </CloseBtn>
+          </BtnHeadingWrap>
           <Label htmlFor="avatar">Avatar url</Label>
           <IconInputWrap>
-          <InputIcon className="fa-solid fa-circle-user"></InputIcon>
-          <Input
-            type="text"
-            id="avatar"
-            value={newAvatar}
-            onChange={(e) => setNewAvatar(e.target.value)}
-            required
-          />
+            <InputIcon className="fa-solid fa-circle-user"></InputIcon>
+            <Input
+              type="text"
+              id="avatar"
+              value={newAvatar}
+              onChange={(e) => setNewAvatar(e.target.value)}
+              required
+            />
           </IconInputWrap>
         </FormElementsWrap>
         <Button type="submit">Submit</Button>

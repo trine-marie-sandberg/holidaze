@@ -1,7 +1,7 @@
 import { useLoad } from "../../hooks/storage";
 import useFetch from "../../hooks/api";
 import { Link } from "react-router-dom";
-import { DelUpdBtn, DelIcon, FlexWrap, Bold, BtnImageWrap, DelUpdBtnWrap, BookingDetailsWrap } from "./style";
+import { DelUpdBtn, DelIcon, FlexWrap, Bold, BtnImageWrap, DelUpdBtnWrap, BookingDetailsWrap, BookingWrap } from "./style";
 import { useEffect, useState } from "react";
 import useFormatDate from "../../hooks/format-dates";
 
@@ -26,7 +26,7 @@ export default function BookingsTab(props) {
                             imageSrc = "/placeholder-img.jpg";
                         }
                     return(
-                        <div key={booking.id}>
+                        <BookingWrap key={booking.id}>
                             <FlexWrap>
                                 <Link to={`/venue/${booking.venue.id}`}>
                                     <BookingDetailsWrap>
@@ -76,7 +76,7 @@ export default function BookingsTab(props) {
                                     </DelUpdBtnWrap>
                                 </BtnImageWrap>
                             </FlexWrap>
-                        </div>
+                        </BookingWrap>
                     )
                 })}
                   </div>
