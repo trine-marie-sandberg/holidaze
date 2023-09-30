@@ -27,3 +27,7 @@ export const LoadingWrap = styled.div`
   padding: 15px;
   width: fit-content;
 `;
+export const NoMatchMessage = styled.p`
+  padding: 10px;
+  font-size: 20px;
+`;

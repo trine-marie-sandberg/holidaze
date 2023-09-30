@@ -3,7 +3,7 @@ import useFetch from "../../hooks/api";
 import CategoryCarousel from "../../ui/category-carousel";
 import PageWrapper from "../../ui/pagewrapper";
 import VenueCards from "../../ui/venue-cards";
-import { ShowMoreBtn, BtnCardsWrap, FilterBg, LoadingWrap } from "./style";
+import { ShowMoreBtn, BtnCardsWrap, FilterBg, LoadingWrap, NoMatchMessage } from "./style";
 import SearchFilters from "../../ui/filters";
 import base, { page, created } from "../../constants.js";
 import Loader from "../../ui/loader";
@@ -14,6 +14,7 @@ export default function VenuesPage() {
     const url = `${base + created + page + limit}`;
     const { data, loading, error } = useFetch(url);
     const [ filteredData, setFilteredData ] = useState();
+    const [ noMatch, setNoMatch ] = useState(false);
     const [ isSubmitted, setIsSubmitted ] = useState([""]);
     const [ wifi, setWifi ] = useState(false);
     const [ pets, setPets ] = useState(false);
@@ -26,6 +27,7 @@ export default function VenuesPage() {
     function handleFilter() {
         const newFilter = data.filter((value) => {
              let searchName = value.name.toLowerCase().includes(search.toLowerCase());
+             let searchContry = value.location.country.toLowerCase().includes(search.toLowerCase());
              let totalGuests = value.maxGuests >= guests;
              let totalRating = value.rating >= rating;
              
@@ -33,9 +35,14 @@ export default function VenuesPage() {
              let petsAllowed = value.meta.pets === pets;
              let hasParking = value.meta.parking === parking;
              let hasBreakFast = value.meta.breakfast === breakFast;
-             return hasWifi & petsAllowed & hasParking & hasBreakFast & totalRating & totalGuests & searchName;
+             return hasWifi & petsAllowed & hasParking & hasBreakFast & totalRating + totalGuests + searchName + searchContry;
           })
           setFilteredData(newFilter);
+          if(newFilter.length < 1) {
+            setNoMatch(true);
+          } if(newFilter.length >= 1) {
+            setNoMatch(false);
+          }
     }
 
     useEffect(() => {
@@ -70,11 +77,16 @@ export default function VenuesPage() {
                     {error  && <h2>Error: Could not load content</h2>}
                     <FilterBg>
                     {filteredData &&
-                        <BtnCardsWrap>
-                            <VenueCards>
-                                {filteredData}
-                            </VenueCards>
-                        </BtnCardsWrap>
+                        <div>
+                            <BtnCardsWrap>
+                                <VenueCards>
+                                    {filteredData}
+                                </VenueCards>
+                            </BtnCardsWrap>
+                            {noMatch &&
+                                <NoMatchMessage>No match for this search</NoMatchMessage>
+                            }
+                        </div>
                     }
                     </FilterBg>
                     {data &&
