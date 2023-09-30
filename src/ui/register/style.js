@@ -62,3 +62,8 @@ export const Heading = styled.h1`
   font-size: 25px;
   font-weight: 200;
 `;
+export const LoadingHeadingWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+`;
