@@ -64,23 +64,6 @@ export const MenuIconWrap = styled.i`
   z-index: 2;
   cursor: pointer;
   display: none;
-  & .clicked {
-    transition: all 5s ease;
-    & #line-middle {
-      transition: all 1s ease;
-      fill: ${(props) => props.theme.color.secondary};
-    }
-    & #line-top {
-      transition: all 1s ease;
-      fill: ${(props) => props.theme.color.secondary};
-      rotate: 1deg;
-    }
-    & #line-bottom {
-      transition: all 1s ease;
-      fill: ${(props) => props.theme.color.secondary};
-      rotate: 1deg;
-    }
-  } 
   @media (max-width: 600px) {
    display: block;
   }

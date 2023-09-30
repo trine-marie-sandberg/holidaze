@@ -79,3 +79,8 @@ export const BtnHeadingWrap = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+export const LoadingHeadingWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+`;

@@ -22,3 +22,8 @@ export const FilterBg = styled.div`
   background-color: ${(props) => props.theme.color.darker};
   border-radius: ${(props) => props.theme.sizes.borderRadius};
 `;
+export const LoadingWrap = styled.div`
+  margin-left: 20px;
+  padding: 15px;
+  width: fit-content;
+`;

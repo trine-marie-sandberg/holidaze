@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
-import { FormContainer, Label, Input, TextArea, Button, Heading, FormElementsWrap, IconInputWrap, InputIcon, BtnHeadingWrap, CloseBtn } from './style';
-import { useSendData } from '../../hooks/api';
+import { FormContainer, Label, Input, LoadingHeadingWrap, Button, Heading, FormElementsWrap, IconInputWrap, InputIcon, BtnHeadingWrap, CloseBtn } from './style';
+import { ErrorContainer } from '../error-messages/styled';
+import Loader from '../loader';
 import useSave, { useLoad } from '../../hooks/storage';
 
 export default function UpdateAccountForm(props) {
 
   const [ setUpdateFormVisible, setAvatar, avatar ] = props.children;
   const [ newAvatar, setNewAvatar ] = useState("");
+  const [ loading, setLoading ] = useState(false);
+  const [ userFeedback, setUserfeedback ] = useState("");
+  const [ errorVisible, setErrorVisible ] = useState(false);
   const user = useLoad("user");
 
   return (
     <FormContainer 
       onSubmit={async (event) => {
       event.preventDefault();
+      setLoading(true);
       const userAvatar = {
         venueManager: user.manager,
         avatar: avatar,
@@ -25,23 +30,43 @@ export default function UpdateAccountForm(props) {
         },
         body: JSON.stringify(userAvatar),
       }
-      console.log(dataToSend)
-      const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/profiles/${user.name}/media`, dataToSend);
-      const json = await response.json();
-      console.log(json)
-      useSave("user", {
-        avatar: newAvatar,
-        email: user.email,
-        manager: user.manager,
-        name: user.name,
-        token: user.token,
-      });
-      setAvatar(newAvatar);
-      setUpdateFormVisible(false);
+      try {
+        const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/profiles/${user.name}/media`, dataToSend);
+        await response.json();
+        if(response.status === 200) {
+          useSave("user", {
+            avatar: newAvatar,
+            email: user.email,
+            manager: user.manager,
+            name: user.name,
+            token: user.token,
+          });
+          console.log(response.status)
+          setAvatar(newAvatar);
+          setUpdateFormVisible(false);
+        }
+        if(response.status > 299) {
+          setErrorVisible(true);
+          setUserfeedback("An error occured. Please try again later.")
+        }
+      } catch(error) {
+        setErrorVisible(true);
+        setUserfeedback("An error occured. Please try again later.")
+      } finally {
+        setLoading(false);
+      }
       }}>
         <FormElementsWrap>
           <BtnHeadingWrap>
-          <Heading>Update avatar</Heading>
+          <LoadingHeadingWrap>
+            <Heading>Register</Heading>
+            {loading && <Loader/>}
+            {errorVisible &&
+              <ErrorContainer>
+                <p>{userFeedback}</p>
+              </ErrorContainer>
+            }
+          </LoadingHeadingWrap>
           <CloseBtn
             onClick={() => setUpdateFormVisible(false)}
           >

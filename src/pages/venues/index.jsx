@@ -3,9 +3,10 @@ import useFetch from "../../hooks/api";
 import CategoryCarousel from "../../ui/category-carousel";
 import PageWrapper from "../../ui/pagewrapper";
 import VenueCards from "../../ui/venue-cards";
-import { ShowMoreBtn, BtnCardsWrap, FilterBg } from "./style";
+import { ShowMoreBtn, BtnCardsWrap, FilterBg, LoadingWrap } from "./style";
 import SearchFilters from "../../ui/filters";
 import base, { page, created } from "../../constants.js";
+import Loader from "../../ui/loader";
 
 export default function VenuesPage() {
     
@@ -63,7 +64,9 @@ export default function VenuesPage() {
                     {setSearch}
                 </SearchFilters>
                 <div>
-                    {loading && <h2>Loading . . .</h2>}
+                    <LoadingWrap>
+                        {loading && <Loader/>}
+                    </LoadingWrap>
                     {error  && <h2>Error: Could not load content</h2>}
                     <FilterBg>
                     {filteredData &&
