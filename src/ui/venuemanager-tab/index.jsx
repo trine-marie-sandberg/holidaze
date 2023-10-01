@@ -130,13 +130,10 @@ export default function VenueManagerTab(props) {
                                                                     },
                                                                 }
                                                                 function checkIds(ids, deletedId) {
-                                                                    console.log(`filter and remove object with id: ${deletedId}`)
                                                                     return ids !== deletedId;
                                                                 }
                                                                 await fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${venue.id}`, dataToSend);
                                                                 const newVenues = initiAlVenues?.filter((b) => checkIds(b.id, venue.id));
-                                                                console.log("FILTERED Venues:");
-                                                                console.log(newVenues);
                                                                 setInitialVenues(newVenues);
                                                             }}>
                                                             <i className="fa-solid fa-trash-can"></i>
@@ -232,7 +229,6 @@ export default function VenueManagerTab(props) {
                                 }
                             const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/profiles/${user.name}`, dataToSend);
                             const json = await response.json()
-                            console.log(json)
                             if(response.ok) {
                                 setIsManager(true);
                                 useSave("user", ({
