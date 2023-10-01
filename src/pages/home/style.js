@@ -36,6 +36,7 @@ padding: ${(props) => props.theme.sizes.med};
   flex-direction: column;
   align-items: center;
 `;
+//search
 export const SearchField = styled.input`
   width: 40vw;
   max-width: 500px;
@@ -49,6 +50,17 @@ export const HideLabel = styled.label`
 export const SearchWrap = styled.form`
   display: flex;
   align-items: center;
+`;
+export const CloseBtn = styled.button`
+  color: white;
+  font-size: 20px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid white;
+  border-radius: 100%;
+  padding: 0 8px 0 8px;
+  width: fit-content;
+  margin-left: 15px;
+  cursor: pointer;
 `;
 //Search results
 export const ResultsBox = styled.div`

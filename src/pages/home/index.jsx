@@ -1,7 +1,7 @@
 import { BgFade, BgImg, FrontPage, SearchField, 
          I, HideLabel, FrontPageWrap, SearchWrap, 
          ResultsBox, BackgroundImages, TextBgImgWrap, TextWrap,
-         ResultsWrap, Metas,
+         ResultsWrap, Metas, CloseBtn,
         } from "./style";
 import { Link } from "react-router-dom";
 import { BtnPrimary, LinkWrap } from "../../ui/btns/style";
@@ -15,6 +15,7 @@ export default function HomePage() {
     const { data, loading, error } = useFetch(url);
     const [ filteredData, setFilteredData ] = useState(data);
     const [ searchWord, setSearchWord ] = useState("");
+    const [ closeVisible, setCloseVisible ] = useState(false);
 
     function handleFilter() {
         const newFilter = data.filter((value) => {
@@ -39,10 +40,23 @@ export default function HomePage() {
                               aria-label="search input field" 
                               placeholder="search for contry or venue .."
                               onChange={(e) => {
+                                setCloseVisible(true);
                                 setSearchWord(e.target.value);
                                 handleFilter();
                               }}
                               />
+                              {closeVisible &&
+                                <CloseBtn
+                                    aria-label="Clear search"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setFilteredData([]);
+                                        setCloseVisible(false);
+                                    }}
+                                    >
+                                    <i className="fa-solid fa-xmark"></i>
+                                </CloseBtn>
+                              }
                         </SearchWrap>
                         <ResultsBox>
                             {filteredData && 
