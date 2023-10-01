@@ -80,7 +80,6 @@ export const CloseBtn = styled.button`
   border-right: 2px solid ${(props) => props.theme.color.secondary};
   border-bottom: 1px solid ${(props) => props.theme.color.secondary};
   padding: 0 10px;
-  position: fixed;
   color: white;
   font-size: 60px;
   cursor: pointer;
