@@ -72,18 +72,15 @@ export const ResultsBox = styled.div`
   max-height: 100%;
   width: 100%;
   position: absolute;
-  top: 390px;
+  top: 380px;
   display: flex;
   justify-content: center;
   //min
   @media (min-width: 800px) {
-    top: 410px;
-  }
-  @media (min-width: 900px) {
-    top: 440px;
+    top: 425px;
   }
   @media (min-width: 1900px) {
-    top: 45%;
+    top: 44%;
   }
   & div {
     color: ${(props) => props.theme.color.black};
