@@ -62,3 +62,10 @@ export const GuestsInput = styled.input`
     padding: 8px 15px;
   }
 `;
+export const LoadingMessageWrap = styled.div`
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+`;

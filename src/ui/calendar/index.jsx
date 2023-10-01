@@ -5,7 +5,8 @@ import format from "date-fns/format";
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { useLoad } from "../../hooks/storage";
-import { CalendarInput, CalendarWrap, GuestsInput, SubmitBtn, SubmitInputWrap } from "./style";
+import { CalendarInput, CalendarWrap, GuestsInput, LoadingMessageWrap, SubmitBtn, SubmitInputWrap } from "./style";
+import Loader from "../loader";
 
 export default function DatePicker(props) {
 
@@ -17,19 +18,25 @@ export default function DatePicker(props) {
         }
     ]);
     const [ guests, setGuests ] = useState(1);
+    const [ isLoading, setIsLoading ] = useState(false);
     const [
         bookings,
         setBookings,
         newBooking,
         setNewBooking,
-        id
+        id,
+        maxGuests,
     ] = props.children;
+
     const handleGuestChange = (e) => {
         setGuests(parseInt(e.target.value));
       };
     useEffect(() => {
         if(guests < 1) {
             setGuests(1);
+        }
+        if(guests > maxGuests) {
+            setGuests(maxGuests);
         }
     }, [guests])
 
@@ -50,6 +57,7 @@ export default function DatePicker(props) {
 
     async function handleSubmit(event) {
         event.preventDefault();
+        setIsLoading(true);
         const user = useLoad("user");
         const token = user.token;
         const data = {
@@ -66,14 +74,20 @@ export default function DatePicker(props) {
             },
             body: JSON.stringify(data),
         }
-        console.log(dataToSend)
-        const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/bookings`, dataToSend);
-        const json = await response.json();
-        if(response.ok) {
-            alert(`Booked venue from ${newBooking.startDate} to ${newBooking.endDate}`)
+        try {
+            const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/bookings`, dataToSend);
+            const json = await response.json();
+            if(response.ok) {
+                alert(`Booked venue from ${newBooking.startDate} to ${newBooking.endDate}`)
+            }
+            if(!response.ok) {
+                console.log(json)
+            }
+        } catch(error) {
+            console.log(error)
         }
-        if(!response.ok) {
-            console.log(json)
+        finally {
+            setIsLoading(false);
         }
     }
 
@@ -81,27 +95,33 @@ export default function DatePicker(props) {
         <div>
             <form 
               className="calendarWrap"
-              onSubmit={async (event) => handleSubmit(event)}>
-                    <CalendarInput 
-                        value={`Reserve from ${format(range[0].startDate, "MM/dd/yyyy")} to ${format(range[0].endDate, "MM/dd/yyyy")}`} 
-                        readOnly
-                        disabled
-                        className="inputBox"
-                    />
-                    <SubmitInputWrap>
-                        <div>
-                            <label htmlFor="guests">Total guests: </label>
-                            <GuestsInput 
-                                type="number"
-                                id="guests"
-                                value={guests}
-                                onChange={handleGuestChange}
-                            />
-                        </div>
-                        <SubmitBtn type="submit">Submit</SubmitBtn>
-                    </SubmitInputWrap>
-                    <CalendarWrap>
-                        <DateRange
+              onSubmit={async (event) => handleSubmit(event)}
+            >
+                <LoadingMessageWrap>
+                {isLoading &&
+                    <Loader />
+                }
+                </LoadingMessageWrap>
+                <CalendarInput 
+                    value={`Reserve from ${format(range[0].startDate, "MM/dd/yyyy")} to ${format(range[0].endDate, "MM/dd/yyyy")}`} 
+                    readOnly
+                    disabled
+                    className="inputBox"
+                />
+                <SubmitInputWrap>
+                    <div>
+                        <label htmlFor="guests">Total guests: </label>
+                        <GuestsInput 
+                            type="number"
+                            id="guests"
+                            value={guests}
+                            onChange={handleGuestChange}
+                        />
+                    </div>
+                    <SubmitBtn type="submit">Submit</SubmitBtn>
+                </SubmitInputWrap>
+                <CalendarWrap>
+                    <DateRange
                         date={new Date()}
                         onChange={item => {
                             setRange([item.selection])
@@ -117,8 +137,8 @@ export default function DatePicker(props) {
                         className="calendarElement"
                         minDate={new Date()}
                         rangeColors={["rgb(5, 42, 64)"]}
-                        />
-                    </CalendarWrap>
+                    />
+                </CalendarWrap>
             </form>
         </div>
     )

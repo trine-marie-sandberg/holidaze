@@ -14,6 +14,7 @@ export default function VenueDetailsPage() {
     const [ bookings, setBookings ] = useState([]);
     const [ newBooking, setNewBooking ] = useState({});
     const [ visibleBooking, setVisibleBooking ] = useState(false);
+    const [ maxGuests, setMaxguests ] = useState(10);
     const [ logedOutMessage, setLogedOutMessage ] = useState(false);
     const navigate = useNavigate();
 
@@ -39,7 +40,10 @@ export default function VenueDetailsPage() {
         const id = params.id;
         const url = `https://api.noroff.dev/api/v1/holidaze/venues/${id}?_owner=true&_bookings=true`;
         const { data, loading, error } = useFetch(url);
-        useEffect(() => setBookings(data.bookings), [data]);
+        useEffect(() => {
+            setBookings(data.bookings);
+            setMaxguests(data.maxGuests);
+        }, [data]);
         const star = CreateStars(data.rating);
         let arrowFade = "";
         let address;
@@ -48,7 +52,7 @@ export default function VenueDetailsPage() {
         let contry;
         let continent;
         let description = "No description";
-
+        
         if(data.location) {
             address = data.location.address;
             city = data.location.city;
@@ -151,6 +155,7 @@ export default function VenueDetailsPage() {
                                                 {newBooking}
                                                 {setNewBooking}
                                                 {id}
+                                                {maxGuests}
                                             </DatePicker>
                                         </CalendarBg>
                                     </CalendarContainer>
