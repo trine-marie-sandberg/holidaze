@@ -37,10 +37,10 @@ export default function HomePage() {
                               type="text" 
                               id="search" 
                               aria-label="search input field" 
-                              placeholder="search for destination, contry, venue .."
+                              placeholder="search for contry or venue .."
                               onChange={(e) => {
                                 setSearchWord(e.target.value);
-                                handleFilter()
+                                handleFilter();
                               }}
                               />
                         </SearchWrap>

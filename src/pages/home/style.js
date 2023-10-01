@@ -20,10 +20,7 @@ export const BgFade = styled.div`
   }
 `;
 export const FrontPage = styled.div`
-  padding: 150px 0;
-  @media (max-width: 400px) {
-   padding: 70px 0;
-  }
+  padding-top: 115px;
 `;
 export const I = styled.i`
   font-size: ${(props) => props.theme.sizes.med};
@@ -43,7 +40,7 @@ export const SearchField = styled.input`
   width: 40vw;
   max-width: 500px;
   padding: 10px;
-  border: 1px solid ${(props) => props.theme.color.border};
+  border: none;
   border-radius: ${(props) => props.theme.sizes.borderRadius};
 `;
 export const HideLabel = styled.label`
@@ -57,12 +54,18 @@ export const SearchWrap = styled.form`
 export const ResultsBox = styled.div`
   background-color: ${(props) => props.theme.color.darker};
   overflow-y: scroll;
-  max-height: 47vh;
+  height: 100%;
   width: 100%;
   position: absolute;
-  top: 45.5%;
+  top: 390px;
   display: flex;
   justify-content: center;
+  @media (max-width: 400px) {
+    top: 350px;
+  }
+  @media (max-width: 304px) {
+    top: 380px;
+  }
   & div {
     color: ${(props) => props.theme.color.black};
   }
