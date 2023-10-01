@@ -1,8 +1,39 @@
-# React + Vite
+# Holidaze
+- Final exam for my front end development studies.
+- [live demo](https://lustrous-raindrop-4630e1.netlify.app/)
+![Screenshot 2023-10-01 215111](https://github.com/trine-marie-sandberg/holidaze/assets/91562336/ec2090c1-857d-4201-9b32-83f1efe5047a)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+A newly launched accommodation booking site called Holidaze has approached you to develop a brand new front end for their application. While they have a list of required features, the design and user experience has not been specified. Working with the official API documentation, plan, design and build a modern front end accommodation booking application.
 
-Currently, two official plugins are available:
+There are two aspects to this brief: the customer-facing side of the website where users can book holidays at a venue, and an admin-facing side of the website where users can register and manage venues and bookings at those venues.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Built With
+
+- React
+- Vite
+- Styled components
+- Date fns
+- React date range
+
+## Getting Started
+
+### Installing
+
+1. Clone the repo:
+
+```bash
+git clone git@github.com:trine-marie-sandberg
+/holidaze.git
+```
+
+2. Install the dependencies:
+```bash
+npm install
+```
+
+## Contact
+
+Email me at trine.marie.sandberg@gmail.com
+
+[My LinkedIn page](https://www.linkedin.com/in/trine-sandberg-5aa86b206/)
