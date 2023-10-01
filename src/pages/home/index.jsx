@@ -16,6 +16,7 @@ export default function HomePage() {
     const [ filteredData, setFilteredData ] = useState(data);
     const [ searchWord, setSearchWord ] = useState("");
     const [ closeVisible, setCloseVisible ] = useState(false);
+    const [ exploreVisible, setExploreVisible ] = useState(true);
 
     function handleFilter() {
         const newFilter = data.filter((value) => {
@@ -43,6 +44,7 @@ export default function HomePage() {
                                 setCloseVisible(true);
                                 setSearchWord(e.target.value);
                                 handleFilter();
+                                setExploreVisible(false);
                               }}
                               />
                               {closeVisible &&
@@ -52,6 +54,7 @@ export default function HomePage() {
                                         e.preventDefault();
                                         setFilteredData([]);
                                         setCloseVisible(false);
+                                        setExploreVisible(true);
                                     }}
                                     >
                                     <i className="fa-solid fa-xmark"></i>
@@ -113,11 +116,13 @@ export default function HomePage() {
                                </ResultsWrap> 
                             }
                         </ResultsBox>
+                        {exploreVisible && 
                         <LinkWrap>
                             <Link to="venues">
                               <BtnPrimary>Explore</BtnPrimary>
                             </Link>
                         </LinkWrap>
+                        }
                     </FrontPageWrap>
                 </BgFade>
             </FrontPage>

@@ -21,12 +21,15 @@ export const BgFade = styled.div`
 `;
 export const FrontPage = styled.div`
   padding-top: 115px;
+  @media (max-width: 400px) {
+    padding-top: 128px;
+  }
 `;
 export const I = styled.i`
   font-size: ${(props) => props.theme.sizes.med};
   padding: ${(props) => props.theme.sizes.sm};
   color: ${(props) => props.theme.color.font};
-  @media (max-width: 800px) {
+  @media (max-width: 300px) {
    padding: ${(props) => props.theme.sizes.xs};
   }
 `;
@@ -72,17 +75,15 @@ export const ResultsBox = styled.div`
   top: 390px;
   display: flex;
   justify-content: center;
-  @media (max-width: 1800px) {
-    top: 400px;
-  }
-  @media (max-width: 2200px) {
+  //min
+  @media (min-width: 800px) {
     top: 410px;
   }
-  @media (max-width: 400px) {
-    top: 350px;
+  @media (min-width: 900px) {
+    top: 440px;
   }
-  @media (max-width: 304px) {
-    top: 380px;
+  @media (min-width: 1900px) {
+    top: 45%;
   }
   & div {
     color: ${(props) => props.theme.color.black};
