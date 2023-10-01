@@ -41,7 +41,7 @@ export default function SearchFilters(props) {
                   type="text" 
                   id="search" 
                   aria-label="search input field" 
-                  placeholder="search for destination, contry, venue .." 
+                  placeholder="Contry or venue" 
                   onChange={(e) => setSearch(e.target.value)} />
             </SearchWrap>
             <SubmitBtn type="submit">Go <i className="fa-solid fa-arrow-pointer"></i></SubmitBtn>

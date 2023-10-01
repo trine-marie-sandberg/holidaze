@@ -35,18 +35,18 @@ export default function VenuesPage() {
              let petsAllowed = value.meta.pets === pets;
              let hasParking = value.meta.parking === parking;
              let hasBreakFast = value.meta.breakfast === breakFast;
-             return hasWifi & petsAllowed & hasParking & hasBreakFast & totalRating + totalGuests + searchName + searchContry;
+             return hasWifi & petsAllowed & hasParking & hasBreakFast & totalRating + totalGuests + searchName & searchContry;
           })
           setFilteredData(newFilter);
-          if(newFilter.length < 1) {
-            setNoMatch(true);
-          } if(newFilter.length >= 1) {
-            setNoMatch(false);
-          }
     }
 
     useEffect(() => {
         handleFilter();
+        if(filteredData?.length === 0) {
+            setNoMatch(true);
+          } if(filteredData?.length >= 1) {
+            setNoMatch(false);
+          }
     }, isSubmitted)
 
     try {
@@ -84,7 +84,10 @@ export default function VenuesPage() {
                                 </VenueCards>
                             </BtnCardsWrap>
                             {noMatch &&
-                                <NoMatchMessage>No match for this search</NoMatchMessage>
+                                <NoMatchMessage>
+                                    <p>No match for this search</p>
+                                    <button onClick={() => setNoMatch(false)}>ok</button>
+                                </NoMatchMessage>
                             }
                         </div>
                     }
