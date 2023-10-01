@@ -54,7 +54,7 @@ export const SearchWrap = styled.form`
 export const ResultsBox = styled.div`
   background-color: ${(props) => props.theme.color.darker};
   overflow-y: scroll;
-  height: 100%;
+  max-height: 100%;
   width: 100%;
   position: absolute;
   top: 390px;
