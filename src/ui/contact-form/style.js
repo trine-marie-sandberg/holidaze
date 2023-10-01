@@ -74,3 +74,15 @@ export const Heading = styled.h1`
   font-size: 25px;
   font-weight: 200;
 `;
+export const LoadingHeadingWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+`;
+export const SuccessContainer = styled.div`
+  padding: 15px;
+  width: fit-content;
+  border-radius: 5px;
+  background-color: rgb(17, 70, 80);
+  border: 1px solid white;
+`;

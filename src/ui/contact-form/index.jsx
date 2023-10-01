@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { FormContainer, Label, Input, TextArea, Button, Heading, FormElementsWrap, IconInputWrap, InputIcon } from './style';
+import { FormContainer, Label, Input, TextArea, Button, Heading, FormElementsWrap, IconInputWrap, InputIcon, LoadingHeadingWrap, SuccessContainer } from './style';
+import Loader from '../loader';
 
 export default function ContactForm() {
 
@@ -7,36 +8,50 @@ export default function ContactForm() {
   const [subject, setSubject] = useState('');
   const [email, setEmail] = useState('');
   const [body, setBody] = useState('');
-
-  const handleFullNameChange = (e) => {
-    setFullName(e.target.value);
-  };
-
-  const handleSubjectChange = (e) => {
-    setSubject(e.target.value);
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleBodyChange = (e) => {
-    setBody(e.target.value);
-  };
+  const [ loading, setLoading ] = useState(false);
+  const [ error, setError ] = useState("");
+  const [ success, setSuccess ] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted!');
-    console.log('Full Name:', fullName);
-    console.log('Subject:', subject);
-    console.log('Email:', email);
-    console.log('Body:', body);
+    setLoading(true);
+    setSuccess(false);
+    const submitData = {
+      name: fullName,
+      subject: subject,
+      email: email,
+      message: body,
+    }
+    try {
+      const timer = setTimeout(() => {
+        console.log(submitData);
+        setLoading(false);
+        setSuccess(true);
+        setFullName("");
+        setSubject("");
+        setEmail("");
+        setBody("");
+      }, 1000)
+    } catch(error) {
+      setError(`An error occured. Details: ${error}`);
+    }
   };
 
   return (
     <FormContainer onSubmit={handleSubmit}>
-      <Heading>Let us help you with your vacation planning</Heading>
+      <LoadingHeadingWrap>
+        <Heading>Let us help you with your vacation planning</Heading>
+        {loading &&
+          <Loader/>
+        }
+        {success &&
+          <SuccessContainer>
+            Your message has been sent.
+            Feel free to message us again if you want to add something.
+          </SuccessContainer>
+        }
+        {error}
+      </LoadingHeadingWrap>
       <FormElementsWrap>
         <Label htmlFor="userName">Username:</Label>
         <IconInputWrap>
@@ -45,7 +60,7 @@ export default function ContactForm() {
             type="text"
             id="userName"
             value={fullName}
-            onChange={handleFullNameChange}
+            onChange={(e) => setFullName(e.target.value)}
             minLength={3}
             required
           />
@@ -59,7 +74,7 @@ export default function ContactForm() {
             type="text"
             id="subject"
             value={subject}
-            onChange={handleSubjectChange}
+            onChange={(e) => setSubject(e.target.value)}
             minLength={3}
             required
           />
@@ -73,7 +88,7 @@ export default function ContactForm() {
           type="email"
           id="email"
           value={email}
-          onChange={handleEmailChange}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         </IconInputWrap>
@@ -85,8 +100,8 @@ export default function ContactForm() {
           <TextArea
             id="body"
             value={body}
-            onChange={handleBodyChange}
-            minLength={3}
+            onChange={(e) => setBody(e.target.value)}
+            minLength={5}
             required
           >
           </TextArea>
