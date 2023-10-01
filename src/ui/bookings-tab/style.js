@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const BookingWrap = styled.div`
   background-color: ${(props) => props.theme.color.dark};
   & :hover {
-    background-color: ${(props) => props.theme.color.light};
+    background-color: rgb(33, 70, 91);
   }
 `;
 export const DelIcon = styled.i`

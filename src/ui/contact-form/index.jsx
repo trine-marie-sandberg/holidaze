@@ -40,7 +40,7 @@ export default function ContactForm() {
   return (
     <FormContainer onSubmit={handleSubmit}>
       <LoadingHeadingWrap>
-        <Heading>Let us help you with your vacation planning</Heading>
+        <Heading>Let us help with your vacation</Heading>
         {loading &&
           <Loader/>
         }

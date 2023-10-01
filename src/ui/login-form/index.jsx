@@ -64,7 +64,7 @@ export default function LoginForm(props) {
     }
     }}>
       <LoadingHeadingWrap>
-        <Heading>Register</Heading>
+        <Heading>Login</Heading>
         {loading && <Loader/>}
         {errorVisible &&
           <ErrorContainer>

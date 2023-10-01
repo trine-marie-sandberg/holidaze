@@ -91,7 +91,7 @@ export default function AccountPage() {
                             setUpdateFormVisible(true);
                           }}
                         >
-                            Update or add avatar + <i className="fa-solid fa-circle-user"></i>
+                            Update or change avatar <i className="fa-solid fa-pen-clip"></i>
                         </UpdateBtn>
                     </FlexWrap>
                     <p>
