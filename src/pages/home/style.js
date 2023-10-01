@@ -75,6 +75,9 @@ export const ResultsBox = styled.div`
   @media (max-width: 1800px) {
     top: 400px;
   }
+  @media (max-width: 2200px) {
+    top: 410px;
+  }
   @media (max-width: 400px) {
     top: 350px;
   }
