@@ -77,7 +77,6 @@ export default function ListVenueForm(props) {
 
     const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/venues?_venue=true`, dataToSend);
     const json = await response.json();
-    console.log(media)
     if(response.ok) {
       setFormVisible(false);
       setInitialVenues((state) => [

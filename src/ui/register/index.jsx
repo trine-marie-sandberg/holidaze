@@ -35,7 +35,6 @@ export default function RegisterForm(props) {
     try {
       const response = await fetch("https://api.noroff.dev/api/v1/holidaze/auth/register", dataToSend);
       const json = await response.json();
-      console.log(json)
       if(json.statusCode === 400) {
         setErrorVisible(true);
         setUserfeedback("Wrong input. Please check if your email is valid and not already in use.")
@@ -62,7 +61,6 @@ export default function RegisterForm(props) {
             manager: json.venueManager,
             token: json.accessToken,
           }
-          console.log(json)
           useSave("user", userDetails);
           setOpenRegisterForm(false);
         }

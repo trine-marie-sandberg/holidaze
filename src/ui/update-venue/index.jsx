@@ -78,7 +78,6 @@ export default function UpdateVenueForm(props) {
 
     const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${updateVenue.id}?_venue=true`, dataToSend);
     const json = await response.json();
-    console.log(json)
     if(response.ok) {
       setUpdateVisible(false);
       setInitialVenues((state) => [

@@ -41,7 +41,6 @@ export default function UpdateAccountForm(props) {
             name: user.name,
             token: user.token,
           });
-          console.log(response.status)
           setAvatar(newAvatar);
           setUpdateFormVisible(false);
         }
