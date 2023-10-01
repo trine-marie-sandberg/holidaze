@@ -20,7 +20,7 @@ export const DelUpdBtn = styled.button`
 export const DelUpdBtnWrap = styled.div`
   background-color: ${(props) => props.theme.color.darker} !important;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   min-width: 150px;
   padding: 5px 0;
 `;
@@ -51,4 +51,25 @@ export const BtnImageWrap = styled.div`
   @media(max-width: 643px) {
     align-items: end;
   }
+`;
+export const YesNoWrap = styled.div`
+  background-color: rgba(0, 0, 0, 0) !important;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-bottom: 5px;
+  & button {
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+  }
+`;
+export const YesBtn = styled.button`
+  background-color: ${(props) => props.theme.color.darker} !important;
+  color: ${(props) => props.theme.color.font};
+`;
+export const NoBtn = styled.button`
+  background-color: ${(props) => props.theme.color.secondary} !important;
+  color: ${(props) => props.theme.color.black};
 `;
