@@ -19,9 +19,9 @@ export const CardWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: solid 2px ${(props) => props.theme.color.dark};
+  border: solid 1px ${(props) => props.theme.color.light};
   border-radius: ${(props) => props.theme.sizes.borderRadius};
-  background-color: ${(props) => props.theme.color.primary};
+  background-color: ${(props) => props.theme.color.dark};
   margin: ${(props) => props.theme.sizes.xs};
   padding: ${(props) => props.theme.sizes.sm} 0;
   margin: 5px;
@@ -50,7 +50,9 @@ export const Image = styled.div`
   background-size: 100% auto;
   background-repeat: no-repeat;
   max-height: ${(props) => props.theme.sizes.card};
-  border-radius: ${(props) => props.theme.sizes.borderRadius};
+  border-top: solid 1px ${(props) => props.theme.color.light};
+  border-bottom: solid 1px ${(props) => props.theme.color.light};
+  /* border-radius: ${(props) => props.theme.sizes.borderRadius}; */
 `;
 export const Wrap = styled.div`
   display: flex;
