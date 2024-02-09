@@ -42,11 +42,11 @@ export default function VenuesPage() {
 
     useEffect(() => {
         handleFilter();
-        if(filteredData?.length === 0) {
-            setNoMatch(true);
-          } if(filteredData?.length >= 1) {
-            setNoMatch(false);
-          }
+        // if(filteredData?.length === 0) {
+        //     setNoMatch(true);
+        //   } if(filteredData?.length >= 1) {
+        //     setNoMatch(false);
+        //   }
     }, isSubmitted)
 
     try {
