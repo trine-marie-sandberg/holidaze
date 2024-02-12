@@ -31,8 +31,7 @@ export default function VenuesPage() {
              let searchContry = value.location.country.toLowerCase().includes(search.toLowerCase());
              let searchWord = searchName || searchContry;
              let totalGuests = value.maxGuests >= guests;
-             let totalRating = value.rating >= rating;
-             
+             let totalRating = value.rating >= rating;          
              let hasWifi = value.meta.wifi === wifi;
              let petsAllowed = value.meta.pets === pets;
              let hasParking = value.meta.parking === parking;
@@ -44,11 +43,11 @@ export default function VenuesPage() {
 
     useEffect(() => {
         handleFilter();
-        if(filteredData?.length === 0) {
-            setNoMatch(true);
-          } if(filteredData?.length >= 1) {
-            setNoMatch(false);
-          }
+        // if(filteredData?.length > 1) {
+        //     setNoMatch(true);
+        //   } if(filteredData?.length >= 1) {
+        //     setNoMatch(false);
+        //   }
     }, isSubmitted)
 
     try {
