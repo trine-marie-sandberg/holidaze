@@ -10,8 +10,9 @@ import Loader from "../../ui/loader";
 
 export default function VenuesPage() {
     
-    const [ limit, setLimit ] = useState(100);
-    const url = `${base + created + page + limit}`;
+    const [ limit, setLimit ] = useState(10);
+    //const url = `${base + created + page + limit}`;
+    const url = `https://api.noroff.dev/api/v1/holidaze/venues`
     const { data, loading, error } = useFetch(url);
     const [ filteredData, setFilteredData ] = useState();
     const [ noMatch, setNoMatch ] = useState(false);
@@ -28,6 +29,7 @@ export default function VenuesPage() {
         const newFilter = data.filter((value) => {
              let searchName = value.name.toLowerCase().includes(search.toLowerCase());
              let searchContry = value.location.country.toLowerCase().includes(search.toLowerCase());
+             let searchWord = searchName || searchContry;
              let totalGuests = value.maxGuests >= guests;
              let totalRating = value.rating >= rating;
              
@@ -35,7 +37,7 @@ export default function VenuesPage() {
              let petsAllowed = value.meta.pets === pets;
              let hasParking = value.meta.parking === parking;
              let hasBreakFast = value.meta.breakfast === breakFast;
-             return hasWifi & petsAllowed & hasParking & hasBreakFast & totalRating + totalGuests + searchName & searchContry;
+             return hasWifi & petsAllowed & hasParking & hasBreakFast & totalRating & totalGuests & searchWord;
           })
           setFilteredData(newFilter);
     }

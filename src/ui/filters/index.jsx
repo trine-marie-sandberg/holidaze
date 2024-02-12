@@ -4,7 +4,7 @@ import StarRating from "../star-rating";
 export default function SearchFilters(props) {
 
     const 
-    [   submitted, 
+    [   setIsSubmitted, 
         isSubmitted, 
         wifi,
         setWifi,
@@ -19,16 +19,16 @@ export default function SearchFilters(props) {
         setGuests,
         setSearch,
     ] = props.children;
-
+    let submArray = [];
     function submitFilters(e) {
         e.preventDefault();
-        let submArray = [];
+
         if(isSubmitted[0] === "") {
-            submArray.push("true")
-            submitted([...submArray]);
-        } if(isSubmitted[0] === "true") {
+            submArray.push("newFilter")
+            setIsSubmitted([...submArray])
+        } if(isSubmitted[0] === "newFilter") {
             submArray.push("")
-            submitted([...submArray]);
+            setIsSubmitted([...submArray])
         }
     }
 
