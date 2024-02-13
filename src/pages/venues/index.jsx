@@ -53,7 +53,6 @@ export default function VenuesPage() {
     try {
         return(
             <PageWrapper>
-                {/* <CategoryCarousel /> */}
                 <h1>Find venues</h1>
                 <SearchFilters>
                     {setIsSubmitted}
